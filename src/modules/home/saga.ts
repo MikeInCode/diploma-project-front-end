@@ -6,5 +6,5 @@ function* workerSaga() {
 }
 
 export function* saga() {
-  yield all([takeLatest('', workerSaga)])
+  yield all([])
 }

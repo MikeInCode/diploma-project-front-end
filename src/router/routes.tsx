@@ -12,3 +12,7 @@ const WithFallback = props => {
 export const Home = props => (
   <WithFallback lazy={lazy(() => import('../containers/home'))} {...props} />
 )
+
+export const Login = props => (
+  <WithFallback lazy={lazy(() => import('../containers/login'))} {...props} />
+)
