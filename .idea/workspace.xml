@@ -1,12 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="fa2c2255-feb4-435e-ae35-c553405ba6aa" name="Default Changelist" comment="login form done, add some common components">
+    <list default="true" id="fa2c2255-feb4-435e-ae35-c553405ba6aa" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/containers/login/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/containers/login/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/router/routes.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/router/routes.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/theme.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/theme.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/common/linearProgress/styles.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/common/linearProgress/styles.ts" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -141,7 +138,14 @@
       <option name="project" value="LOCAL" />
       <updated>1574097170735</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="form finished, added base css">
+      <created>1574274664248</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1574274664248</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -163,6 +167,7 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="project setup" />
     <MESSAGE value="login form done, add some common components" />
-    <option name="LAST_COMMIT_MESSAGE" value="login form done, add some common components" />
+    <MESSAGE value="form finished, added base css" />
+    <option name="LAST_COMMIT_MESSAGE" value="form finished, added base css" />
   </component>
 </project>
