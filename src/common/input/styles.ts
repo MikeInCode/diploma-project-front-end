@@ -1,4 +1,4 @@
-import { createStyles, makeStyles, Theme } from '@material-ui/core'
+import { makeStyles } from '@material-ui/core'
 import { Color } from '../../theme'
 
 export const useInputClasses = makeStyles(
@@ -16,25 +16,33 @@ export const useInputClasses = makeStyles(
     error: {
       border: `1px solid ${Color.Red}`,
       background: Color.Red1
+    },
+    focused: {
+      border: `2px solid ${Color.Grey}`,
+      '&$error': {
+        border: `2px solid ${Color.Red}`
+      },
+      '& input': {
+        padding: '6px 11px'
+      }
     }
   },
   { name: 'CustomInputClasses' }
 )
 
-export const useInputStyles = makeStyles<Theme>(
-  theme =>
-    createStyles({
-      wrapper: {
-        display: 'flex',
-        flexDirection: 'column',
-        position: 'relative',
-        marginBottom: theme.typography.body2.fontSize
-      },
-      errorMessage: {
-        color: Color.Red,
-        position: 'absolute',
-        top: 35
-      }
-    }),
+export const useInputStyles = makeStyles(
+  {
+    wrapper: {
+      display: 'flex',
+      flexDirection: 'column',
+      position: 'relative',
+      marginBottom: 12
+    },
+    errorMessage: {
+      color: Color.Red,
+      position: 'absolute',
+      top: 35
+    }
+  },
   { name: 'CustomInputStyles' }
 )

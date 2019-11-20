@@ -1,3 +1,4 @@
+import React from 'react'
 import { withStyles, CssBaseline } from '@material-ui/core'
 
 export const Color = {
@@ -11,7 +12,9 @@ export const Color = {
   Green: '#379c59', // button primary
   Green1: '#348747', // button primary hover
   Green2: 'rgba(126,219,160,0.60)', // button primary disabled
-  Green3: 'rgba(52,135,71,0.60)' // button primary disabled text
+  Green3: 'rgba(52,135,71,0.60)', // button primary disabled text
+
+  Black: '#000'
 }
 
 export const GlobalCss = withStyles({
@@ -20,4 +23,4 @@ export const GlobalCss = withStyles({
       minHeight: '100vh'
     }
   }
-})(CssBaseline)
+})(() => <CssBaseline />)
