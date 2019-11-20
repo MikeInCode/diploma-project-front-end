@@ -1,18 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="fa2c2255-feb4-435e-ae35-c553405ba6aa" name="Default Changelist" comment="project setup">
+    <list default="true" id="fa2c2255-feb4-435e-ae35-c553405ba6aa" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/logo192.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/logo512.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/containers/home/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/containers/home/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/modules/home/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/modules/home/index.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/modules/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/modules/index.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/modules/reducer.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/modules/reducer.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/modules/types.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/modules/types.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/common/linearProgress/styles.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/common/linearProgress/styles.ts" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -29,6 +20,11 @@
     </option>
   </component>
   <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="master" />
+      </map>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
     <option name="ROOT_SYNC" value="DONT_SYNC" />
   </component>
@@ -45,7 +41,7 @@
   <component name="PropertiesComponent">
     <property name="JavaScriptWeakerCompletionTypeGuess" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/common" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.jscs" value="true" />
     <property name="node.js.detected.package.standard" value="true" />
@@ -69,6 +65,10 @@
       <recent name="C:\Users\Mike\Desktop\Diploma\src\router" />
       <recent name="C:\Users\Mike\Desktop\Diploma\src" />
       <recent name="C:\Users\Mike\Desktop\Diploma" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\Mike\Desktop\Diploma\src\common" />
+      <recent name="C:\Users\Mike\Desktop\Diploma\src\containers" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -97,6 +97,7 @@
     <recent_temporary>
       <list>
         <item itemvalue="npm.start" />
+        <item itemvalue="npm.start" />
       </list>
     </recent_temporary>
   </component>
@@ -119,7 +120,9 @@
       <workItem from="1574003670998" duration="300000" />
       <workItem from="1574003977555" duration="6491000" />
       <workItem from="1574025207821" duration="8000" />
-      <workItem from="1574093432627" duration="3709000" />
+      <workItem from="1574093432627" duration="3747000" />
+      <workItem from="1574108537356" duration="3545000" />
+      <workItem from="1574188149216" duration="10700000" />
     </task>
     <task id="LOCAL-00001" summary="project setup">
       <created>1574009767984</created>
@@ -128,7 +131,21 @@
       <option name="project" value="LOCAL" />
       <updated>1574009767985</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="project setup">
+      <created>1574097170735</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1574097170735</updated>
+    </task>
+    <task id="LOCAL-00003" summary="form finished, added base css">
+      <created>1574274664248</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1574274664248</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -149,6 +166,8 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="project setup" />
-    <option name="LAST_COMMIT_MESSAGE" value="project setup" />
+    <MESSAGE value="login form done, add some common components" />
+    <MESSAGE value="form finished, added base css" />
+    <option name="LAST_COMMIT_MESSAGE" value="form finished, added base css" />
   </component>
 </project>

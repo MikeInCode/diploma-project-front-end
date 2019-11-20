@@ -6,10 +6,12 @@ import { ApolloProvider } from '@apollo/react-hooks'
 import { apolloClient } from './api'
 import { AppRouter } from './router'
 import { history } from './router/history'
+import { GlobalCss } from './theme'
 
 ReactDOM.render(
   <Provider store={store}>
     <ApolloProvider client={apolloClient}>
+      <GlobalCss />
       <AppRouter history={history} />
     </ApolloProvider>
   </Provider>,
