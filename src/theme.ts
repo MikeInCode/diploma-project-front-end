@@ -1,3 +1,5 @@
+import { withStyles, CssBaseline } from '@material-ui/core'
+
 export const Color = {
   Grey: '#aab7bd', // input border
   Grey1: '#f4f6f6', // input background
@@ -11,3 +13,11 @@ export const Color = {
   Green2: 'rgba(126,219,160,0.60)', // button primary disabled
   Green3: 'rgba(52,135,71,0.60)' // button primary disabled text
 }
+
+export const GlobalCss = withStyles({
+  '@global': {
+    '#root': {
+      minHeight: '100vh'
+    }
+  }
+})(CssBaseline)

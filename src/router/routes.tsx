@@ -1,9 +1,10 @@
 import React, { lazy, Suspense } from 'react'
+import { LinearProgress } from '../common/linearProgress'
 
 const WithFallback = props => {
   const { lazy: LazyComponent, ...rest } = props
   return (
-    <Suspense fallback={<div>Загрузка...</div>}>
+    <Suspense fallback={<LinearProgress />}>
       <LazyComponent {...rest} />
     </Suspense>
   )
