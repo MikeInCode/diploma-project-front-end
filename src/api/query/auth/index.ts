@@ -1,8 +1,7 @@
-export const AuthMutationService = {
-  login: variables => {
+export const AuthQueryService = {
+  getProfile: () => {
     return {
       data: {
-        token: '123',
         user: {
           email: 'example@gmail.com',
           firsName: 'Mike',
