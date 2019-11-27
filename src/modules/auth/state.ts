@@ -1,5 +1,6 @@
 import { IAuthState } from './types'
 
 export const initialState: IAuthState = {
-  isLoading: false
+  isLoading: false,
+  user: null
 }

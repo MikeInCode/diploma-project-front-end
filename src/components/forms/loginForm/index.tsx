@@ -5,7 +5,7 @@ import { initialValues, validationSchema } from './helpers'
 import { Input } from '../../../common/input'
 import { Button } from '../../../common/button'
 import { Box } from '@material-ui/core'
-import { getErrorMessage } from '../../../utils'
+import { getErrorMessage } from '../../../utils/getErrorMessage'
 import { useDispatch } from 'react-redux'
 import { onLoginAction } from '../../../modules/auth'
 
