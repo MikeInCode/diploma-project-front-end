@@ -1,19 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="fa2c2255-feb4-435e-ae35-c553405ba6aa" name="Default Changelist" comment="">
+    <list default="true" id="9f49bafb-45ca-4404-a198-e73a9a1ecbbe" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/Diploma.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/codeStyles/Project.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/codeStyles/codeStyleConfig.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/api/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/index.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/api/mutation/auth/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/mutation/auth/index.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/forms/loginForm/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/forms/loginForm/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/modules/auth/actions.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/modules/auth/actions.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/modules/auth/reducer.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/modules/auth/reducer.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/modules/auth/saga.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/modules/auth/saga.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/modules/auth/state.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/modules/auth/state.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/modules/auth/types.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/modules/auth/types.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/router/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/router/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/utils.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/getErrorMessage.ts" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -21,71 +17,22 @@
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="FileTemplateManagerImpl">
-    <option name="RECENT_TEMPLATES">
-      <list>
-        <option value="TypeScript JSX File" />
-        <option value="TypeScript File" />
-      </list>
-    </option>
-  </component>
   <component name="Git.Settings">
-    <option name="RECENT_BRANCH_BY_REPOSITORY">
-      <map>
-        <entry key="$PROJECT_DIR$" value="feature/login-page" />
-      </map>
-    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
-    <option name="ROOT_SYNC" value="DONT_SYNC" />
-    <option name="UPDATE_TYPE" value="REBASE" />
   </component>
-  <component name="JsFlowSettings">
-    <service-enabled>true</service-enabled>
-    <exe-path />
-    <other-services-enabled>true</other-services-enabled>
-    <auto-save>true</auto-save>
-  </component>
-  <component name="ProjectId" id="1TkQ8DNgdwqRnpJjzC2QbsDYvDv" />
+  <component name="ProjectId" id="1UAyNRDGyFusTqnK0scYNMg5Lzw" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <ConfirmationsSetting value="1" id="Add" />
   </component>
   <component name="PropertiesComponent">
-    <property name="JavaScriptWeakerCompletionTypeGuess" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/router" />
     <property name="node.js.detected.package.eslint" value="true" />
-    <property name="node.js.detected.package.jscs" value="true" />
-    <property name="node.js.detected.package.standard" value="true" />
+    <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
-    <property name="node.js.path.for.package.jscs" value="project" />
-    <property name="node.js.path.for.package.standard" value="project" />
     <property name="node.js.path.for.package.tslint" value="project" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
-    <property name="node.js.selected.package.jscs" value="" />
-    <property name="node.js.selected.package.standard" value="" />
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
-    <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
-    <property name="nodejs_npm_path_reset_for_default_project" value="true" />
-    <property name="nodejs_package_manager_path" value="npm" />
     <property name="prettierjs.PrettierConfiguration.Package" value="C:\Users\Mike\Desktop\Diploma\node_modules\prettier" />
-    <property name="settings.editor.selected.configurable" value="settings.javascript.prettier" />
-    <property name="ts.external.directory.path" value="C:\Users\Mike\Desktop\Diploma\node_modules\typescript\lib" />
-  </component>
-  <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Users\Mike\Desktop\Diploma\src\utils" />
-      <recent name="C:\Users\Mike\Desktop\Diploma\src\assets" />
-      <recent name="C:\Users\Mike\Desktop\Diploma\src\router" />
-      <recent name="C:\Users\Mike\Desktop\Diploma\src" />
-      <recent name="C:\Users\Mike\Desktop\Diploma" />
-    </key>
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\Users\Mike\Desktop\Diploma\src\router" />
-      <recent name="C:\Users\Mike\Desktop\Diploma\src\api\query" />
-      <recent name="C:\Users\Mike\Desktop\Diploma\src\modules\auth" />
-      <recent name="C:\Users\Mike\Desktop\Diploma\src\common" />
-      <recent name="C:\Users\Mike\Desktop\Diploma\src\containers" />
-    </key>
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -99,79 +46,18 @@
       </list>
     </option>
   </component>
-  <component name="RunManager">
-    <configuration name="start" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
-      <package-json value="$PROJECT_DIR$/package.json" />
-      <command value="run" />
-      <scripts>
-        <script value="start" />
-      </scripts>
-      <node-interpreter value="project" />
-      <envs />
-      <method v="2" />
-    </configuration>
-    <recent_temporary>
-      <list>
-        <item itemvalue="npm.start" />
-        <item itemvalue="npm.start" />
-        <item itemvalue="npm.start" />
-        <item itemvalue="npm.start" />
-        <item itemvalue="npm.start" />
-      </list>
-    </recent_temporary>
-  </component>
   <component name="SvnConfiguration">
     <configuration />
   </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="fa2c2255-feb4-435e-ae35-c553405ba6aa" name="Default Changelist" comment="" />
-      <created>1574001452055</created>
+      <changelist id="9f49bafb-45ca-4404-a198-e73a9a1ecbbe" name="Default Changelist" comment="" />
+      <created>1574813653919</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1574001452055</updated>
-      <workItem from="1574001455027" duration="495000" />
-      <workItem from="1574001959748" duration="60000" />
-      <workItem from="1574002028178" duration="34000" />
-      <workItem from="1574002072499" duration="158000" />
-      <workItem from="1574002275827" duration="1266000" />
-      <workItem from="1574003555579" duration="93000" />
-      <workItem from="1574003670998" duration="300000" />
-      <workItem from="1574003977555" duration="6491000" />
-      <workItem from="1574025207821" duration="8000" />
-      <workItem from="1574093432627" duration="3747000" />
-      <workItem from="1574108537356" duration="3545000" />
-      <workItem from="1574188149216" duration="10700000" />
+      <updated>1574813653919</updated>
+      <workItem from="1574813656467" duration="92000" />
     </task>
-    <task id="LOCAL-00001" summary="project setup">
-      <created>1574009767984</created>
-      <option name="number" value="00001" />
-      <option name="presentableId" value="LOCAL-00001" />
-      <option name="project" value="LOCAL" />
-      <updated>1574009767985</updated>
-    </task>
-    <task id="LOCAL-00002" summary="project setup">
-      <created>1574097170735</created>
-      <option name="number" value="00002" />
-      <option name="presentableId" value="LOCAL-00002" />
-      <option name="project" value="LOCAL" />
-      <updated>1574097170735</updated>
-    </task>
-    <task id="LOCAL-00003" summary="form finished, added base css">
-      <created>1574274664248</created>
-      <option name="number" value="00003" />
-      <option name="presentableId" value="LOCAL-00003" />
-      <option name="project" value="LOCAL" />
-      <updated>1574274664248</updated>
-    </task>
-    <task id="LOCAL-00004" summary="gitigonre fix">
-      <created>1574800332635</created>
-      <option name="number" value="00004" />
-      <option name="presentableId" value="LOCAL-00004" />
-      <option name="project" value="LOCAL" />
-      <updated>1574800332635</updated>
-    </task>
-    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -182,19 +68,10 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State>
-              <option name="COLUMN_ORDER" />
-            </State>
+            <State />
           </value>
         </entry>
       </map>
     </option>
-  </component>
-  <component name="VcsManagerConfiguration">
-    <MESSAGE value="project setup" />
-    <MESSAGE value="login form done, add some common components" />
-    <MESSAGE value="form finished, added base css" />
-    <MESSAGE value="gitigonre fix" />
-    <option name="LAST_COMMIT_MESSAGE" value="gitigonre fix" />
   </component>
 </project>
