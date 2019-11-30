@@ -4,9 +4,10 @@ import { removeToken } from '../utils/token'
 import { push } from 'connected-react-router'
 import { ROUTES } from '../router/constants'
 import { ErrorsEnum } from '../enums'
+import { API_URL } from '../constants'
 
 export const apolloClient = new ApolloClient({
-  uri: 'http://localhost:3001/graphql',
+  uri: API_URL,
   request: operation => {
     const token = localStorage.getItem('token')
     operation.setContext({
