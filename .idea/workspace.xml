@@ -1,21 +1,32 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="9f49bafb-45ca-4404-a198-e73a9a1ecbbe" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/Diploma.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/codeStyles/Project.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/codeStyles/codeStyleConfig.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" />
+    <list default="true" id="e51ecd7a-f76b-43f9-a0b4-eab797d4e810" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/codegen.yml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/api/mutation/auth/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/mutation/auth/index.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/api/mutation/auth/loginUser.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/mutation/auth/loginUser.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/graphQLTypes.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/graphQLTypes.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/modules/auth/actions.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/modules/auth/actions.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/modules/auth/reducer.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/modules/auth/reducer.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/modules/auth/saga.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/modules/auth/saga.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/modules/auth/types.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/modules/auth/types.ts" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="TypeScript File" />
+        <option value="GraphQL File" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -26,13 +37,21 @@
   </component>
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../diploma-project-back-end" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
     <property name="node.js.path.for.package.tslint" value="project" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
+    <property name="nodejs_package_manager_path" value="npm" />
     <property name="prettierjs.PrettierConfiguration.Package" value="C:\Users\Mike\Desktop\Diploma\node_modules\prettier" />
+    <property name="ts.external.directory.path" value="C:\Users\Mike\Desktop\Diploma\node_modules\typescript\lib" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Mike\Desktop\Diploma\src\api\mutation\auth" />
+    </key>
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -46,18 +65,71 @@
       </list>
     </option>
   </component>
+  <component name="RunManager" selected="npm.codegen">
+    <configuration name="codegen" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
+      <package-json value="$PROJECT_DIR$/package.json" />
+      <command value="run" />
+      <scripts>
+        <script value="codegen" />
+      </scripts>
+      <node-interpreter value="project" />
+      <envs />
+      <method v="2" />
+    </configuration>
+    <configuration name="start" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
+      <package-json value="$PROJECT_DIR$/package.json" />
+      <command value="run" />
+      <scripts>
+        <script value="start" />
+      </scripts>
+      <node-interpreter value="project" />
+      <envs />
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="npm.codegen" />
+        <item itemvalue="npm.start" />
+      </list>
+    </recent_temporary>
+  </component>
   <component name="SvnConfiguration">
     <configuration />
   </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="9f49bafb-45ca-4404-a198-e73a9a1ecbbe" name="Default Changelist" comment="" />
+      <changelist id="e51ecd7a-f76b-43f9-a0b4-eab797d4e810" name="Default Changelist" comment="" />
       <created>1574813653919</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1574813653919</updated>
       <workItem from="1574813656467" duration="92000" />
+      <workItem from="1574973585056" duration="8058000" />
+      <workItem from="1575118238642" duration="207000" />
+      <workItem from="1575124290809" duration="4615000" />
     </task>
+    <task id="LOCAL-00001" summary="done">
+      <created>1575125286548</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1575125286548</updated>
+    </task>
+    <task id="LOCAL-00002" summary="gitignore changes">
+      <created>1575125452551</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1575125452551</updated>
+    </task>
+    <task id="LOCAL-00003" summary="move api url to constants">
+      <created>1575125570435</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1575125570435</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -68,10 +140,18 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State />
+            <State>
+              <option name="COLUMN_ORDER" />
+            </State>
           </value>
         </entry>
       </map>
     </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="done" />
+    <MESSAGE value="gitignore changes" />
+    <MESSAGE value="move api url to constants" />
+    <option name="LAST_COMMIT_MESSAGE" value="move api url to constants" />
   </component>
 </project>

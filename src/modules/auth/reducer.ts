@@ -1,30 +1,37 @@
 import { reducerWithInitialState } from 'typescript-fsa-reducers'
 import { initialState } from './state'
 import { IAuthState } from './types'
-import { getProfileAction, onLoginAction } from './actions'
+import { onLoginAction, userMeAction } from './actions'
+import { ErrorsEnum } from '../../enums'
 
 export const reducer = reducerWithInitialState<IAuthState>(initialState)
-  .case(onLoginAction.started, state => ({ ...state, isLoading: true }))
+  .case(onLoginAction.started, state => ({
+    ...state,
+    isLoading: true,
+    isInvalidCredentials: false
+  }))
   .case(onLoginAction.done, (state, payload) => ({
     ...state,
     isLoading: false,
-    user: payload.result.user
+    user: payload.result.loginUser.user
   }))
-  .case(onLoginAction.failed, state => ({
+  .case(onLoginAction.failed, (state, payload) => ({
     ...state,
-    isLoading: false
+    isLoading: false,
+    isInvalidCredentials: payload.error.message.includes(
+      ErrorsEnum.INVALID_CREDENTIALS
+    )
   }))
-  .case(getProfileAction.started, state => ({
+  .case(userMeAction.started, state => ({
     ...state,
     isLoading: true
   }))
-  .case(getProfileAction.done, (state, payload) => ({
+  .case(userMeAction.done, (state, payload) => ({
     ...state,
     isLoading: false,
-    user: payload.result.user
+    user: payload.result.userMe
   }))
-  .case(getProfileAction.failed, state => ({
+  .case(userMeAction.failed, state => ({
     ...state,
-    isLoading: false,
-    user: null
+    isLoading: false
   }))
