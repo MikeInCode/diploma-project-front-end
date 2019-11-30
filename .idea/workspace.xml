@@ -2,25 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e51ecd7a-f76b-43f9-a0b4-eab797d4e810" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/api/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/index.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/api/mutation/auth/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/mutation/auth/index.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/api/query/auth/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/query/auth/index.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/forms/loginForm/helpers.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/forms/loginForm/helpers.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/forms/loginForm/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/forms/loginForm/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/forms/loginForm/types.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/forms/loginForm/types.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/containers/login/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/containers/login/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/modules/auth/actions.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/modules/auth/actions.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/modules/auth/reducer.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/modules/auth/reducer.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/modules/auth/saga.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/modules/auth/saga.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/modules/auth/state.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/modules/auth/state.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/modules/auth/types.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/modules/auth/types.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/router/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/router/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/router/privateRoute.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/router/privateRoute.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/router/publicRoute.tsx" beforeDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -114,8 +97,16 @@
       <workItem from="1574813656467" duration="92000" />
       <workItem from="1574973585056" duration="8058000" />
       <workItem from="1575118238642" duration="207000" />
-      <workItem from="1575124290809" duration="971000" />
+      <workItem from="1575124290809" duration="1148000" />
     </task>
+    <task id="LOCAL-00001" summary="done">
+      <created>1575125286548</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1575125286548</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -133,5 +124,9 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="done" />
+    <option name="LAST_COMMIT_MESSAGE" value="done" />
   </component>
 </project>

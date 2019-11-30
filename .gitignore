@@ -11,7 +11,8 @@
 # production
 /build
 
-# development
+# Idea
+.iml
 .idea
 
 # misc
