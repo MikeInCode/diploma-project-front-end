@@ -7,9 +7,9 @@ import { apolloClient } from './api'
 import { AppRouter } from './router'
 import { history } from './router/history'
 import { GlobalCss } from './theme'
-import { getProfileAction } from './modules/auth'
+import { userMeAction } from './modules/auth'
 
-store.dispatch(getProfileAction.started())
+store.dispatch(userMeAction.started())
 
 ReactDOM.render(
   <Provider store={store}>

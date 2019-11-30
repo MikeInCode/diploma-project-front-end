@@ -1,14 +1,8 @@
+import { apolloClient } from '../../index'
+import loginUserGraphql from './loginUser'
+import { LoginUserMutationVariables } from '../../../graphQLTypes'
+
 export const AuthMutationService = {
-  login: variables => {
-    return {
-      data: {
-        token: '123',
-        user: {
-          email: 'example@gmail.com',
-          firsName: 'Mike',
-          lastName: 'Mike'
-        }
-      }
-    }
-  }
+  loginUser: (variables: LoginUserMutationVariables) =>
+    apolloClient.mutate({ variables, mutation: loginUserGraphql })
 }

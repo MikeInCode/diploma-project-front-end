@@ -2,11 +2,15 @@ import { FormValues } from './types'
 import * as Yup from 'yup'
 
 export const initialValues: FormValues = {
-  login: '',
+  email: '',
   password: ''
 }
 
 export const validationSchema = Yup.object<FormValues>({
-  login: Yup.string().required('Required field'),
-  password: Yup.string().required('Required field')
+  email: Yup.string()
+    .required('Required field')
+    .email('Invalid email'),
+  password: Yup.string()
+    .required('Required field')
+    .min(8, 'Password should be at least 8 symbols')
 })

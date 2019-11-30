@@ -1,13 +1,6 @@
+import { apolloClient } from '../../index'
+import userMeGraphql from './userMe'
+
 export const AuthQueryService = {
-  getProfile: () => {
-    return {
-      data: {
-        user: {
-          email: 'example@gmail.com',
-          firsName: 'Mike',
-          lastName: 'Mike'
-        }
-      }
-    }
-  }
+  userMe: () => apolloClient.query({ query: userMeGraphql })
 }

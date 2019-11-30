@@ -6,38 +6,67 @@ import { Input } from '../../../common/input'
 import { Button } from '../../../common/button'
 import { Box } from '@material-ui/core'
 import { getErrorMessage } from '../../../utils/getErrorMessage'
-import { useDispatch } from 'react-redux'
+import { shallowEqual, useDispatch, useSelector } from 'react-redux'
 import { onLoginAction } from '../../../modules/auth'
+import { Typography } from '../../../common/typography'
+import { IRootReducer } from '../../../modules/types'
+
+const mapState = ({ auth: { isInvalidCredentials } }: IRootReducer) => ({
+  isInvalidCredentials
+})
 
 export const LoginForm = React.memo(() => {
+  const { isInvalidCredentials } = useSelector(mapState, shallowEqual)
+
+  const formikRef = React.useRef<Formik<FormValues>>()
+
+  React.useEffect(() => {
+    if (isInvalidCredentials) {
+      formikRef.current.setErrors({
+        email: 'Incorrect email or password',
+        password: 'Incorrect email or password'
+      })
+    }
+  }, [isInvalidCredentials])
+
   const dispatch = useDispatch()
+
   const onSubmit = React.useCallback(
-    (values: FormValues) => dispatch(onLoginAction.started(values)),
+    (values: FormValues) => dispatch(onLoginAction.started({ input: values })),
     [dispatch]
   )
+
   return (
     <Formik
       onSubmit={onSubmit}
       initialValues={initialValues}
       validationSchema={validationSchema}
+      ref={formikRef}
     >
       {(formikProps: FormikProps<FormValues>) => (
         <Form>
-          <Field name="login">
+          <Field name="email">
             {({ field, form }: FieldProps<FormValues>) => (
-              <Input
-                {...field}
-                errorMessage={getErrorMessage<FormValues>('login', form)}
-              />
+              <>
+                <Typography variant="body1">Email:</Typography>
+                <Input
+                  {...field}
+                  errorMessage={getErrorMessage<FormValues>('email', form)}
+                />
+              </>
             )}
           </Field>
           <Box height={10} />
           <Field name="password">
             {({ field, form }: FieldProps<FormValues>) => (
-              <Input
-                {...field}
-                errorMessage={getErrorMessage<FormValues>('password', form)}
-              />
+              <>
+                <Typography variant="body1">Password:</Typography>
+                <Input
+                  {...field}
+                  type="password"
+                  errorMessage={getErrorMessage<FormValues>('password', form)}
+                />
+              </>
             )}
           </Field>
           <Box height={10} />

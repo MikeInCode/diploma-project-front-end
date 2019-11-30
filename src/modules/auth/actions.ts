@@ -1,9 +1,15 @@
 import actionCreatorFactory from 'typescript-fsa'
+import {
+  LoginUserMutation,
+  LoginUserMutationVariables
+} from '../../graphQLTypes'
 
 const actionCreator = actionCreatorFactory('auth')
 
-export const onLoginAction = actionCreator.async<any, any, Error>('ON_LOGIN')
+export const onLoginAction = actionCreator.async<
+  LoginUserMutationVariables,
+  LoginUserMutation,
+  Error
+>('ON_LOGIN')
 
-export const getProfileAction = actionCreator.async<void, any, Error>(
-  'GET_PROFILE'
-)
+export const userMeAction = actionCreator.async<void, any, Error>('USER_ME')
