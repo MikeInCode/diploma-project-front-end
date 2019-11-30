@@ -1,67 +1,71 @@
-export type Maybe<T> = T | null;
-/** All built-in and custom scalars, mapped to their actual values */
-export type Scalars = {
-  ID: string,
-  String: string,
-  Boolean: boolean,
-  Int: number,
-  Float: number,
-  /** The `Upload` scalar type represents a file upload. */
-  Upload: any,
-};
+/* tslint:disable */
+/* eslint-disable */
+// This file was automatically generated and should not be edited.
 
+// ====================================================
+// GraphQL mutation operation: LoginUser
+// ====================================================
 
-export type AuthenticatedUser = {
-  token: Scalars['String'],
-  user: User,
-};
-
-export enum CacheControlScope {
-  Public = 'PUBLIC',
-  Private = 'PRIVATE'
+export interface LoginUser_loginUser_user {
+  id: string;
+  firstName: string;
+  lastName: string;
+  email: string;
+  role: RoleEnum;
 }
 
-export type LoginInput = {
-  email: Scalars['String'],
-  password: Scalars['String'],
-};
+export interface LoginUser_loginUser {
+  token: string;
+  user: LoginUser_loginUser_user;
+}
 
-export type Mutation = {
-  loginUser: AuthenticatedUser,
-};
+export interface LoginUser {
+  loginUser: LoginUser_loginUser;
+}
 
+export interface LoginUserVariables {
+  input: LoginInput;
+}
 
-export type MutationLoginUserArgs = {
-  input: LoginInput
-};
+/* tslint:disable */
+/* eslint-disable */
+// This file was automatically generated and should not be edited.
 
-export type Query = {
-  userMe: User,
-};
+// ====================================================
+// GraphQL query operation: UserMe
+// ====================================================
+
+export interface UserMe_userMe {
+  id: string;
+  firstName: string;
+  lastName: string;
+  email: string;
+  role: RoleEnum;
+}
+
+export interface UserMe {
+  userMe: UserMe_userMe;
+}
+
+/* tslint:disable */
+/* eslint-disable */
+// This file was automatically generated and should not be edited.
+
+//==============================================================
+// START Enums and Input Objects
+//==============================================================
 
 export enum RoleEnum {
-  Student = 'STUDENT',
-  Admin = 'ADMIN',
-  Teacher = 'TEACHER'
+  ADMIN = "ADMIN",
+  STUDENT = "STUDENT",
+  TEACHER = "TEACHER",
 }
 
+export interface LoginInput {
+  email: string;
+  password: string;
+}
 
-export type User = {
-  id: Scalars['ID'],
-  firstName: Scalars['String'],
-  lastName: Scalars['String'],
-  email: Scalars['String'],
-  role: RoleEnum,
-};
-
-export type LoginUserMutationVariables = {
-  input: LoginInput
-};
-
-
-export type LoginUserMutation = { loginUser: { token: string, user: { id: string } } };
-
-export type UserMeQueryVariables = {};
-
-
-export type UserMeQuery = { userMe: { id: string, firstName: string, lastName: string, email: string, role: RoleEnum } };
+//==============================================================
+// END Enums and Input Objects
+//==============================================================

@@ -7,12 +7,12 @@ import { AuthQueryService } from '../../api/query/auth'
 import { push } from 'connected-react-router'
 import { ROUTES } from '../../router/constants'
 import { getToken, setToken } from '../../utils/token'
-import { LoginUserMutation } from '../../graphQLTypes'
+import { LoginUser, UserMe } from '../../graphQLTypes'
 
 function* onLoginSaga(action: Action<any>) {
   const params = action.payload
   try {
-    const response: ApolloQueryResult<LoginUserMutation> = yield call(
+    const response: ApolloQueryResult<LoginUser> = yield call(
       AuthMutationService.loginUser,
       params
     )
@@ -29,7 +29,7 @@ function* userMeSaga() {
   try {
     const token = getToken()
     if (token) {
-      const response: ApolloQueryResult<any> = yield call(
+      const response: ApolloQueryResult<UserMe> = yield call(
         AuthQueryService.userMe
       )
       const result = response.data

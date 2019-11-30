@@ -29,10 +29,9 @@ export const reducer = reducerWithInitialState<IAuthState>(initialState)
   .case(userMeAction.done, (state, payload) => ({
     ...state,
     isLoading: false,
-    user: payload.result.user
+    user: payload.result.userMe
   }))
   .case(userMeAction.failed, state => ({
     ...state,
-    isLoading: false,
-    user: null
+    isLoading: false
   }))

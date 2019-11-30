@@ -6,6 +6,10 @@ export default gql`
       token
       user {
         id
+        firstName
+        lastName
+        email
+        role
       }
     }
   }
