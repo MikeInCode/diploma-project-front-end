@@ -16,6 +16,9 @@ export const useTypographyClasses = makeStyles<Theme>(
       h3: {
         fontSize: 20
       },
+      h4: {
+        fontSize: 18
+      },
       body1: {
         fontSize: 14
       },

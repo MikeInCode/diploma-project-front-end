@@ -1,7 +1,8 @@
 import React from 'react'
+import { PageWrapper } from '../../common/pageWrapper'
 
 const Home = React.memo(() => {
-  return <div>Home</div>
+  return <PageWrapper>Home</PageWrapper>
 })
 
 export default Home

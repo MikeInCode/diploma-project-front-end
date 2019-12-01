@@ -1,8 +1,9 @@
 import { reducerWithInitialState } from 'typescript-fsa-reducers'
 import { initialState } from './state'
 import { IAuthState } from './types'
-import { onLoginAction, userMeAction } from './actions'
+import { getProfileAction, onLoginAction, onLogoutAction } from './actions'
 import { ErrorsEnum } from '../../enums'
+import { removeToken } from '../../utils/token'
 
 export const reducer = reducerWithInitialState<IAuthState>(initialState)
   .case(onLoginAction.started, state => ({
@@ -13,7 +14,8 @@ export const reducer = reducerWithInitialState<IAuthState>(initialState)
   .case(onLoginAction.done, (state, payload) => ({
     ...state,
     isLoading: false,
-    user: payload.result.loginUser.user
+    isAuthenticated: true,
+    user: payload.result.login.user
   }))
   .case(onLoginAction.failed, (state, payload) => ({
     ...state,
@@ -22,16 +24,16 @@ export const reducer = reducerWithInitialState<IAuthState>(initialState)
       ErrorsEnum.INVALID_CREDENTIALS
     )
   }))
-  .case(userMeAction.started, state => ({
+  .case(getProfileAction.started, state => ({
     ...state,
     isLoading: true
   }))
-  .case(userMeAction.done, (state, payload) => ({
+  .case(getProfileAction.done, (state, payload) => ({
     ...state,
     isLoading: false,
-    user: payload.result.userMe
+    user: payload.result.profile
   }))
-  .case(userMeAction.failed, state => ({
-    ...state,
-    isLoading: false
-  }))
+  .cases([onLogoutAction, getProfileAction.failed], () => {
+    removeToken()
+    return initialState
+  })

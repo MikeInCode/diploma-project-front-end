@@ -17,3 +17,7 @@ export const Home = props => (
 export const Login = props => (
   <WithFallback lazy={lazy(() => import('../containers/login'))} {...props} />
 )
+
+export const Profile = props => (
+  <WithFallback lazy={lazy(() => import('../containers/profile'))} {...props} />
+)

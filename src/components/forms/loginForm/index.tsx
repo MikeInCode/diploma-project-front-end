@@ -8,15 +8,12 @@ import { Box } from '@material-ui/core'
 import { getErrorMessage } from '../../../utils/getErrorMessage'
 import { shallowEqual, useDispatch, useSelector } from 'react-redux'
 import { onLoginAction } from '../../../modules/auth'
-import { Typography } from '../../../common/typography'
-import { IRootReducer } from '../../../modules/types'
-
-const mapState = ({ auth: { isInvalidCredentials } }: IRootReducer) => ({
-  isInvalidCredentials
-})
 
 export const LoginForm = React.memo(() => {
-  const { isInvalidCredentials } = useSelector(mapState, shallowEqual)
+  const { isInvalidCredentials, isLoading } = useSelector(
+    mapState,
+    shallowEqual
+  )
 
   const formikRef = React.useRef<Formik<FormValues>>()
 
@@ -73,7 +70,7 @@ export const LoginForm = React.memo(() => {
           <Button
             type="submit"
             fullWidth={true}
-            disabled={!formikProps.isValid}
+            disabled={!formikProps.isValid || isLoading}
           >
             Login
           </Button>

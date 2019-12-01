@@ -6,6 +6,8 @@ export const Color = {
   Grey1: '#f4f6f6', // input background
   Grey2: '#5b6367', // input text
 
+  Skeleton: '#c9d5da', // input text
+
   Red: '#d5403a', // input error border
   Red1: '#fad5d5', // input error background
 
@@ -20,7 +22,9 @@ export const Color = {
 export const GlobalCss = withStyles({
   '@global': {
     '#root': {
-      minHeight: '100vh'
+      minHeight: '100vh',
+      display: 'flex',
+      flexDirection: 'column'
     }
   }
 })(() => <CssBaseline />)

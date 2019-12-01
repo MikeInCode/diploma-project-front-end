@@ -1,50 +1,43 @@
-import { all, call, put, takeLatest } from 'redux-saga/effects'
+import { all, call, put, takeLatest, delay } from 'redux-saga/effects'
 import { Action } from 'typescript-fsa'
 import { ApolloQueryResult } from 'apollo-boost'
-import { userMeAction, onLoginAction } from './actions'
+import { getProfileAction, onLoginAction } from './actions'
 import { AuthMutationService } from '../../api/mutation/auth'
+import { setToken } from '../../utils/token'
+import { GetProfile, Login, LoginVariables } from '../../graphQLTypes'
 import { AuthQueryService } from '../../api/query/auth'
-import { push } from 'connected-react-router'
-import { ROUTES } from '../../router/constants'
-import { getToken, setToken } from '../../utils/token'
-import { LoginUser, UserMe } from '../../graphQLTypes'
 
-function* onLoginSaga(action: Action<any>) {
+function* onLoginSaga(action: Action<LoginVariables>) {
   const params = action.payload
   try {
-    const response: ApolloQueryResult<LoginUser> = yield call(
+    const response: ApolloQueryResult<Login> = yield call(
       AuthMutationService.loginUser,
       params
     )
     const result = response.data
-    setToken(result.loginUser.token)
+    setToken(result.login.token)
     yield put(onLoginAction.done({ params, result }))
-    yield put(push(ROUTES.HOME))
   } catch (error) {
     yield put(onLoginAction.failed({ params, error }))
   }
 }
 
-function* userMeSaga() {
+function* getProfileSaga() {
+  yield delay(3000) // TODO: should be removed
   try {
-    const token = getToken()
-    if (token) {
-      const response: ApolloQueryResult<UserMe> = yield call(
-        AuthQueryService.userMe
-      )
-      const result = response.data
-      yield put(userMeAction.done({ params: null, result }))
-    } else {
-      yield put(userMeAction.failed({ params: null, error: null }))
-    }
+    const response: ApolloQueryResult<GetProfile> = yield call(
+      AuthQueryService.profile
+    )
+    const result = response.data
+    yield put(getProfileAction.done({ result }))
   } catch (error) {
-    yield put(userMeAction.failed({ params: null, error }))
+    yield put(getProfileAction.failed({ error }))
   }
 }
 
 export function* saga() {
   yield all([
     takeLatest(onLoginAction.started, onLoginSaga),
-    takeLatest(userMeAction.started, userMeSaga)
+    takeLatest(getProfileAction.started, getProfileSaga)
   ])
 }
