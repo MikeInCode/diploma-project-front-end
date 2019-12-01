@@ -10,5 +10,5 @@ const router = connectRouter(history)
 export const rootReducer = combineReducers<IRootReducer>({
   router,
   auth,
-  home
+  home,
 })

@@ -11,12 +11,18 @@ import { onLoginAction } from '../../../modules/auth'
 import { Typography } from '../../../common/typography'
 import { IRootReducer } from '../../../modules/types'
 
-const mapState = ({ auth: { isInvalidCredentials } }: IRootReducer) => ({
-  isInvalidCredentials
+const mapState = ({
+  auth: { isInvalidCredentials, isLoading }
+}: IRootReducer) => ({
+  isInvalidCredentials,
+  isLoading
 })
 
 export const LoginForm = React.memo(() => {
-  const { isInvalidCredentials } = useSelector(mapState, shallowEqual)
+  const { isInvalidCredentials, isLoading } = useSelector(
+    mapState,
+    shallowEqual
+  )
 
   const formikRef = React.useRef<Formik<FormValues>>()
 
@@ -73,7 +79,7 @@ export const LoginForm = React.memo(() => {
           <Button
             type="submit"
             fullWidth={true}
-            disabled={!formikProps.isValid}
+            disabled={!formikProps.isValid || isLoading}
           >
             Login
           </Button>

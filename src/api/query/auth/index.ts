@@ -1,6 +1,6 @@
 import { apolloClient } from '../../index'
-import userMeGraphql from './userMe'
+import getProfileGraphql from './getProfile'
 
 export const AuthQueryService = {
-  userMe: () => apolloClient.query({ query: userMeGraphql })
+  profile: () => apolloClient.query({ query: getProfileGraphql })
 }

@@ -1,18 +1,33 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="e51ecd7a-f76b-43f9-a0b4-eab797d4e810" name="Default Changelist" comment="">
+    <list default="true" id="e51ecd7a-f76b-43f9-a0b4-eab797d4e810" name="Default Changelist" comment="changed auth flow, added page wrapper, skeleton and base header layout">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegen.yml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/api/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/index.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/api/mutation/auth/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/mutation/auth/index.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/api/mutation/auth/loginUser.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/mutation/auth/loginUser.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/api/mutation/auth/loginUser.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/mutation/auth/login.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/api/query/auth/index.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/api/query/auth/userMe.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/common/typography/styles.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/common/typography/styles.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/forms/loginForm/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/forms/loginForm/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/containers/home/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/containers/home/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/containers/login/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/containers/login/index.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/graphQLTypes.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/graphQLTypes.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/modules/auth/actions.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/modules/auth/actions.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/modules/auth/reducer.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/modules/auth/reducer.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/modules/auth/saga.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/modules/auth/saga.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/modules/auth/state.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/modules/auth/state.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/modules/auth/types.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/modules/auth/types.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/modules/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/modules/index.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/modules/reducer.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/modules/reducer.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/router/constants.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/router/constants.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/router/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/router/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/router/privateRoute.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/router/privateRoute.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/router/routes.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/router/routes.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/theme.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/theme.tsx" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -23,8 +38,9 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="TypeScript File" />
         <option value="GraphQL File" />
+        <option value="TypeScript JSX File" />
+        <option value="TypeScript File" />
       </list>
     </option>
   </component>
@@ -37,7 +53,7 @@
   </component>
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../diploma-project-back-end" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/api/query" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -51,6 +67,11 @@
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\Mike\Desktop\Diploma\src\api\mutation\auth" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\Mike\Desktop\Diploma\src\api\query" />
+      <recent name="C:\Users\Mike\Desktop\Diploma\src\containers" />
+      <recent name="C:\Users\Mike\Desktop\Diploma\src\modules" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -88,8 +109,8 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="npm.codegen" />
         <item itemvalue="npm.start" />
+        <item itemvalue="npm.codegen" />
       </list>
     </recent_temporary>
   </component>
@@ -106,7 +127,11 @@
       <workItem from="1574813656467" duration="92000" />
       <workItem from="1574973585056" duration="8058000" />
       <workItem from="1575118238642" duration="207000" />
-      <workItem from="1575124290809" duration="4615000" />
+      <workItem from="1575124290809" duration="11750000" />
+      <workItem from="1575146194508" duration="9510000" />
+      <workItem from="1575187618333" duration="4668000" />
+      <workItem from="1575197811149" duration="626000" />
+      <workItem from="1575217551435" duration="9677000" />
     </task>
     <task id="LOCAL-00001" summary="done">
       <created>1575125286548</created>
@@ -129,7 +154,14 @@
       <option name="project" value="LOCAL" />
       <updated>1575125570435</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="replaced graphql codegen">
+      <created>1575130358149</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1575130358149</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -152,6 +184,7 @@
     <MESSAGE value="done" />
     <MESSAGE value="gitignore changes" />
     <MESSAGE value="move api url to constants" />
-    <option name="LAST_COMMIT_MESSAGE" value="move api url to constants" />
+    <MESSAGE value="replaced graphql codegen" />
+    <option name="LAST_COMMIT_MESSAGE" value="replaced graphql codegen" />
   </component>
 </project>

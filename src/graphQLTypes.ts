@@ -3,27 +3,27 @@
 // This file was automatically generated and should not be edited.
 
 // ====================================================
-// GraphQL mutation operation: LoginUser
+// GraphQL mutation operation: Login
 // ====================================================
 
-export interface LoginUser_loginUser_user {
+export interface Login_login_user {
   id: string;
   firstName: string;
   lastName: string;
   email: string;
-  role: RoleEnum;
+  role: Role;
 }
 
-export interface LoginUser_loginUser {
+export interface Login_login {
   token: string;
-  user: LoginUser_loginUser_user;
+  user: Login_login_user;
 }
 
-export interface LoginUser {
-  loginUser: LoginUser_loginUser;
+export interface Login {
+  login: Login_login;
 }
 
-export interface LoginUserVariables {
+export interface LoginVariables {
   input: LoginInput;
 }
 
@@ -32,19 +32,19 @@ export interface LoginUserVariables {
 // This file was automatically generated and should not be edited.
 
 // ====================================================
-// GraphQL query operation: UserMe
+// GraphQL query operation: GetProfile
 // ====================================================
 
-export interface UserMe_userMe {
+export interface GetProfile_profile {
   id: string;
   firstName: string;
   lastName: string;
   email: string;
-  role: RoleEnum;
+  role: Role;
 }
 
-export interface UserMe {
-  userMe: UserMe_userMe;
+export interface GetProfile {
+  profile: GetProfile_profile;
 }
 
 /* tslint:disable */
@@ -55,7 +55,7 @@ export interface UserMe {
 // START Enums and Input Objects
 //==============================================================
 
-export enum RoleEnum {
+export enum Role {
   ADMIN = "ADMIN",
   STUDENT = "STUDENT",
   TEACHER = "TEACHER",

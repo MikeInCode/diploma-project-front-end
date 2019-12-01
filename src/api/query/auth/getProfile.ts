@@ -1,8 +1,8 @@
 import { gql } from 'apollo-boost'
 
 export default gql`
-  query UserMe {
-    userMe {
+  query GetProfile {
+    profile {
       id
       firstName
       lastName
