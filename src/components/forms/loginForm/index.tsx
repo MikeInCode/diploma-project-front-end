@@ -8,15 +8,6 @@ import { Box } from '@material-ui/core'
 import { getErrorMessage } from '../../../utils/getErrorMessage'
 import { shallowEqual, useDispatch, useSelector } from 'react-redux'
 import { onLoginAction } from '../../../modules/auth'
-import { Typography } from '../../../common/typography'
-import { IRootReducer } from '../../../modules/types'
-
-const mapState = ({
-  auth: { isInvalidCredentials, isLoading }
-}: IRootReducer) => ({
-  isInvalidCredentials,
-  isLoading
-})
 
 export const LoginForm = React.memo(() => {
   const { isInvalidCredentials, isLoading } = useSelector(
