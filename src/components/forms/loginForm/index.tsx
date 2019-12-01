@@ -4,10 +4,19 @@ import { FormValues } from './types'
 import { initialValues, validationSchema } from './helpers'
 import { Input } from '../../../common/input'
 import { Button } from '../../../common/button'
+import { Typography } from '../../../common/typography'
 import { Box } from '@material-ui/core'
 import { getErrorMessage } from '../../../utils/getErrorMessage'
 import { shallowEqual, useDispatch, useSelector } from 'react-redux'
 import { onLoginAction } from '../../../modules/auth'
+import { IRootReducer } from '../../../modules/types'
+
+const mapState = ({
+  auth: { isLoading, isInvalidCredentials }
+}: IRootReducer) => ({
+  isLoading,
+  isInvalidCredentials
+})
 
 export const LoginForm = React.memo(() => {
   const { isInvalidCredentials, isLoading } = useSelector(
