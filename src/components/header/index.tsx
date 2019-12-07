@@ -2,11 +2,13 @@ import React from 'react'
 import { IRootReducer } from '../../modules/types'
 import { shallowEqual, useDispatch, useSelector } from 'react-redux'
 import { getProfileAction } from '../../modules/auth'
-import { AppBar, Avatar, Box, Toolbar } from '@material-ui/core'
+import { AppBar, Box, Toolbar } from '@material-ui/core'
 import { useAppBarClasses, useHeaderStyles, useToolbarClasses } from './styles'
 import { Skeleton } from '../../common/skeleton'
 import { Typography } from '../../common/typography'
-import { getUserInitials } from '../../utils/getUserInitials'
+import { Avatar } from '../../common/avatar'
+import { push } from 'connected-react-router'
+import { ROUTES } from '../../router/constants'
 
 const mapState = ({
   auth: { isAuthenticated, isLoading, user }
@@ -38,6 +40,15 @@ export const Header = React.memo(() => {
     isLoading,
     user
   ])
+
+  const handleLogoClick = React.useCallback(() => dispatch(push(ROUTES.HOME)), [
+    dispatch
+  ])
+
+  const handleAvatarClick = React.useCallback(
+    () => dispatch(push(ROUTES.PROFILE)),
+    [dispatch]
+  )
 
   const renderInfo = React.useCallback(
     () => (
@@ -73,17 +84,16 @@ export const Header = React.memo(() => {
           <Skeleton variant="circle" width={48} height={48} />
         ) : (
           <Avatar
-            alt={`${user.firstName} ${user.lastName}`}
-            src={null}
-            className={styles.avatar}
-          >
-            {getUserInitials(user.firstName, user.lastName)}
-          </Avatar>
+            src=""
+            firstName={user.firstName}
+            lastName={user.lastName}
+            onClick={handleAvatarClick}
+          />
         )}
       </>
     ),
     // eslint-disable-next-line
-    [showSkeleton, styles.avatar, user]
+    [showSkeleton, user]
   )
 
   if (!isAuthenticated) {
@@ -93,7 +103,9 @@ export const Header = React.memo(() => {
   return (
     <AppBar position="sticky" classes={appBarClasses}>
       <Toolbar classes={toolbarClasses}>
-        <Typography variant="h2">App name</Typography>
+        <div className={styles.logo} onClick={handleLogoClick}>
+          <Typography variant="h2">App name</Typography>
+        </div>
         <div className={styles.profileWrapper}>
           {renderInfo()}
           {renderAvatar()}

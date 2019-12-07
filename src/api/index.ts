@@ -16,11 +16,13 @@ export const apolloClient = new ApolloClient({
     })
   },
   onError: ({ graphQLErrors }) => {
-    graphQLErrors.forEach(error => {
-      if (ErrorsEnum.INVALID_TOKEN === error.message) {
-        store.dispatch(onLogoutAction())
-      }
-    })
+    if (graphQLErrors) {
+      graphQLErrors.forEach(error => {
+        if (ErrorsEnum.INVALID_TOKEN === error.message) {
+          store.dispatch(onLogoutAction())
+        }
+      })
+    }
   },
   cache: new InMemoryCache({
     addTypename: false
