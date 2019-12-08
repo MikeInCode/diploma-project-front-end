@@ -22,7 +22,8 @@ export const useToolbarClasses = makeStyles(
 export const useHeaderStyles = makeStyles(
   {
     profileWrapper: {
-      display: 'flex'
+      display: 'flex',
+      alignItems: 'center'
     },
     userInfo: {
       display: 'flex',

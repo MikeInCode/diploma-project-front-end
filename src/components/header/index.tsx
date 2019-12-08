@@ -6,9 +6,9 @@ import { AppBar, Box, Toolbar } from '@material-ui/core'
 import { useAppBarClasses, useHeaderStyles, useToolbarClasses } from './styles'
 import { Skeleton } from '../../common/skeleton'
 import { Typography } from '../../common/typography'
-import { Avatar } from '../../common/avatar'
 import { push } from 'connected-react-router'
 import { ROUTES } from '../../router/constants'
+import { ProfileMenu } from './components/profileMenu'
 
 const mapState = ({
   auth: { isAuthenticated, isLoading, user }
@@ -45,55 +45,38 @@ export const Header = React.memo(() => {
     dispatch
   ])
 
-  const handleAvatarClick = React.useCallback(
-    () => dispatch(push(ROUTES.PROFILE)),
-    [dispatch]
-  )
-
-  const renderInfo = React.useCallback(
+  const renderProfile = React.useCallback(
     () => (
-      <div className={styles.userInfo}>
-        <div className={styles.userName}>
+      <>
+        <div className={styles.userInfo}>
+          <div className={styles.userName}>
+            {showSkeleton ? (
+              <Skeleton variant="text" width={80} />
+            ) : (
+              <Typography variant="h4">{user.firstName}</Typography>
+            )}
+            <Box width={8} />
+            {showSkeleton ? (
+              <Skeleton variant="text" width={80} />
+            ) : (
+              <Typography variant="h4">{user.lastName}</Typography>
+            )}
+          </div>
           {showSkeleton ? (
-            <Skeleton variant="text" width={80} />
+            <Skeleton variant="text" width={168} />
           ) : (
-            <Typography variant="h4">{user.firstName}</Typography>
-          )}
-          <Box width={8} />
-          {showSkeleton ? (
-            <Skeleton variant="text" width={80} />
-          ) : (
-            <Typography variant="h4">{user.lastName}</Typography>
+            <Typography variant="body1">{user.email}</Typography>
           )}
         </div>
         {showSkeleton ? (
-          <Skeleton variant="text" width={168} />
-        ) : (
-          <Typography variant="body1">{user.email}</Typography>
-        )}
-      </div>
-    ),
-    // eslint-disable-next-line
-    [showSkeleton, styles.profileWrapper, styles.userInfo, user]
-  )
-
-  const renderAvatar = React.useCallback(
-    () => (
-      <>
-        {showSkeleton ? (
           <Skeleton variant="circle" width={48} height={48} />
         ) : (
-          <Avatar
-            src=""
-            firstName={user.firstName}
-            lastName={user.lastName}
-            onClick={handleAvatarClick}
-          />
+          <ProfileMenu />
         )}
       </>
     ),
     // eslint-disable-next-line
-    [showSkeleton, user]
+    [showSkeleton, styles.userInfo, styles.userName, user]
   )
 
   if (!isAuthenticated) {
@@ -106,10 +89,7 @@ export const Header = React.memo(() => {
         <div className={styles.logo} onClick={handleLogoClick}>
           <Typography variant="h2">App name</Typography>
         </div>
-        <div className={styles.profileWrapper}>
-          {renderInfo()}
-          {renderAvatar()}
-        </div>
+        <div className={styles.profileWrapper}>{renderProfile()}</div>
       </Toolbar>
     </AppBar>
   )
