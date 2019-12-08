@@ -4,34 +4,31 @@ export const useProfileFormStyles = makeStyles(
   {
     form: {
       display: 'flex',
-      flex: 1
+      flex: 1,
+      alignItems: 'flex-start'
     },
     leftPart: {
       flex: '0 1 250px'
     },
     rightPart: {
       marginLeft: 30,
+      flex: 1,
       display: 'flex',
-      flexDirection: 'column',
-      flex: 2
-    },
-    multipleRow: {
-      display: 'flex',
-      marginBottom: 10,
-      '& > *:first-child': {
-        flex: 1
-      },
-      '& > *:last-child': {
-        flex: 1,
-        marginLeft: 30
+      flexWrap: 'wrap',
+      '& > *:not(:last-child)': {
+        flex: '0 1 calc(50% - 15px)',
+        marginBottom: 12,
+        '&:nth-child(2n)': {
+          marginLeft: 30
+        }
       }
-    },
-    loadImageBtn: {
-      marginTop: 22
     },
     avatar: {
       width: '100%',
       height: 250
+    },
+    uploadImageBtn: {
+      marginTop: 30
     }
   },
   {

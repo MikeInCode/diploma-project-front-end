@@ -31,11 +31,11 @@ export const LoginForm = React.memo<ILoginFormProps>(
             <Row label="Email:">
               <FormikInput<FormValues> name="email" />
             </Row>
-            <Box height={10} />
+            <Box height={12} />
             <Row label="Password:">
               <FormikInput<FormValues> name="password" type="password" />
             </Row>
-            <Box height={10} />
+            <Box height={12} />
             <Button
               type="submit"
               fullWidth={true}
