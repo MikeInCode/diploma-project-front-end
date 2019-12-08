@@ -7,23 +7,24 @@ export const useInputClasses = makeStyles(
       border: `1px solid ${Color.Grey}`,
       borderRadius: 5,
       background: Color.Grey1,
-      height: 35
+      height: 35,
+      transition: '100ms'
     },
     input: {
-      color: Color.Grey2,
-      padding: '6px 12px'
+      padding: '6px 12px',
+      '&::placeholder': {
+        color: Color.Grey,
+        opacity: 1
+      }
     },
     error: {
       border: `1px solid ${Color.Red}`,
       background: Color.Red1
     },
     focused: {
-      border: `2px solid ${Color.Grey}`,
+      boxShadow: `0 0 0 1px ${Color.Grey}`,
       '&$error': {
-        border: `2px solid ${Color.Red}`
-      },
-      '& input': {
-        padding: '6px 11px'
+        boxShadow: `0 0 0 1px ${Color.Red}`
       }
     }
   },
