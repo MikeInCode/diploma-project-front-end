@@ -23,7 +23,6 @@ function* onLoginSaga(action: Action<LoginVariables>) {
 }
 
 function* getProfileSaga() {
-  yield delay(3000) // TODO: should be removed
   try {
     const response: ApolloQueryResult<GetProfile> = yield call(
       AuthQueryService.profile
