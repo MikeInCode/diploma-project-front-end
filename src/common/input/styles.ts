@@ -36,8 +36,7 @@ export const useInputStyles = makeStyles(
     wrapper: {
       display: 'flex',
       flexDirection: 'column',
-      position: 'relative',
-      marginBottom: 12
+      position: 'relative'
     },
     errorMessage: {
       color: Color.Red,

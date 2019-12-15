@@ -3,14 +3,13 @@ import { Form, Formik, FormikProps } from 'formik'
 import { FormValues, IProfileFormProps } from './types'
 import { getInitialValues, validationSchema } from './helpers'
 import { Button } from '../../../common/button'
-import { Box, Grid } from '@material-ui/core'
-import { FormikInput, Row } from '../../../common/form'
+import { FormikInput, FormikSelect, Row } from '../../../common/form'
 import { useProfileFormStyles } from './styles'
 import { Typography } from '../../../common/typography'
 import { Avatar } from '../../../common/avatar'
 
 export const ProfileForm = React.memo<IProfileFormProps>(
-  ({ user, onSubmit, isProfileUpdating }) => {
+  ({ user, onSubmit, isProfileUpdating, specialities, courses, groups }) => {
     const styles = useProfileFormStyles({})
     return (
       <Formik
@@ -49,16 +48,31 @@ export const ProfileForm = React.memo<IProfileFormProps>(
                 <FormikInput<FormValues> name="email" />
               </Row>
               <Row label="Specialty:">
-                <FormikInput<FormValues> name="specialty" />
+                <FormikSelect<FormValues>
+                  name="specialty"
+                  options={specialities.options}
+                  isLoading={specialities.isLoading}
+                  onFocus={specialities.onStartFetching}
+                />
               </Row>
               <Row label="Telegram:">
                 <FormikInput<FormValues> name="telegram" />
               </Row>
               <Row label="Course:">
-                <FormikInput<FormValues> name="course" />
+                <FormikSelect<FormValues>
+                  name="course"
+                  options={courses.options}
+                  isLoading={courses.isLoading}
+                  onFocus={courses.onStartFetching}
+                />
               </Row>
               <Row label="Group:">
-                <FormikInput<FormValues> name="group" />
+                <FormikSelect<FormValues>
+                  name="group"
+                  options={groups.options}
+                  isLoading={groups.isLoading}
+                  onFocus={groups.onStartFetching}
+                />
               </Row>
               <Button
                 type="submit"

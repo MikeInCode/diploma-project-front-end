@@ -10,17 +10,22 @@ export const getInitialValues: (user: GetProfile_profile) => FormValues = ({
   firstName,
   lastName,
   phone: '',
-  specialty: '',
+  specialty: null,
   email,
-  course: '',
+  course: null,
   telegram: '',
-  group: ''
+  group: null
 })
 
 export const validationSchema = Yup.object<Partial<FormValues>>({
   firstName: Yup.string().required('Required field'),
   lastName: Yup.string().required('Required field'),
+  phone: Yup.mixed().required('Required field'),
+  specialty: Yup.mixed().required('Required field'),
   email: Yup.string()
     .required('Required field')
-    .email('Invalid email')
+    .email('Invalid email'),
+  course: Yup.mixed().required('Required field'),
+  telegram: Yup.string().required('Required field'),
+  group: Yup.mixed().required('Required field')
 })

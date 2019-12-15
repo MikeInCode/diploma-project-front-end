@@ -11,15 +11,15 @@ export const useProfileFormStyles = makeStyles(
       flex: '0 1 250px'
     },
     rightPart: {
-      marginLeft: 30,
+      marginLeft: 25,
       flex: 1,
       display: 'flex',
       flexWrap: 'wrap',
       '& > *:not(:last-child)': {
         flex: '0 1 calc(50% - 15px)',
-        marginBottom: 12,
+        marginBottom: 25,
         '&:nth-child(2n)': {
-          marginLeft: 30
+          marginLeft: 25
         }
       }
     },
@@ -28,7 +28,7 @@ export const useProfileFormStyles = makeStyles(
       height: 250
     },
     uploadImageBtn: {
-      marginTop: 30
+      marginTop: 10
     }
   },
   {

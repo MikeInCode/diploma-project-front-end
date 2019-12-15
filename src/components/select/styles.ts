@@ -4,7 +4,7 @@ import { Color } from '../../theme'
 export const selectStyles: (error: boolean) => Partial<Styles> = error => ({
   control: (base, state) => ({
     ...base,
-    background: Color.Grey1,
+    background: error ? Color.Red1 : Color.Grey1,
     borderColor: error ? Color.Red : Color.Grey,
     boxShadow: state.isFocused
       ? `0 0 0 1px ${error ? Color.Red : Color.Grey}`
