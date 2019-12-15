@@ -32,6 +32,30 @@ export interface LoginVariables {
 // This file was automatically generated and should not be edited.
 
 // ====================================================
+// GraphQL mutation operation: UpdateProfile
+// ====================================================
+
+export interface UpdateProfile_updateProfile {
+  id: string;
+  firstName: string;
+  lastName: string;
+  email: string;
+  role: Role;
+}
+
+export interface UpdateProfile {
+  updateProfile: UpdateProfile_updateProfile;
+}
+
+export interface UpdateProfileVariables {
+  input: UserInput;
+}
+
+/* tslint:disable */
+/* eslint-disable */
+// This file was automatically generated and should not be edited.
+
+// ====================================================
 // GraphQL query operation: GetProfile
 // ====================================================
 
@@ -64,6 +88,13 @@ export enum Role {
 export interface LoginInput {
   email: string;
   password: string;
+}
+
+export interface UserInput {
+  firstName?: string | null;
+  lastName?: string | null;
+  email?: string | null;
+  role?: Role | null;
 }
 
 //==============================================================

@@ -22,7 +22,8 @@ export const useToolbarClasses = makeStyles(
 export const useHeaderStyles = makeStyles(
   {
     profileWrapper: {
-      display: 'flex'
+      display: 'flex',
+      alignItems: 'center'
     },
     userInfo: {
       display: 'flex',
@@ -37,10 +38,8 @@ export const useHeaderStyles = makeStyles(
         fontWeight: 'bold'
       }
     },
-    avatar: {
-      cursor: 'pointer',
-      width: 48,
-      height: 48
+    logo: {
+      cursor: 'pointer'
     }
   },
   { name: 'HeaderStyles' }

@@ -1,8 +1,8 @@
 import { gql } from 'apollo-boost'
 
 export default gql`
-  query UserMe {
-    userMe {
+  mutation UpdateProfile($input: UserInput!) {
+    updateProfile(input: $input) {
       id
       firstName
       lastName

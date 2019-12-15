@@ -5,21 +5,41 @@ import background from '../../assets/login-image.jpeg'
 import { Redirect } from 'react-router-dom'
 import { ROUTES } from '../../router/constants'
 import { IRootReducer } from '../../modules/types'
-import { shallowEqual, useSelector } from 'react-redux'
+import { shallowEqual, useDispatch, useSelector } from 'react-redux'
+import { FormValues } from '../../components/forms/loginForm/types'
+import { onLoginAction } from '../../modules/auth'
 
-const mapState = ({ auth: { isAuthenticated } }: IRootReducer) => ({
-  isAuthenticated
+const mapState = ({
+  auth: { isAuthenticated, isLoading, isInvalidCredentials }
+}: IRootReducer) => ({
+  isAuthenticated,
+  isLoading,
+  isInvalidCredentials
 })
 
 const Login = React.memo(() => {
   const styles = useLoginPageStyles({})
 
-  const { isAuthenticated } = useSelector(mapState, shallowEqual)
+  const { isAuthenticated, isLoading, isInvalidCredentials } = useSelector(
+    mapState,
+    shallowEqual
+  )
+
+  const dispatch = useDispatch()
+
+  const handleSubmit = React.useCallback(
+    (values: FormValues) => dispatch(onLoginAction.started({ input: values })),
+    [dispatch]
+  )
 
   return !isAuthenticated ? (
     <div className={styles.wrapper}>
       <div className={styles.loginForm}>
-        <LoginForm />
+        <LoginForm
+          onSubmit={handleSubmit}
+          isLoading={isLoading}
+          isInvalidCredentials={isInvalidCredentials}
+        />
       </div>
       <div className={styles.backgroundWrapper}>
         <div className={styles.overlay} />

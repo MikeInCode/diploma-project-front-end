@@ -1,10 +1,16 @@
-import { all, call, put, takeLatest, delay } from 'redux-saga/effects'
+import { all, call, put, takeLatest } from 'redux-saga/effects'
 import { Action } from 'typescript-fsa'
 import { ApolloQueryResult } from 'apollo-boost'
-import { getProfileAction, onLoginAction } from './actions'
+import { getProfileAction, onLoginAction, updateProfileAction } from './actions'
 import { AuthMutationService } from '../../api/mutation/auth'
 import { setToken } from '../../utils/token'
-import { GetProfile, Login, LoginVariables } from '../../graphQLTypes'
+import {
+  GetProfile,
+  Login,
+  LoginVariables,
+  UpdateProfile,
+  UpdateProfileVariables
+} from '../../graphQLTypes'
 import { AuthQueryService } from '../../api/query/auth'
 
 function* onLoginSaga(action: Action<LoginVariables>) {
@@ -34,9 +40,24 @@ function* getProfileSaga() {
   }
 }
 
+function* updateProfileSaga(action: Action<UpdateProfileVariables>) {
+  const params = action.payload
+  try {
+    const response: ApolloQueryResult<UpdateProfile> = yield call(
+      AuthMutationService.updateProfile,
+      params
+    )
+    const result = response.data
+    yield put(updateProfileAction.done({ params, result }))
+  } catch (error) {
+    yield put(updateProfileAction.failed({ params, error }))
+  }
+}
+
 export function* saga() {
   yield all([
     takeLatest(onLoginAction.started, onLoginSaga),
-    takeLatest(getProfileAction.started, getProfileSaga)
+    takeLatest(getProfileAction.started, getProfileSaga),
+    takeLatest(updateProfileAction.started, updateProfileSaga)
   ])
 }
