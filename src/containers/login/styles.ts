@@ -5,15 +5,17 @@ export const useLoginPageStyles = makeStyles(
   {
     wrapper: {
       display: 'flex',
-      height: '100vh'
+      height: '100vh',
+      minHeight: 600
     },
     loginForm: {
       width: 500,
       display: 'flex',
-      alignItems: 'center',
+      alignItems: 'flex-start',
       justifyContent: 'center',
       '& > *': {
-        width: 300
+        width: 300,
+        marginTop: 200
       }
     },
     backgroundWrapper: {
