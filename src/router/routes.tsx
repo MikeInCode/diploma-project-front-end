@@ -1,7 +1,7 @@
 import React, { lazy, Suspense } from 'react'
 import { LinearProgress } from '../common/linearProgress'
 
-const WithFallback = props => {
+const LazyLoader = props => {
   const { lazy: LazyComponent, ...rest } = props
   return (
     <Suspense fallback={<LinearProgress />}>
@@ -11,13 +11,20 @@ const WithFallback = props => {
 }
 
 export const Home = props => (
-  <WithFallback lazy={lazy(() => import('../containers/home'))} {...props} />
+  <LazyLoader lazy={lazy(() => import('../containers/home'))} {...props} />
 )
 
 export const Login = props => (
-  <WithFallback lazy={lazy(() => import('../containers/login'))} {...props} />
+  <LazyLoader lazy={lazy(() => import('../containers/login'))} {...props} />
 )
 
 export const Profile = props => (
-  <WithFallback lazy={lazy(() => import('../containers/profile'))} {...props} />
+  <LazyLoader lazy={lazy(() => import('../containers/profile'))} {...props} />
+)
+
+export const PageNotFound = props => (
+  <LazyLoader
+    lazy={lazy(() => import('../containers/pageNotFound'))}
+    {...props}
+  />
 )
