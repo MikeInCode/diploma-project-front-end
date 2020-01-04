@@ -17,7 +17,7 @@ export const Table = <T extends {}>({
   const [headerHeight, setHeaderHeight] = React.useState(0)
 
   const setHeight = React.useCallback(
-    (node: HTMLDivElement) => setHeaderHeight(node.clientHeight),
+    (node: HTMLDivElement) => node && setHeaderHeight(node.clientHeight),
     []
   )
 
