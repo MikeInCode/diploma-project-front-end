@@ -1,23 +1,15 @@
 import { makeStyles } from '@material-ui/core'
-import { Color } from '../../theme'
 
-export const useTableStyles = makeStyles(
+export const useTableStyles = makeStyles<any, any>(
   {
     paper: {
       width: '100%'
     },
-    row: {
-      display: 'flex',
-      '& > *': {
-        padding: 20
-      }
-    },
     header: {
       display: 'flex',
-      '& > *': {
-        padding: '10px 20px'
-      },
-      borderBottom: `1px solid ${Color.Grey1}`
+      '& p': {
+        fontWeight: 'bold'
+      }
     }
   },
   { name: 'TableStyles' }

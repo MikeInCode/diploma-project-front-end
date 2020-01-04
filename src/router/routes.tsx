@@ -22,6 +22,10 @@ export const Profile = props => (
   <LazyLoader lazy={lazy(() => import('../containers/profile'))} {...props} />
 )
 
+export const Students = props => (
+  <LazyLoader lazy={lazy(() => import('../containers/students'))} {...props} />
+)
+
 export const PageNotFound = props => (
   <LazyLoader
     lazy={lazy(() => import('../containers/pageNotFound'))}

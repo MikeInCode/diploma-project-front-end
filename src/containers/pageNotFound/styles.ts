@@ -3,7 +3,7 @@ import { makeStyles } from '@material-ui/core'
 export const usePageNotFoundStyles = makeStyles(
   {
     wrapper: {
-      height: '100vh',
+      flex: 1,
       minHeight: 600,
       display: 'flex',
       justifyContent: 'center',

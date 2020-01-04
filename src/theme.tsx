@@ -33,6 +33,9 @@ export const GlobalCss = withStyles({
     },
     '::-webkit-scrollbar-thumb': {
       background: Color.Grey
+    },
+    '::-webkit-scrollbar-track': {
+      background: Color.Grey1
     }
   }
 })(() => <CssBaseline />)
