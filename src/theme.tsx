@@ -18,7 +18,8 @@ export const Color = {
   Green2: 'rgba(126,219,160,0.60)', // button primary disabled
   Green3: 'rgba(52,135,71,0.60)', // button primary disabled text
 
-  Black: '#000'
+  Black: '#000',
+  White: '#fff'
 }
 
 export const GlobalCss = withStyles({

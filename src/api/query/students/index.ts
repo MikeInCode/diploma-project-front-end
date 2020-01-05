@@ -13,7 +13,7 @@ export const StudentsQueryService = {
     }
     const data = Array.from(Array(10000)).map(() => student)
     return new Promise(resolve => {
-      setTimeout(() => resolve({ data }), 0)
+      setTimeout(() => resolve({ data }), 500)
     })
   }
 }
