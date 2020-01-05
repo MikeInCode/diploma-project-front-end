@@ -33,6 +33,7 @@ export const Table = <T extends {}>({
         {({ width, height }) => (
           <>
             <TableRow
+              component="div"
               ref={setHeight}
               style={{
                 width,
@@ -42,6 +43,7 @@ export const Table = <T extends {}>({
             >
               {headerCells.map(({ id, children }, index) => (
                 <TableCell
+                  component="div"
                   key={id}
                   style={{
                     width: calcColumnWidth(width, index)
@@ -61,9 +63,14 @@ export const Table = <T extends {}>({
               {({ index, style, data }) => {
                 const item = data[index]
                 return (
-                  <TableRow style={{ ...style }} className={styles.row}>
+                  <TableRow
+                    component="div"
+                    style={{ ...style }}
+                    className={styles.row}
+                  >
                     {rowCells(item).map(({ id, children }, index) => (
                       <TableCell
+                        component="div"
                         key={id}
                         style={{ width: calcColumnWidth(width, index) }}
                       >

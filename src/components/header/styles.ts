@@ -21,25 +21,32 @@ export const useToolbarClasses = makeStyles(
 
 export const useHeaderStyles = makeStyles(
   {
-    profileWrapper: {
+    appLogo: {
+      marginRight: 20
+    },
+    wrapper: {
       display: 'flex',
       alignItems: 'center'
+    },
+    icon: {
+      color: Color.White
+    },
+    profileContainer: {
+      display: 'flex',
+      alignItems: 'center',
+      margin: '0 5px'
     },
     userInfo: {
       display: 'flex',
       flexDirection: 'column',
-      justifyContent: 'center',
       alignItems: 'flex-end',
-      marginRight: 16
+      marginRight: 20
     },
     userName: {
       display: 'flex',
       '& > h4': {
         fontWeight: 'bold'
       }
-    },
-    logo: {
-      cursor: 'pointer'
     }
   },
   { name: 'HeaderStyles' }
