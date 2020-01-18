@@ -5,6 +5,7 @@ import v4 from 'uuid/v4'
 import { Button } from '../../common/button'
 import { IconButton } from '@material-ui/core'
 import { Message } from '@material-ui/icons'
+import { IRowType } from './types'
 
 export const header: ICellType[] = [
   {
@@ -25,14 +26,15 @@ export const header: ICellType[] = [
   }
 ]
 
-export const row: (teacher: any, styles: any) => ICellType[] = (
+export const row: (data: IRowType) => ICellType[] = ({
   teacher,
-  styles
-) => [
+  styles,
+  onClickProfile
+}) => [
   {
     id: v4(),
     children: (
-      <Typography variant="body1">{`${teacher.surname} ${teacher.name} ${teacher.fatherName}`}</Typography>
+      <Typography variant="body1">{`${teacher.lastName} ${teacher.firstName} ${teacher.patronymicName}`}</Typography>
     )
   },
   {
@@ -50,7 +52,7 @@ export const row: (teacher: any, styles: any) => ICellType[] = (
         <IconButton className={styles.message}>
           <Message />
         </IconButton>
-        <Button>Profile</Button>
+        <Button onClick={onClickProfile(teacher)}>Profile</Button>
       </div>
     )
   }
