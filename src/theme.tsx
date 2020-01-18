@@ -1,6 +1,5 @@
 import React from 'react'
-import { withStyles, CssBaseline } from '@material-ui/core'
-import createMuiTheme from '@material-ui/core/styles/createMuiTheme'
+import { CssBaseline, withStyles } from '@material-ui/core'
 import { SCROLL_WIDTH } from './constants'
 
 export const Color = {
@@ -33,16 +32,10 @@ export const GlobalCss = withStyles({
       width: SCROLL_WIDTH
     },
     '::-webkit-scrollbar-thumb': {
-      background: Color.Grey
+      background: Color.Grey2
     },
     '::-webkit-scrollbar-track': {
       background: Color.Grey1
     }
   }
 })(() => <CssBaseline />)
-
-export const theme = createMuiTheme({
-  typography: {
-    fontFamily: '"Verdana", "Arial", sans-serif'
-  }
-})

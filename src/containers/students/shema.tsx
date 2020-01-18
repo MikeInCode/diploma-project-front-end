@@ -3,6 +3,8 @@ import { ICellType } from '../../components/table/types'
 import { Typography } from '../../common/typography'
 import v4 from 'uuid/v4'
 import { Button } from '../../common/button'
+import { IconButton } from '@material-ui/core'
+import { MenuBook, Message } from '@material-ui/icons'
 
 export const header: ICellType[] = [
   {
@@ -31,50 +33,44 @@ export const header: ICellType[] = [
   }
 ]
 
-export const row: (student: any) => ICellType[] = student => [
+export const row: (student: any, styles: any) => ICellType[] = (
+  student,
+  styles
+) => [
   {
     id: v4(),
     children: (
-      <Typography
-        variant="body1"
-        noWrap={true}
-      >{`${student.surname} ${student.name} ${student.fatherName}`}</Typography>
+      <Typography variant="body1">{`${student.surname} ${student.name} ${student.fatherName}`}</Typography>
     )
   },
   {
     id: v4(),
-    children: (
-      <Typography variant="body1" noWrap={true}>
-        {student.specialty}
-      </Typography>
-    )
+    children: <Typography variant="body1">{student.specialty}</Typography>
+  },
+  {
+    id: v4(),
+    children: <Typography variant="body1">{student.course}</Typography>
+  },
+  {
+    id: v4(),
+    children: <Typography variant="body1">{student.group}</Typography>
+  },
+  {
+    id: v4(),
+    children: <Typography variant="body1">Chill</Typography>
   },
   {
     id: v4(),
     children: (
-      <Typography variant="body1" noWrap={true}>
-        {student.course}
-      </Typography>
+      <div>
+        <IconButton className={styles.gradebook}>
+          <MenuBook />
+        </IconButton>
+        <IconButton className={styles.message}>
+          <Message />
+        </IconButton>
+        <Button>Profile</Button>
+      </div>
     )
-  },
-  {
-    id: v4(),
-    children: (
-      <Typography variant="body1" noWrap={true}>
-        {student.group}
-      </Typography>
-    )
-  },
-  {
-    id: v4(),
-    children: (
-      <Typography variant="body1" noWrap={true}>
-        Chill
-      </Typography>
-    )
-  },
-  {
-    id: v4(),
-    children: <Button>Profile</Button>
   }
 ]

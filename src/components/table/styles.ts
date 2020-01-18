@@ -10,6 +10,12 @@ export const useTableStyles = makeStyles<any, any>(
       '& p': {
         fontWeight: 'bold'
       }
+    },
+    rowCell: {
+      '& > *': {
+        maxHeight: 52,
+        overflow: 'auto'
+      }
     }
   },
   { name: 'TableStyles' }

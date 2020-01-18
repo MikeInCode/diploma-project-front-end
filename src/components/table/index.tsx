@@ -4,7 +4,6 @@ import { FixedSizeList as List } from 'react-window'
 import AutoSizer from 'react-virtualized-auto-sizer'
 import { useTableStyles } from './styles'
 import { ITableProps } from './types'
-import { SCROLL_WIDTH } from '../../constants'
 
 export const Table = <T extends {}>({
   headerCells,
@@ -36,8 +35,7 @@ export const Table = <T extends {}>({
               component="div"
               ref={setHeight}
               style={{
-                width,
-                paddingRight: SCROLL_WIDTH
+                width
               }}
               className={styles.header}
             >
@@ -46,7 +44,8 @@ export const Table = <T extends {}>({
                   component="div"
                   key={id}
                   style={{
-                    width: calcColumnWidth(width, index)
+                    width: calcColumnWidth(width, index),
+                    textAlign: index > 1 ? 'end' : 'start'
                   }}
                 >
                   {children}
@@ -57,22 +56,22 @@ export const Table = <T extends {}>({
               width={width}
               height={height - headerHeight}
               itemCount={data.length}
-              itemSize={68}
+              itemSize={84}
               itemData={data}
             >
               {({ index, style, data }) => {
                 const item = data[index]
                 return (
-                  <TableRow
-                    component="div"
-                    style={{ ...style }}
-                    className={styles.row}
-                  >
+                  <TableRow component="div" style={{ ...style }}>
                     {rowCells(item).map(({ id, children }, index) => (
                       <TableCell
                         component="div"
                         key={id}
-                        style={{ width: calcColumnWidth(width, index) }}
+                        style={{
+                          width: calcColumnWidth(width, index),
+                          textAlign: index > 1 ? 'end' : 'start'
+                        }}
+                        className={styles.rowCell}
                       >
                         {children}
                       </TableCell>

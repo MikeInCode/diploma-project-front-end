@@ -3,27 +3,27 @@ import { PageWrapper } from '../../common/pageWrapper'
 import { Table } from '../../components/table'
 import { IRootReducer } from '../../modules/types'
 import { shallowEqual, useDispatch, useSelector } from 'react-redux'
-import { getStudentsAction } from '../../modules/students'
 import { header, row } from './shema'
-import { useStudentsStyles } from './styles'
+import { useTeachersStyles } from './styles'
+import { getTeachersAction } from '../../modules/teachers'
 
-const mapState = ({ students: { isLoading, students } }: IRootReducer) => ({
+const mapState = ({ teachers: { isLoading, teachers } }: IRootReducer) => ({
   isLoading,
-  students
+  teachers
 })
 
-const Students = React.memo(() => {
-  const styles = useStudentsStyles({})
+const Teachers = React.memo(() => {
+  const styles = useTeachersStyles({})
 
-  const { isLoading, students } = useSelector(mapState, shallowEqual)
+  const { isLoading, teachers } = useSelector(mapState, shallowEqual)
 
   const dispatch = useDispatch()
 
   React.useEffect(() => {
-    dispatch(getStudentsAction.started())
+    dispatch(getTeachersAction.started())
   }, [dispatch])
 
-  const rowCells = React.useCallback((student: any) => row(student, styles), [
+  const rowCells = React.useCallback((teacher: any) => row(teacher, styles), [
     styles
   ])
 
@@ -32,11 +32,11 @@ const Students = React.memo(() => {
       <Table<any>
         headerCells={header}
         rowCells={rowCells}
-        data={students}
-        colDimensions={[25, 25, 9, 9, 12, 20]}
+        data={teachers}
+        colDimensions={[25, 40, 15, 20]}
       />
     </PageWrapper>
   )
 })
 
-export default Students
+export default Teachers
