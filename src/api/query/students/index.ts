@@ -4,12 +4,15 @@ export const StudentsQueryService = {
   getStudents: () => {
     const student = {
       id: '1',
-      name: 'Mykhailo',
-      surname: 'Serbin',
-      fatherName: 'Olehovich',
+      firstName: 'Mykhailo',
+      lastName: 'Serbin',
+      patronymicName: 'Olehovich',
       specialty: 'Specialty 1',
       course: '4',
-      group: 'AI-162'
+      group: 'AI-162',
+      phone: '1111111',
+      email: 'example@gmail.com',
+      telegram: 'example'
     }
     const data = Array.from(Array(100)).map(() => student)
     return new Promise(resolve => {

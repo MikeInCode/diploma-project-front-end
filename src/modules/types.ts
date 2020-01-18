@@ -3,6 +3,8 @@ import { IAuthState } from './auth'
 import { IHomeState } from './home'
 import { IStudentsState } from './students'
 import { ITeachersState } from './teachers'
+import { IDrawerState } from './drawer'
+
 
 export interface IRootReducer {
   router: RouterState
@@ -10,4 +12,5 @@ export interface IRootReducer {
   home: IHomeState
   students: IStudentsState
   teachers: ITeachersState
+  drawer: IDrawerState
 }

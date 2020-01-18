@@ -12,9 +12,11 @@ import {
 import { ROUTES } from './constants'
 import { PrivateRoute } from './privateRoute'
 import { Header } from '../components/header'
+import { DrawerSwitcher } from '../components/drawers'
 
 export const AppRouter = React.memo<{ history }>(({ history }) => (
   <ConnectedRouter history={history}>
+    <DrawerSwitcher />
     <Header />
     <Switch>
       <PrivateRoute exact={true} path={ROUTES.HOME} render={Home} />

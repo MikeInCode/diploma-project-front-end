@@ -6,6 +6,8 @@ import { shallowEqual, useDispatch, useSelector } from 'react-redux'
 import { header, row } from './shema'
 import { useTeachersStyles } from './styles'
 import { getTeachersAction } from '../../modules/teachers'
+import { openDrawerAction } from '../../modules/drawer'
+import { DrawerEnum } from '../../enums'
 
 const mapState = ({ teachers: { isLoading, teachers } }: IRootReducer) => ({
   isLoading,
@@ -23,9 +25,19 @@ const Teachers = React.memo(() => {
     dispatch(getTeachersAction.started())
   }, [dispatch])
 
-  const rowCells = React.useCallback((teacher: any) => row(teacher, styles), [
-    styles
-  ])
+  const handleClickProfile = React.useCallback(
+    (teacher: any) => () =>
+      dispatch(
+        openDrawerAction({ type: DrawerEnum.PROFILE_DRAWER, data: teacher })
+      ),
+    [dispatch]
+  )
+
+  const rowCells = React.useCallback(
+    (teacher: any) =>
+      row({ teacher, styles, onClickProfile: handleClickProfile }),
+    [handleClickProfile, styles]
+  )
 
   return (
     <PageWrapper isLoading={isLoading}>
