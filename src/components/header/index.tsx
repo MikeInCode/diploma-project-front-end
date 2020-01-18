@@ -48,6 +48,11 @@ export const Header = React.memo(() => {
     [dispatch]
   )
 
+  const handleTeachersClick = React.useCallback(
+    () => dispatch(push(ROUTES.TEACHERS)),
+    [dispatch]
+  )
+
   const handleAvatarClick = React.useCallback(
     () => dispatch(push(ROUTES.PROFILE)),
     [dispatch]
@@ -77,7 +82,7 @@ export const Header = React.memo(() => {
           <Button onClick={handleTimetableClick}>Timetable</Button>
           <Button onClick={handleStudentsClick}>Students</Button>
           <Button>Studying</Button>
-          <Button>Teachers</Button>
+          <Button onClick={handleTeachersClick}>Teachers</Button>
           <Button>Messages</Button>
         </div>
         <div className={styles.wrapper}>

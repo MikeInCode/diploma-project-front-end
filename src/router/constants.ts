@@ -3,5 +3,6 @@ export const ROUTES = {
   LOGIN: '/login',
   PROFILE: '/profile',
   STUDENTS: '/students',
+  TEACHERS: '/teachers',
   NOT_FOUND: '/*'
 }

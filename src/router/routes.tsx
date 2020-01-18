@@ -26,6 +26,11 @@ export const Students = props => (
   <LazyLoader lazy={lazy(() => import('../containers/students'))} {...props} />
 )
 
+export const Teachers = props => (
+  <LazyLoader lazy={lazy(() => import('../containers/teachers'))} {...props} />
+)
+
+
 export const PageNotFound = props => (
   <LazyLoader
     lazy={lazy(() => import('../containers/pageNotFound'))}
