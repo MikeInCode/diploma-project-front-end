@@ -4,7 +4,6 @@ import { shallowEqual, useDispatch, useSelector } from 'react-redux'
 import { getProfileAction, onLogoutAction } from '../../modules/auth'
 import {
   AppBar,
-  Box,
   Button,
   IconButton,
   Toolbar,
