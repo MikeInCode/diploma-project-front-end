@@ -1,12 +1,12 @@
 import React from 'react'
 import { TextField, TextFieldProps } from '@material-ui/core'
 import { Controller, useFormContext } from 'react-hook-form'
-import { useFormFieldErrors } from './hooks'
+import { getFormErrors } from './helpers'
 
 export const FormSelect = React.memo<TextFieldProps>(({ name, ...rest }) => {
   const { control, errors } = useFormContext()
 
-  const { error, helperText } = useFormFieldErrors(name, errors)
+  const { error, helperText } = getFormErrors(name, errors)
 
   return (
     <Controller

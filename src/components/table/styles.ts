@@ -8,7 +8,7 @@ export const useTableStyles = makeStyles(
       flexDirection: 'column'
     },
     tableContainer: {
-      flex: '1 1 calc(100vh - 64px - 52px - 100px)'
+      flex: '1 1 calc(100vh - 64px - 52px - 100px)' // 100vh - header - pagination - x2 container padding
     }
   },
   { name: 'TableStyles' }

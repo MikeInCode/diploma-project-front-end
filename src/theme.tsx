@@ -1,5 +1,5 @@
 import React from 'react'
-import { CssBaseline, withStyles } from '@material-ui/core'
+import { createMuiTheme, CssBaseline, withStyles } from '@material-ui/core'
 
 export const Color = {
   Grey: '#aab7bd', // input border
@@ -38,3 +38,13 @@ export const GlobalCss = withStyles({
     // }
   }
 })(() => <CssBaseline />)
+
+export const theme = createMuiTheme({
+  overrides: {
+    MuiTypography: {
+      root: {
+        lineHeight: 'normal !important'
+      }
+    }
+  }
+})

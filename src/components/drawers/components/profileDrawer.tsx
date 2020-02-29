@@ -1,9 +1,8 @@
 import React from 'react'
 import { IProfileDrawerProps } from './types'
-import { Typography } from '../../../common/typography'
 import { useProfileDrawerStyles } from './styles'
 import { Avatar } from '../../../common/avatar'
-import { Box } from '@material-ui/core'
+import { Box, Typography } from '@material-ui/core'
 
 export const ProfileDrawer = React.memo<IProfileDrawerProps>(({ profile }) => {
   const styles = useProfileDrawerStyles({})
