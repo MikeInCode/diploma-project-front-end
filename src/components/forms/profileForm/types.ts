@@ -1,6 +1,4 @@
-import { GetProfile_profile } from '../../../graphQLTypes'
-
-export interface FormValues {
+export interface IProfileFormValues {
   firstName: string
   lastName: string
   phone: string
@@ -12,7 +10,7 @@ export interface FormValues {
 }
 
 export interface IProfileFormProps {
-  user: GetProfile_profile
-  onSubmit: (values: FormValues) => void
+  initialValues: IProfileFormValues
+  onSubmit: (values: IProfileFormValues) => void
   isProfileUpdating: boolean
 }

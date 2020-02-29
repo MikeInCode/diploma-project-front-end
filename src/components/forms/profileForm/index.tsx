@@ -1,75 +1,124 @@
 import React from 'react'
-import { Form, Formik, FormikProps } from 'formik'
-import { FormValues, IProfileFormProps } from './types'
-import { getInitialValues, validationSchema } from './helpers'
-import { Button } from '../../../common/button'
-import { Box, Grid } from '@material-ui/core'
-import { FormikInput, Row } from '../../../common/form'
-import { useProfileFormStyles } from './styles'
-import { Typography } from '../../../common/typography'
+import { IProfileFormProps, IProfileFormValues } from './types'
+import { FormContext, useForm } from 'react-hook-form'
+import { Button, Grid } from '@material-ui/core'
 import { Avatar } from '../../../common/avatar'
+import { useProfileFormStyles } from './styles'
+import { FormTextField } from '../common'
+import { validationSchema } from './helpers'
 
 export const ProfileForm = React.memo<IProfileFormProps>(
-  ({ user, onSubmit, isProfileUpdating }) => {
-    const styles = useProfileFormStyles({})
+  ({ initialValues, onSubmit, isProfileUpdating }) => {
+    const [avatarHeight, setAvatarHeight] = React.useState(0)
+
+    const setHeight = React.useCallback((node: HTMLDivElement) => {
+      if (node) {
+        setAvatarHeight(node.offsetWidth)
+      }
+    }, [])
+
+    const styles = useProfileFormStyles({
+      avatarHeight
+    })
+
+    const methods = useForm<IProfileFormValues>({
+      mode: 'onChange',
+      validationSchema
+    })
+
+    React.useEffect(() => {
+      methods.reset(initialValues)
+      // eslint-disable-next-line
+    }, [initialValues])
+
+    console.log(methods.watch('test'))
+
     return (
-      <Formik
-        onSubmit={onSubmit}
-        initialValues={getInitialValues(user)}
-        validationSchema={validationSchema}
-        enableReinitialize={true}
-      >
-        {(formikProps: FormikProps<FormValues>) => (
-          <Form className={styles.form}>
-            <div className={styles.leftPart}>
-              <Avatar
-                src=""
-                firstName={user.firstName}
-                lastName={user.lastName}
-                variant="square"
-                className={styles.avatar}
-              />
-              <Button className={styles.uploadImageBtn} fullWidth={true}>
-                Upload image
-              </Button>
-            </div>
-            <div className={styles.rightPart}>
-              <Typography variant="h3">Main information</Typography>
-              <Typography variant="h3">Contact information</Typography>
-              <Row label="First name:">
-                <FormikInput<FormValues> name="firstName" />
-              </Row>
-              <Row label="Phone:">
-                <FormikInput<FormValues> name="phone" />
-              </Row>
-              <Row label="Last name:">
-                <FormikInput<FormValues> name="lastName" />
-              </Row>
-              <Row label="Email:">
-                <FormikInput<FormValues> name="email" />
-              </Row>
-              <Row label="Specialty:">
-                <FormikInput<FormValues> name="specialty" />
-              </Row>
-              <Row label="Telegram:">
-                <FormikInput<FormValues> name="telegram" />
-              </Row>
-              <Row label="Course:">
-                <FormikInput<FormValues> name="course" />
-              </Row>
-              <Row label="Group:">
-                <FormikInput<FormValues> name="group" />
-              </Row>
-              <Button
-                type="submit"
-                disabled={!formikProps.isValid || isProfileUpdating}
-              >
-                Update profile
-              </Button>
-            </div>
-          </Form>
-        )}
-      </Formik>
+      <FormContext {...methods}>
+        <form onSubmit={methods.handleSubmit(onSubmit)}>
+          <Grid container={true} spacing={3} alignItems="flex-start">
+            <Grid container={true} item={true} xs={3} spacing={3}>
+              <Grid item={true} xs={12}>
+                <Avatar
+                  innerRef={setHeight}
+                  src=""
+                  firstName={initialValues.firstName}
+                  lastName={initialValues.lastName}
+                  variant="square"
+                  className={styles.avatar}
+                />
+              </Grid>
+              <Grid item={true} xs={12}>
+                <Button color="primary" variant="contained" fullWidth={true}>
+                  Upload image
+                </Button>
+              </Grid>
+            </Grid>
+            <Grid container={true} item={true} xs={9} spacing={3}>
+              <Grid item={true} xs={6}>
+                <FormTextField
+                  name="firstName"
+                  label="First name"
+                  fullWidth={true}
+                />
+              </Grid>
+              <Grid item={true} xs={6}>
+                <FormTextField
+                  name="phone"
+                  label="Phone number"
+                  fullWidth={true}
+                />
+              </Grid>
+              <Grid item={true} xs={6}>
+                <FormTextField
+                  name="lastName"
+                  label="Last name"
+                  fullWidth={true}
+                />
+              </Grid>
+              <Grid item={true} xs={6}>
+                <FormTextField name="email" label="Email" fullWidth={true} />
+              </Grid>
+              <Grid item={true} xs={6}>
+                <FormTextField
+                  name="specialty"
+                  label="Speciality"
+                  fullWidth={true}
+                />
+              </Grid>
+              <Grid item={true} xs={6}>
+                <FormTextField
+                  name="telegram"
+                  label="Telegram"
+                  fullWidth={true}
+                />
+              </Grid>
+              <Grid item={true} xs={6}>
+                <FormTextField name="course" label="Course" fullWidth={true} />
+              </Grid>
+              <Grid item={true} xs={6} />
+              <Grid item={true} xs={6}>
+                <FormTextField name="group" label="Group" fullWidth={true} />
+              </Grid>
+              <Grid item={true} xs={6} />
+              <Grid item={true} xs={6}>
+                <Button
+                  type="submit"
+                  color="primary"
+                  variant="contained"
+                  disabled={
+                    !methods.formState.isValid ||
+                    !methods.formState.dirty ||
+                    isProfileUpdating
+                  }
+                >
+                  Update profile
+                </Button>
+              </Grid>
+            </Grid>
+          </Grid>
+        </form>
+      </FormContext>
     )
   }
 )

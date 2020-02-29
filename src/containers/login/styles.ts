@@ -13,10 +13,7 @@ export const useLoginPageStyles = makeStyles(
       display: 'flex',
       alignItems: 'flex-start',
       justifyContent: 'center',
-      '& > *': {
-        width: 300,
-        marginTop: 200
-      }
+      padding: '200px 100px'
     },
     backgroundWrapper: {
       flex: 1,

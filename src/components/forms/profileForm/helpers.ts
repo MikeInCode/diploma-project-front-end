@@ -1,23 +1,30 @@
 import * as Yup from 'yup'
-import { FormValues } from './types'
-import { GetProfile_profile } from '../../../graphQLTypes'
+import { IProfileFormValues } from './types'
+import {
+  GetProfile_profile,
+  UpdateProfileVariables
+} from '../../../graphQLTypes'
 
-export const getInitialValues: (user: GetProfile_profile) => FormValues = ({
-  email,
-  firstName,
-  lastName
-}) => ({
-  firstName,
-  lastName,
+export const adaptValuesToForm: (
+  user: GetProfile_profile
+) => IProfileFormValues = user => ({
+  firstName: user ? user.firstName : '',
+  lastName: user ? user.lastName : '',
   phone: '',
   specialty: '',
-  email,
+  email: user ? user.email : '',
   course: '',
   telegram: '',
-  group: ''
+  group: '',
 })
 
-export const validationSchema = Yup.object<Partial<FormValues>>({
+export const adaptValuesToResponse: (
+  values: IProfileFormValues
+) => UpdateProfileVariables = ({ firstName, lastName, email }) => ({
+  input: { firstName, lastName, email }
+})
+
+export const validationSchema = Yup.object<Partial<IProfileFormValues>>({
   firstName: Yup.string().required('Required field'),
   lastName: Yup.string().required('Required field'),
   email: Yup.string()

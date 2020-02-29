@@ -13,7 +13,7 @@ export const TeachersQueryService = {
       email: 'example@gmail.com',
       telegram: 'example'
     }
-    const data = Array.from(Array(100)).map(() => teacher)
+    const data = Array.from(Array(15)).map(() => teacher)
     return new Promise(resolve => {
       setTimeout(() => resolve({ data }), 500)
     })

@@ -1,21 +1,14 @@
 import { makeStyles } from '@material-ui/core'
 
-export const useTableStyles = makeStyles<any, any>(
+export const useTableStyles = makeStyles(
   {
     paper: {
-      width: '100%'
-    },
-    header: {
+      width: '100%',
       display: 'flex',
-      '& p': {
-        fontWeight: 'bold'
-      }
+      flexDirection: 'column'
     },
-    rowCell: {
-      '& > *': {
-        maxHeight: 52,
-        overflow: 'auto'
-      }
+    tableContainer: {
+      flex: '1 1 calc(100vh - 64px - 52px - 100px)'
     }
   },
   { name: 'TableStyles' }

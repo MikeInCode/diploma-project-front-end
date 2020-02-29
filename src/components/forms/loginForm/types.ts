@@ -1,10 +1,10 @@
-export interface FormValues {
+export interface ILoginFormValues {
   email: string
   password: string
 }
 
 export interface ILoginFormProps {
-  onSubmit: (values: FormValues) => void
+  onSubmit: (values: ILoginFormValues) => void
   isLoading: boolean
   isInvalidCredentials: boolean
 }

@@ -1,78 +1,81 @@
 import React from 'react'
 import { ICellType } from '../../components/table/types'
-import { Typography } from '../../common/typography'
 import v4 from 'uuid/v4'
-import { Button } from '../../common/button'
-import { IconButton } from '@material-ui/core'
+import { Button, IconButton } from '@material-ui/core'
 import { MenuBook, Message } from '@material-ui/icons'
-import { IRowType } from './types'
 
 export const header: ICellType[] = [
   {
     id: v4(),
-    children: <Typography variant="body1">Name</Typography>
+    children: 'Name'
   },
   {
     id: v4(),
-    children: <Typography variant="body1">Specialty</Typography>
+    children: 'Specialty'
   },
   {
     id: v4(),
-    children: <Typography variant="body1">Course</Typography>
+    children: 'Course'
   },
   {
     id: v4(),
-    children: <Typography variant="body1">Group</Typography>
+    children: 'Group'
   },
   {
     id: v4(),
-    children: <Typography variant="body1">Tags</Typography>
+    children: 'Tags'
   },
   {
     id: v4(),
-    children: <div />
+    children: null
   }
 ]
 
-export const row: (data: IRowType) => ICellType[] = ({
-  student,
-  styles,
-  onClickProfile
-}) => [
+export const row: (
+  student: any,
+  handleProfileClick: (student) => () => void
+) => ICellType[] = (student, handleProfileClick) => [
   {
     id: v4(),
-    children: (
-      <Typography variant="body1">{`${student.lastName} ${student.firstName} ${student.patronymicName}`}</Typography>
-    )
+    children: `${student.lastName} ${student.firstName} ${student.patronymicName}`
   },
   {
     id: v4(),
-    children: <Typography variant="body1">{student.specialty}</Typography>
+    children: student.specialty
   },
   {
     id: v4(),
-    children: <Typography variant="body1">{student.course}</Typography>
+    children: student.course
   },
   {
     id: v4(),
-    children: <Typography variant="body1">{student.group}</Typography>
+    children: student.group
   },
   {
     id: v4(),
-    children: <Typography variant="body1">Chill</Typography>
+    children: 'Chill'
   },
   {
     id: v4(),
     children: (
       <div>
-        <IconButton className={styles.gradebook}>
+        <IconButton color="inherit" style={{ marginRight: 10 }}>
           <MenuBook />
         </IconButton>
-        <IconButton className={styles.message}>
+        <IconButton color="inherit" style={{ marginRight: 10 }}>
           <Message />
         </IconButton>
-        <Button onClick={onClickProfile(student)}>Profile</Button>
+        <Button
+          variant="contained"
+          color="primary"
+          onClick={handleProfileClick(student)}
+        >
+          Profile
+        </Button>
       </div>
-    )
+    ),
+    cellProps: {
+      align: 'right'
+    }
   }
 ]
