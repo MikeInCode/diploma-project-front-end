@@ -1,7 +1,10 @@
 import { apolloClient } from '../../index'
 import { LoginVariables, UpdateProfileVariables } from '../../../graphQLTypes'
-import loginGraphql from './login'
-import updateProfileGraphql from './updateProfile'
+
+import { loader } from 'graphql.macro'
+
+const loginGraphql = loader('./login.graphql')
+const updateProfileGraphql = loader('./updateProfile.graphql')
 
 export const AuthMutationService = {
   loginUser: (variables: LoginVariables) =>

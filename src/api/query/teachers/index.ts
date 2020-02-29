@@ -1,5 +1,3 @@
-import { apolloClient } from '../../index'
-
 export const TeachersQueryService = {
   getTeachers: () => {
     const teacher = {

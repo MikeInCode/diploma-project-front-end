@@ -1,0 +1,55 @@
+# This file was generated based on ".graphqlconfig". Do not edit manually.
+
+schema {
+    query: Query
+    mutation: Mutation
+}
+
+type AuthenticatedUser {
+    token: String!
+    user: User!
+}
+
+type Mutation {
+    login(input: LoginInput!): AuthenticatedUser!
+    updateProfile(input: UserInput!): User!
+}
+
+type Query {
+    profile: User!
+}
+
+type User {
+    email: String!
+    firstName: String!
+    id: ID!
+    lastName: String!
+    role: Role!
+}
+
+enum CacheControlScope {
+    PRIVATE
+    PUBLIC
+}
+
+enum Role {
+    ADMIN
+    STUDENT
+    TEACHER
+}
+
+input LoginInput {
+    email: String!
+    password: String!
+}
+
+input UserInput {
+    email: String
+    firstName: String
+    lastName: String
+    role: Role
+}
+
+
+"The `Upload` scalar type represents a file upload."
+scalar Upload
