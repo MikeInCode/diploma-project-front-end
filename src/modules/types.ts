@@ -4,7 +4,7 @@ import { IHomeState } from './home'
 import { IStudentsState } from './students'
 import { ITeachersState } from './teachers'
 import { IDrawerState } from './drawer'
-
+import { IUniversityState } from './university'
 
 export interface IRootReducer {
   router: RouterState
@@ -13,4 +13,5 @@ export interface IRootReducer {
   students: IStudentsState
   teachers: ITeachersState
   drawer: IDrawerState
+  university: IUniversityState
 }

@@ -3,7 +3,7 @@ import { ILoginFormProps, ILoginFormValues } from './types'
 import { FormContext, useForm } from 'react-hook-form'
 import { Button } from '@material-ui/core'
 import { useLoginFormStyles } from './styles'
-import { validationSchema } from './helpers'
+import { defaultValues, validationSchema } from './helpers'
 import { FormTextField } from '../common'
 
 export const LoginForm = React.memo<ILoginFormProps>(
@@ -12,6 +12,7 @@ export const LoginForm = React.memo<ILoginFormProps>(
 
     const methods = useForm<ILoginFormValues>({
       mode: 'onChange',
+      defaultValues,
       validationSchema
     })
 
@@ -28,7 +29,12 @@ export const LoginForm = React.memo<ILoginFormProps>(
       <FormContext {...methods}>
         <form onSubmit={methods.handleSubmit(onSubmit)} className={styles.form}>
           <FormTextField name="email" label="Email" required={true} />
-          <FormTextField name="password" label="Password" required={true} />
+          <FormTextField
+            name="password"
+            label="Password"
+            required={true}
+            type="password"
+          />
           <Button
             type="submit"
             disabled={!methods.formState.isValid || isLoading}

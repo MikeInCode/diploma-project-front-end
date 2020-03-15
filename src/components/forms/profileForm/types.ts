@@ -1,11 +1,13 @@
 export interface IProfileFormValues {
-  firstName: string
+  image: string
   lastName: string
+  firstName: string
+  patronymicName: string
   phone: string
-  specialty: string
   email: string
-  course: string
-  telegram: string
+  institute: string
+  department: string
+  speciality: string
   group: string
 }
 

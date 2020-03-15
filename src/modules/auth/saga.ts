@@ -31,7 +31,7 @@ function* onLoginSaga(action: Action<LoginVariables>) {
 function* getProfileSaga() {
   try {
     const response: ApolloQueryResult<GetProfile> = yield call(
-      AuthQueryService.profile
+      AuthQueryService.getProfile
     )
     const result = response.data
     yield put(getProfileAction.done({ result }))

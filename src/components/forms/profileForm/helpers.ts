@@ -8,20 +8,22 @@ import {
 export const adaptValuesToForm: (
   user: GetProfile_profile
 ) => IProfileFormValues = user => ({
-  firstName: user ? user.firstName : '',
-  lastName: user ? user.lastName : '',
-  phone: '',
-  specialty: '',
-  email: user ? user.email : '',
-  course: '',
-  telegram: '',
-  group: '',
+  image: user?.image || '',
+  lastName: user?.lastName || '',
+  firstName: user?.firstName || '',
+  patronymicName: user?.patronymicName || '',
+  phone: user?.phone || '',
+  email: user?.email || '',
+  institute: user?.institute?.id || '',
+  department: user?.department?.id || '',
+  speciality: user?.speciality?.id || '',
+  group: user?.group?.id || ''
 })
 
 export const adaptValuesToResponse: (
   values: IProfileFormValues
-) => UpdateProfileVariables = ({ firstName, lastName, email }) => ({
-  input: { firstName, lastName, email }
+) => UpdateProfileVariables = values => ({
+  input: { image: values.image || '', phone: values.phone }
 })
 
 export const validationSchema = Yup.object<Partial<IProfileFormValues>>({

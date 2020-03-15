@@ -1,9 +1,29 @@
 query GetProfile {
   profile {
-    id
-    firstName
+    image
     lastName
+    firstName
+    patronymicName
+    phone
     email
     role
+    institute {
+      id
+      name
+    }
+    department {
+      id
+      name
+    }
+    speciality {
+      id
+      code
+      name
+    }
+    group {
+      id
+      name
+    }
+    course
   }
 }

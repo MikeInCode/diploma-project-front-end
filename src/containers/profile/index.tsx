@@ -5,23 +5,32 @@ import { PageWrapper } from '../../common/pageWrapper'
 import { ProfileForm } from '../../components/forms/profileForm'
 import { IProfileFormValues } from '../../components/forms/profileForm/types'
 import { updateProfileAction } from '../../modules/auth'
-import { adaptValuesToForm, adaptValuesToResponse } from '../../components/forms/profileForm/helpers'
+import {
+  adaptValuesToForm,
+  adaptValuesToResponse
+} from '../../components/forms/profileForm/helpers'
 
 const mapState = ({
-  auth: { isLoading, isProfileUpdating, user }
+  auth: { isLoading: isUserLoading, isProfileUpdating, user },
+  university: { isLoading: isUniversityLoading }
 }: IRootReducer) => ({
-  isLoading,
+  isUserLoading,
   isProfileUpdating,
-  user
+  user,
+  isUniversityLoading
 })
 
 const Profile = React.memo(() => {
-  const { isLoading, isProfileUpdating, user } = useSelector(
-    mapState,
-    shallowEqual
-  )
+  const {
+    isUserLoading,
+    isProfileUpdating,
+    user,
+    isUniversityLoading
+  } = useSelector(mapState, shallowEqual)
 
   const dispatch = useDispatch()
+
+  const initialValues = React.useMemo(() => adaptValuesToForm(user), [user])
 
   const handleSubmit = React.useCallback(
     (values: IProfileFormValues) =>
@@ -30,9 +39,9 @@ const Profile = React.memo(() => {
   )
 
   return (
-    <PageWrapper isLoading={isLoading}>
+    <PageWrapper isLoading={isUserLoading || isUniversityLoading}>
       <ProfileForm
-        initialValues={adaptValuesToForm(user)}
+        initialValues={initialValues}
         onSubmit={handleSubmit}
         isProfileUpdating={isProfileUpdating}
       />

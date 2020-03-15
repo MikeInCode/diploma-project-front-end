@@ -1,14 +1,4 @@
 import { makeStyles } from '@material-ui/core'
-import { Color } from '../../theme'
-
-export const useAppBarClasses = makeStyles(
-  {
-    root: {
-      background: Color.Green
-    }
-  },
-  { name: 'CustomAppBarClasses' }
-)
 
 export const useToolbarClasses = makeStyles(
   {

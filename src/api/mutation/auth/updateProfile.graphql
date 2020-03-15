@@ -1,9 +1,29 @@
-mutation UpdateProfile($input: UserInput!) {
+mutation UpdateProfile($input: UpdateProfileInput!) {
   updateProfile(input: $input) {
-    id
-    firstName
+    image
     lastName
+    firstName
+    patronymicName
+    phone
     email
     role
+    institute {
+      id
+      name
+    }
+    department {
+      id
+      name
+    }
+    speciality {
+      id
+      code
+      name
+    }
+    group {
+      id
+      name
+    }
+    course
   }
 }

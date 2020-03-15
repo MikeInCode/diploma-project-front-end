@@ -1,14 +1,7 @@
 import React from 'react'
 import { ConnectedRouter } from 'connected-react-router'
 import { Route, Switch } from 'react-router-dom'
-import {
-  Home,
-  Login,
-  Profile,
-  Students,
-  Teachers,
-  PageNotFound
-} from './routes'
+import { Home, Login, PageNotFound, Profile, Students, Teachers } from './routes'
 import { ROUTES } from './constants'
 import { PrivateRoute } from './privateRoute'
 import { Header } from '../components/header'

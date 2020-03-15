@@ -1,14 +1,31 @@
 import React from 'react'
 import { IProfileFormProps, IProfileFormValues } from './types'
 import { FormContext, useForm } from 'react-hook-form'
-import { Button, Grid } from '@material-ui/core'
+import { Button, Grid, MenuItem } from '@material-ui/core'
 import { Avatar } from '../../../common/avatar'
 import { useProfileFormStyles } from './styles'
 import { FormTextField } from '../common'
 import { validationSchema } from './helpers'
+import { FormSelect } from '../common/formSelect'
+import { IRootReducer } from '../../../modules/types'
+import { shallowEqual, useSelector } from 'react-redux'
+
+const mapState = ({
+  university: { institutes, departments, specialities, groups }
+}: IRootReducer) => ({
+  institutes,
+  departments,
+  specialities,
+  groups
+})
 
 export const ProfileForm = React.memo<IProfileFormProps>(
   ({ initialValues, onSubmit, isProfileUpdating }) => {
+    const { institutes, departments, specialities, groups } = useSelector(
+      mapState,
+      shallowEqual
+    )
+
     const [avatarHeight, setAvatarHeight] = React.useState(0)
 
     const setHeight = React.useCallback((node: HTMLDivElement) => {
@@ -23,15 +40,14 @@ export const ProfileForm = React.memo<IProfileFormProps>(
 
     const methods = useForm<IProfileFormValues>({
       mode: 'onChange',
+      defaultValues: initialValues,
       validationSchema
     })
 
     React.useEffect(() => {
-      methods.reset(initialValues)
+      methods.reset({ ...initialValues })
       // eslint-disable-next-line
     }, [initialValues])
-
-    console.log(methods.watch('test'))
 
     return (
       <FormContext {...methods}>
@@ -81,8 +97,8 @@ export const ProfileForm = React.memo<IProfileFormProps>(
               </Grid>
               <Grid item={true} xs={6}>
                 <FormTextField
-                  name="specialty"
-                  label="Speciality"
+                  name="patronymicName"
+                  label="Patronymic name"
                   fullWidth={true}
                 />
               </Grid>
@@ -94,11 +110,41 @@ export const ProfileForm = React.memo<IProfileFormProps>(
                 />
               </Grid>
               <Grid item={true} xs={6}>
-                <FormTextField name="course" label="Course" fullWidth={true} />
+                <FormSelect name="institute" label="Institute" fullWidth={true}>
+                  {institutes.map(institute => (
+                    <MenuItem key={institute.id} value={institute.id}>
+                      {institute.name}
+                    </MenuItem>
+                  ))}
+                </FormSelect>
               </Grid>
               <Grid item={true} xs={6} />
               <Grid item={true} xs={6}>
-                <FormTextField name="group" label="Group" fullWidth={true} />
+                <FormSelect
+                  name="speciality"
+                  label="Speciality"
+                  fullWidth={true}
+                >
+                  {specialities.map(speciality => (
+                    <MenuItem key={speciality.id} value={speciality.id}>
+                      {`${speciality.code} ${speciality.name}`}
+                    </MenuItem>
+                  ))}
+                </FormSelect>
+              </Grid>
+              <Grid item={true} xs={6} />
+              <Grid item={true} xs={6}>
+                <FormSelect name="group" label="Group" fullWidth={true}>
+                  {groups.map(group => (
+                    <MenuItem key={group.id} value={group.id}>
+                      {group.name}
+                    </MenuItem>
+                  ))}
+                </FormSelect>
+              </Grid>
+              <Grid item={true} xs={6} />
+              <Grid item={true} xs={6}>
+                <FormTextField name="course" label="Course" fullWidth={true} />
               </Grid>
               <Grid item={true} xs={6} />
               <Grid item={true} xs={6}>

@@ -1,6 +1,5 @@
 import ApolloClient, { InMemoryCache } from 'apollo-boost'
 import { store } from '../modules'
-import { ErrorsEnum } from '../enums'
 import { API_URL } from '../constants'
 import { onLogoutAction } from '../modules/auth'
 import { getToken } from '../utils/token'
@@ -18,7 +17,7 @@ export const apolloClient = new ApolloClient({
   onError: ({ graphQLErrors }) => {
     if (graphQLErrors) {
       graphQLErrors.forEach(error => {
-        if (ErrorsEnum.INVALID_TOKEN === error.message) {
+        if (error.message === 'Not Authorised!') {
           store.dispatch(onLogoutAction())
         }
       })

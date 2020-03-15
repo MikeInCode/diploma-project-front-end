@@ -1,7 +1,8 @@
 import React from 'react'
 import { IRootReducer } from '../../modules/types'
-import { shallowEqual, useDispatch, useSelector } from 'react-redux'
+import { batch, shallowEqual, useDispatch, useSelector } from 'react-redux'
 import { getProfileAction, onLogoutAction } from '../../modules/auth'
+import { getUniversityAction } from '../../modules/university'
 import {
   AppBar,
   Button,
@@ -9,36 +10,42 @@ import {
   Toolbar,
   Typography
 } from '@material-ui/core'
-import { useAppBarClasses, useHeaderStyles, useToolbarClasses } from './styles'
+import { Skeleton } from '@material-ui/lab'
+import { useHeaderStyles, useToolbarClasses } from './styles'
 import { ExitToApp, Notifications } from '@material-ui/icons'
 import { push } from 'connected-react-router'
 import { ROUTES } from '../../router/constants'
-import { Skeleton } from '../../common/skeleton'
 import { Avatar } from '../../common/avatar'
 
 const mapState = ({
-  auth: { isAuthenticated, isLoading, user }
+  auth: { isAuthenticated, isLoading: isUserLoading, user },
+  university: { isLoading: isUniversityLoading }
 }: IRootReducer) => ({
   isAuthenticated,
-  isLoading,
-  user
+  isUserLoading,
+  user,
+  isUniversityLoading
 })
 
 export const Header = React.memo(() => {
-  const appBarClasses = useAppBarClasses({})
   const toolbarClasses = useToolbarClasses({})
   const styles = useHeaderStyles({})
 
-  const { isAuthenticated, isLoading, user } = useSelector(
-    mapState,
-    shallowEqual
-  )
+  const {
+    isAuthenticated,
+    isUserLoading,
+    user,
+    isUniversityLoading
+  } = useSelector(mapState, shallowEqual)
 
   const dispatch = useDispatch()
 
   React.useEffect(() => {
     if (isAuthenticated && !user) {
-      dispatch(getProfileAction.started())
+      batch(() => {
+        dispatch(getProfileAction.started())
+        dispatch(getUniversityAction.started())
+      })
     }
   }, [dispatch, isAuthenticated, user])
 
@@ -67,17 +74,17 @@ export const Header = React.memo(() => {
     [dispatch]
   )
 
-  const showSkeleton = React.useMemo(() => isLoading || !user, [
-    isLoading,
-    user
-  ])
+  const showSkeleton = React.useMemo(
+    () => isUserLoading || isUniversityLoading || !user,
+    [isUniversityLoading, isUserLoading, user]
+  )
 
   if (!isAuthenticated) {
     return null
   }
 
   return (
-    <AppBar position="sticky" classes={appBarClasses}>
+    <AppBar position="sticky">
       <Toolbar classes={toolbarClasses}>
         <div className={styles.navigationContainer}>
           <Button onClick={handleTimetableClick}>Timetable</Button>

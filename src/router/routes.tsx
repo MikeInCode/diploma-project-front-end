@@ -1,5 +1,5 @@
 import React, { lazy, Suspense } from 'react'
-import { LinearProgress } from '../common/linearProgress'
+import { LinearProgress } from '@material-ui/core'
 
 const LazyLoader = props => {
   const { lazy: LazyComponent, ...rest } = props
@@ -29,7 +29,6 @@ export const Students = props => (
 export const Teachers = props => (
   <LazyLoader lazy={lazy(() => import('../containers/teachers'))} {...props} />
 )
-
 
 export const PageNotFound = props => (
   <LazyLoader

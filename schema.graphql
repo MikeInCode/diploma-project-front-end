@@ -10,32 +10,112 @@ type AuthenticatedUser {
     user: User!
 }
 
-type Mutation {
-    login(input: LoginInput!): AuthenticatedUser!
-    updateProfile(input: UserInput!): User!
+type Department {
+    id: ID!
+    name: String!
 }
 
-type Query {
-    profile: User!
+type Group {
+    id: ID!
+    name: String!
 }
 
-type User {
-    email: String!
+type Institute {
+    id: ID!
+    name: String!
+}
+
+type Lesson {
+    course: CourseEnum
+    endTime: DateTime!
+    group: Group!
+    id: ID!
+    room: String!
+    startTime: DateTime!
+    subject: Subject!
+    teacher: LessonTeacher!
+}
+
+type LessonTeacher {
     firstName: String!
     id: ID!
     lastName: String!
-    role: Role!
+    patronymicName: String!
 }
 
-enum CacheControlScope {
-    PRIVATE
-    PUBLIC
+type Mutation {
+    login(input: LoginInput!): AuthenticatedUser!
+    updateProfile(input: UpdateProfileInput!): User!
 }
 
-enum Role {
+type Query {
+    lessons: [Lesson!]!
+    profile: User!
+    university: University!
+}
+
+type Speciality {
+    code: String!
+    id: ID!
+    name: String!
+}
+
+type Subject {
+    ECTS: String!
+    id: ID!
+    name: String!
+    subjectCode: String!
+    subjectType: SubjectTypeEnum!
+}
+
+type University {
+    departments: [Department!]!
+    groups: [Group!]!
+    institutes: [Institute!]!
+    specialities: [Speciality!]!
+}
+
+type User {
+    course: CourseEnum
+    department: Department
+    email: String!
+    firstName: String!
+    group: Group
+    id: ID!
+    image: String
+    institute: Institute!
+    lastName: String!
+    patronymicName: String!
+    phone: String
+    role: RolesEnum!
+    speciality: Speciality
+}
+
+enum CourseEnum {
+    FIVE
+    FOURE
+    ONE
+    SIX
+    THREE
+    TWO
+}
+
+enum RolesEnum {
     ADMIN
     STUDENT
     TEACHER
+}
+
+enum SemestrEnum {
+    SUMMER
+    WINTER
+}
+
+enum SubjectTypeEnum {
+    LABORATORY
+    LECTURE
+    SEMINAR
+    TUTORIALS
 }
 
 input LoginInput {
@@ -43,13 +123,10 @@ input LoginInput {
     password: String!
 }
 
-input UserInput {
-    email: String
-    firstName: String
-    lastName: String
-    role: Role
+input UpdateProfileInput {
+    image: String
+    phone: String
 }
 
 
-"The `Upload` scalar type represents a file upload."
-scalar Upload
+scalar DateTime
