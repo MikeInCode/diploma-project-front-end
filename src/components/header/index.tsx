@@ -41,13 +41,14 @@ export const Header = React.memo(() => {
   const dispatch = useDispatch()
 
   React.useEffect(() => {
-    if (isAuthenticated && !user) {
+    if (isAuthenticated) {
       batch(() => {
-        dispatch(getProfileAction.started())
+        !user && dispatch(getProfileAction.started())
         dispatch(getUniversityAction.started())
       })
     }
-  }, [dispatch, isAuthenticated, user])
+    // eslint-disable-next-line
+  }, [dispatch, isAuthenticated])
 
   const handleTimetableClick = React.useCallback(
     () => dispatch(push(ROUTES.HOME)),
