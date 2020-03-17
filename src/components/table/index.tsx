@@ -12,7 +12,7 @@ import {
 import { ITableProps } from './types'
 import { useTableStyles } from './styles'
 
-export const Table = <T extends { id: string }>({
+const TableComponent = <T extends any>({
   header,
   row,
   data,
@@ -56,3 +56,5 @@ export const Table = <T extends { id: string }>({
     </Paper>
   )
 }
+
+export const Table = React.memo(TableComponent) as typeof TableComponent

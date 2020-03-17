@@ -7,6 +7,7 @@ import { header, row } from './shema'
 import { getTeachersAction } from '../../modules/teachers'
 import { openDrawerAction } from '../../modules/drawer'
 import { DrawerEnum } from '../../enums'
+import { useTranslation } from 'react-i18next'
 
 const mapState = ({ teachers: { isLoading, teachers } }: IRootReducer) => ({
   isLoading,
@@ -14,6 +15,8 @@ const mapState = ({ teachers: { isLoading, teachers } }: IRootReducer) => ({
 })
 
 const Teachers = React.memo(() => {
+  const { t } = useTranslation()
+
   const { isLoading, teachers } = useSelector(mapState, shallowEqual)
 
   const dispatch = useDispatch()
@@ -32,13 +35,13 @@ const Teachers = React.memo(() => {
   )
 
   const rowCells = React.useCallback(
-    teacher => row(teacher, handleClickProfile),
-    [handleClickProfile]
+    teacher => row(t, teacher, handleClickProfile),
+    [handleClickProfile, t]
   )
 
   return (
     <PageWrapper isLoading={isLoading}>
-      <Table<any> header={header} row={rowCells} data={teachers} />
+      <Table<any> header={header(t)} row={rowCells} data={teachers} />
     </PageWrapper>
   )
 })

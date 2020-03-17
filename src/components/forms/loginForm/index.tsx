@@ -5,10 +5,13 @@ import { Button } from '@material-ui/core'
 import { useLoginFormStyles } from './styles'
 import { defaultValues, validationSchema } from './helpers'
 import { FormTextField } from '../common'
+import { useTranslation } from 'react-i18next'
 
 export const LoginForm = React.memo<ILoginFormProps>(
   ({ isLoading, isInvalidCredentials, onSubmit }) => {
     const styles = useLoginFormStyles({})
+
+    const { t } = useTranslation()
 
     const methods = useForm<ILoginFormValues>({
       mode: 'onChange',
@@ -28,10 +31,10 @@ export const LoginForm = React.memo<ILoginFormProps>(
     return (
       <FormContext {...methods}>
         <form onSubmit={methods.handleSubmit(onSubmit)} className={styles.form}>
-          <FormTextField name="email" label="Email" required={true} />
+          <FormTextField name="email" label={t('emailLabel')} required={true} />
           <FormTextField
             name="password"
-            label="Password"
+            label={t('passwordLabel')}
             required={true}
             type="password"
           />
@@ -41,7 +44,7 @@ export const LoginForm = React.memo<ILoginFormProps>(
             variant="contained"
             color="primary"
           >
-            Login
+            {t('loginLabel')}
           </Button>
         </form>
       </FormContext>

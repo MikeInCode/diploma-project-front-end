@@ -3,19 +3,20 @@ import v4 from 'uuid/v4'
 import { Button, IconButton } from '@material-ui/core'
 import { Message } from '@material-ui/icons'
 import { ICellType } from '../../components/table/types'
+import { TFunction } from 'i18next'
 
-export const header: ICellType[] = [
+export const header: (t: TFunction) => ICellType[] = t => [
   {
     id: v4(),
-    children: 'Name'
+    children: t('fullNameLabel')
   },
   {
     id: v4(),
-    children: 'Subjects'
+    children: t('subjectsLabel')
   },
   {
     id: v4(),
-    children: 'Department'
+    children: t('departmentLabel')
   },
   {
     id: v4(),
@@ -24,9 +25,10 @@ export const header: ICellType[] = [
 ]
 
 export const row: (
+  t: TFunction,
   teacher: any,
   handleProfileClick: (teacher) => () => void
-) => ICellType[] = (teacher, handleProfileClick) => {
+) => ICellType[] = (t, teacher, handleProfileClick) => {
   return [
     {
       id: v4(),
@@ -52,7 +54,7 @@ export const row: (
             color="primary"
             onClick={handleProfileClick(teacher)}
           >
-            Profile
+            {t('profileLabel')}
           </Button>
         </div>
       ),
