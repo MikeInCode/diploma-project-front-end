@@ -1,6 +1,9 @@
 import { apolloClient } from '../../index'
-import getProfileGraphql from './getProfile'
+
+import { loader } from 'graphql.macro'
+
+const getProfileGraphql = loader('./getProfile.graphql')
 
 export const AuthQueryService = {
-  profile: () => apolloClient.query({ query: getProfileGraphql })
+  getProfile: () => apolloClient.query({ query: getProfileGraphql })
 }

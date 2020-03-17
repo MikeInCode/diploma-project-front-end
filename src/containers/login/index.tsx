@@ -6,7 +6,7 @@ import { Redirect } from 'react-router-dom'
 import { ROUTES } from '../../router/constants'
 import { IRootReducer } from '../../modules/types'
 import { shallowEqual, useDispatch, useSelector } from 'react-redux'
-import { FormValues } from '../../components/forms/loginForm/types'
+import { ILoginFormValues } from '../../components/forms/loginForm/types'
 import { onLoginAction } from '../../modules/auth'
 
 const mapState = ({
@@ -28,7 +28,8 @@ const Login = React.memo(() => {
   const dispatch = useDispatch()
 
   const handleSubmit = React.useCallback(
-    (values: FormValues) => dispatch(onLoginAction.started({ input: values })),
+    (values: ILoginFormValues) =>
+      dispatch(onLoginAction.started({ input: values })),
     [dispatch]
   )
 

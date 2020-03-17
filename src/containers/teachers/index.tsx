@@ -4,7 +4,6 @@ import { Table } from '../../components/table'
 import { IRootReducer } from '../../modules/types'
 import { shallowEqual, useDispatch, useSelector } from 'react-redux'
 import { header, row } from './shema'
-import { useTeachersStyles } from './styles'
 import { getTeachersAction } from '../../modules/teachers'
 import { openDrawerAction } from '../../modules/drawer'
 import { DrawerEnum } from '../../enums'
@@ -15,8 +14,6 @@ const mapState = ({ teachers: { isLoading, teachers } }: IRootReducer) => ({
 })
 
 const Teachers = React.memo(() => {
-  const styles = useTeachersStyles({})
-
   const { isLoading, teachers } = useSelector(mapState, shallowEqual)
 
   const dispatch = useDispatch()
@@ -26,27 +23,22 @@ const Teachers = React.memo(() => {
   }, [dispatch])
 
   const handleClickProfile = React.useCallback(
-    (teacher: any) => () =>
+    (teacher: any) => () => {
       dispatch(
         openDrawerAction({ type: DrawerEnum.PROFILE_DRAWER, data: teacher })
-      ),
+      )
+    },
     [dispatch]
   )
 
   const rowCells = React.useCallback(
-    (teacher: any) =>
-      row({ teacher, styles, onClickProfile: handleClickProfile }),
-    [handleClickProfile, styles]
+    teacher => row(teacher, handleClickProfile),
+    [handleClickProfile]
   )
 
   return (
     <PageWrapper isLoading={isLoading}>
-      <Table<any>
-        headerCells={header}
-        rowCells={rowCells}
-        data={teachers}
-        colDimensions={[25, 40, 15, 20]}
-      />
+      <Table<any> header={header} row={rowCells} data={teachers} />
     </PageWrapper>
   )
 })

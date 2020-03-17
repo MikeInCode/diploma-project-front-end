@@ -1,0 +1,21 @@
+query GetUniversity {
+  university {
+    institutes {
+      id
+      name
+    }
+    departments {
+      id
+      name
+    }
+    specialities {
+      id
+      code
+      name
+    }
+    groups {
+      id
+      name
+    }
+  }
+}

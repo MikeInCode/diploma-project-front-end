@@ -1,59 +1,64 @@
 import React from 'react'
-import { ICellType } from '../../components/table/types'
-import { Typography } from '../../common/typography'
 import v4 from 'uuid/v4'
-import { Button } from '../../common/button'
-import { IconButton } from '@material-ui/core'
+import { Button, IconButton } from '@material-ui/core'
 import { Message } from '@material-ui/icons'
-import { IRowType } from './types'
+import { ICellType } from '../../components/table/types'
 
 export const header: ICellType[] = [
   {
     id: v4(),
-    children: <Typography variant="body1">Name</Typography>
+    children: 'Name'
   },
   {
     id: v4(),
-    children: <Typography variant="body1">Subjects</Typography>
+    children: 'Subjects'
   },
   {
     id: v4(),
-    children: <Typography variant="body1">Department</Typography>
+    children: 'Department'
   },
   {
     id: v4(),
-    children: <div />
+    children: null
   }
 ]
 
-export const row: (data: IRowType) => ICellType[] = ({
-  teacher,
-  styles,
-  onClickProfile
-}) => [
-  {
-    id: v4(),
-    children: (
-      <Typography variant="body1">{`${teacher.lastName} ${teacher.firstName} ${teacher.patronymicName}`}</Typography>
-    )
-  },
-  {
-    id: v4(),
-    children: <Typography variant="body1">{teacher.subjects}</Typography>
-  },
-  {
-    id: v4(),
-    children: <Typography variant="body1">{teacher.department}</Typography>
-  },
-  {
-    id: v4(),
-    children: (
-      <div>
-        <IconButton className={styles.message}>
-          <Message />
-        </IconButton>
-        <Button onClick={onClickProfile(teacher)}>Profile</Button>
-      </div>
-    )
-  }
-]
+export const row: (
+  teacher: any,
+  handleProfileClick: (teacher) => () => void
+) => ICellType[] = (teacher, handleProfileClick) => {
+  return [
+    {
+      id: v4(),
+      children: `${teacher.lastName} ${teacher.firstName} ${teacher.patronymicName}`
+    },
+    {
+      id: v4(),
+      children: teacher.subjects
+    },
+    {
+      id: v4(),
+      children: teacher.department
+    },
+    {
+      id: v4(),
+      children: (
+        <div>
+          <IconButton color="inherit" style={{ marginRight: 10 }}>
+            <Message />
+          </IconButton>
+          <Button
+            variant="contained"
+            color="primary"
+            onClick={handleProfileClick(teacher)}
+          >
+            Profile
+          </Button>
+        </div>
+      ),
+      cellProps: {
+        align: 'right'
+      }
+    }
+  ]
+}

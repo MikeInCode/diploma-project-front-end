@@ -7,7 +7,6 @@ import {
   onLogoutAction,
   updateProfileAction
 } from './actions'
-import { ErrorsEnum } from '../../enums'
 import { removeToken } from '../../utils/token'
 
 export const reducer = reducerWithInitialState<IAuthState>(initialState)
@@ -25,9 +24,7 @@ export const reducer = reducerWithInitialState<IAuthState>(initialState)
   .case(onLoginAction.failed, (state, payload) => ({
     ...state,
     isLoading: false,
-    isInvalidCredentials: payload.error.message.includes(
-      ErrorsEnum.INVALID_CREDENTIALS
-    )
+    isInvalidCredentials: payload.error.message.includes('Invalid credentials!')
   }))
   .case(getProfileAction.started, state => ({
     ...state,
@@ -37,6 +34,10 @@ export const reducer = reducerWithInitialState<IAuthState>(initialState)
     ...state,
     isLoading: false,
     user: payload.result.profile
+  }))
+  .case(getProfileAction.failed, state => ({
+    ...state,
+    isLoading: false
   }))
   .case(updateProfileAction.started, state => ({
     ...state,
@@ -51,7 +52,7 @@ export const reducer = reducerWithInitialState<IAuthState>(initialState)
     ...state,
     isProfileUpdating: false
   }))
-  .cases([onLogoutAction, getProfileAction.failed], () => {
+  .case(onLogoutAction, () => {
     removeToken()
     return initialState
   })

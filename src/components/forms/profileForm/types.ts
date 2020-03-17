@@ -1,18 +1,18 @@
-import { GetProfile_profile } from '../../../graphQLTypes'
-
-export interface FormValues {
-  firstName: string
+export interface IProfileFormValues {
+  image: string
   lastName: string
+  firstName: string
+  patronymicName: string
   phone: string
-  specialty: string
   email: string
-  course: string
-  telegram: string
+  institute: string
+  department: string
+  speciality: string
   group: string
 }
 
 export interface IProfileFormProps {
-  user: GetProfile_profile
-  onSubmit: (values: FormValues) => void
+  initialValues: IProfileFormValues
+  onSubmit: (values: IProfileFormValues) => void
   isProfileUpdating: boolean
 }

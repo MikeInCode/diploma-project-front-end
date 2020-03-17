@@ -1,16 +1,14 @@
-import { FormValues } from './types'
+import { ILoginFormValues } from './types'
 import * as Yup from 'yup'
 
-export const initialValues: FormValues = {
+export const defaultValues: ILoginFormValues = {
   email: '',
   password: ''
 }
 
-export const validationSchema = Yup.object<FormValues>({
+export const validationSchema = Yup.object<ILoginFormValues>({
   email: Yup.string()
     .required('Required field')
     .email('Invalid email'),
-  password: Yup.string()
-    .required('Required field')
-    .min(8, 'Password should be at least 8 symbols')
+  password: Yup.string().required('Required field')
 })

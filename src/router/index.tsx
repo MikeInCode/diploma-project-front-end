@@ -4,10 +4,10 @@ import { Route, Switch } from 'react-router-dom'
 import {
   Home,
   Login,
+  PageNotFound,
   Profile,
   Students,
-  Teachers,
-  PageNotFound
+  Teachers
 } from './routes'
 import { ROUTES } from './constants'
 import { PrivateRoute } from './privateRoute'

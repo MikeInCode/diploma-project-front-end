@@ -1,51 +1,50 @@
 import React from 'react'
-import { Formik, Form, FormikProps } from 'formik'
-import { FormValues, ILoginFormProps } from './types'
-import { initialValues, validationSchema } from './helpers'
-import { Button } from '../../../common/button'
-import { Box } from '@material-ui/core'
-import { FormikInput, Row } from '../../../common/form'
+import { ILoginFormProps, ILoginFormValues } from './types'
+import { FormContext, useForm } from 'react-hook-form'
+import { Button } from '@material-ui/core'
+import { useLoginFormStyles } from './styles'
+import { defaultValues, validationSchema } from './helpers'
+import { FormTextField } from '../common'
 
 export const LoginForm = React.memo<ILoginFormProps>(
   ({ isLoading, isInvalidCredentials, onSubmit }) => {
-    const formikRef = React.useRef<Formik<FormValues>>()
+    const styles = useLoginFormStyles({})
+
+    const methods = useForm<ILoginFormValues>({
+      mode: 'onChange',
+      defaultValues,
+      validationSchema
+    })
 
     React.useEffect(() => {
       if (isInvalidCredentials) {
-        formikRef.current.setErrors({
-          email: 'Incorrect email or password',
-          password: 'Incorrect email or password'
-        })
+        Object.keys(methods.getValues()).map(key =>
+          methods.setError(key, 'credentials', 'Invalid credentials')
+        )
       }
+      // eslint-disable-next-line
     }, [isInvalidCredentials])
 
     return (
-      <Formik
-        onSubmit={onSubmit}
-        initialValues={initialValues}
-        validationSchema={validationSchema}
-        ref={formikRef}
-      >
-        {(formikProps: FormikProps<FormValues>) => (
-          <Form>
-            <Row label="Email:">
-              <FormikInput<FormValues> name="email" />
-            </Row>
-            <Box height={12} />
-            <Row label="Password:">
-              <FormikInput<FormValues> name="password" type="password" />
-            </Row>
-            <Box height={12} />
-            <Button
-              type="submit"
-              fullWidth={true}
-              disabled={!formikProps.isValid || isLoading}
-            >
-              Login
-            </Button>
-          </Form>
-        )}
-      </Formik>
+      <FormContext {...methods}>
+        <form onSubmit={methods.handleSubmit(onSubmit)} className={styles.form}>
+          <FormTextField name="email" label="Email" required={true} />
+          <FormTextField
+            name="password"
+            label="Password"
+            required={true}
+            type="password"
+          />
+          <Button
+            type="submit"
+            disabled={!methods.formState.isValid || isLoading}
+            variant="contained"
+            color="primary"
+          >
+            Login
+          </Button>
+        </form>
+      </FormContext>
     )
   }
 )

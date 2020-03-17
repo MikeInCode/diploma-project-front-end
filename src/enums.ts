@@ -1,8 +1,3 @@
-export enum ErrorsEnum {
-  INVALID_TOKEN = 'INVALID_TOKEN',
-  INVALID_CREDENTIALS = 'INVALID_CREDENTIALS'
-}
-
 export enum DrawerEnum {
   PROFILE_DRAWER
 }

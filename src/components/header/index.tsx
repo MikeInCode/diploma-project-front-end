@@ -1,42 +1,54 @@
 import React from 'react'
 import { IRootReducer } from '../../modules/types'
-import { shallowEqual, useDispatch, useSelector } from 'react-redux'
+import { batch, shallowEqual, useDispatch, useSelector } from 'react-redux'
 import { getProfileAction, onLogoutAction } from '../../modules/auth'
-import { AppBar, Box, IconButton, Toolbar } from '@material-ui/core'
-import { useAppBarClasses, useHeaderStyles, useToolbarClasses } from './styles'
-import { Typography } from '../../common/typography'
+import { getUniversityAction } from '../../modules/university'
+import {
+  AppBar,
+  Button,
+  IconButton,
+  Toolbar,
+  Typography
+} from '@material-ui/core'
+import { Skeleton } from '@material-ui/lab'
+import { useHeaderStyles, useToolbarClasses } from './styles'
 import { ExitToApp, Notifications } from '@material-ui/icons'
-import { Button } from '../../common/button'
 import { push } from 'connected-react-router'
 import { ROUTES } from '../../router/constants'
-import { Skeleton } from '../../common/skeleton'
 import { Avatar } from '../../common/avatar'
 
 const mapState = ({
-  auth: { isAuthenticated, isLoading, user }
+  auth: { isAuthenticated, isLoading: isUserLoading, user },
+  university: { isLoading: isUniversityLoading }
 }: IRootReducer) => ({
   isAuthenticated,
-  isLoading,
-  user
+  isUserLoading,
+  user,
+  isUniversityLoading
 })
 
 export const Header = React.memo(() => {
-  const appBarClasses = useAppBarClasses({})
   const toolbarClasses = useToolbarClasses({})
   const styles = useHeaderStyles({})
 
-  const { isAuthenticated, isLoading, user } = useSelector(
-    mapState,
-    shallowEqual
-  )
+  const {
+    isAuthenticated,
+    isUserLoading,
+    user,
+    isUniversityLoading
+  } = useSelector(mapState, shallowEqual)
 
   const dispatch = useDispatch()
 
   React.useEffect(() => {
-    if (isAuthenticated && !user) {
-      dispatch(getProfileAction.started())
+    if (isAuthenticated) {
+      batch(() => {
+        !user && dispatch(getProfileAction.started())
+        dispatch(getUniversityAction.started())
+      })
     }
-  }, [dispatch, isAuthenticated, user])
+    // eslint-disable-next-line
+  }, [dispatch, isAuthenticated])
 
   const handleTimetableClick = React.useCallback(
     () => dispatch(push(ROUTES.HOME)),
@@ -63,66 +75,53 @@ export const Header = React.memo(() => {
     [dispatch]
   )
 
-  const showSkeleton = React.useMemo(() => isLoading || !user, [
-    isLoading,
-    user
-  ])
+  const showSkeleton = React.useMemo(
+    () => isUserLoading || isUniversityLoading || !user,
+    [isUniversityLoading, isUserLoading, user]
+  )
 
   if (!isAuthenticated) {
     return null
   }
 
   return (
-    <AppBar position="sticky" classes={appBarClasses}>
+    <AppBar position="sticky">
       <Toolbar classes={toolbarClasses}>
-        <div className={styles.wrapper}>
-          <Typography variant="h2" className={styles.appLogo}>
-            App name
-          </Typography>
+        <div className={styles.navigationContainer}>
           <Button onClick={handleTimetableClick}>Timetable</Button>
           <Button onClick={handleStudentsClick}>Students</Button>
           <Button>Studying</Button>
           <Button onClick={handleTeachersClick}>Teachers</Button>
           <Button>Messages</Button>
         </div>
-        <div className={styles.wrapper}>
-          <IconButton>
-            <Notifications className={styles.icon} />
+        <div className={styles.profileContainer}>
+          <IconButton color="inherit">
+            <Notifications />
           </IconButton>
-          <div className={styles.profileContainer}>
-            <div className={styles.userInfo}>
-              <div className={styles.userName}>
-                {showSkeleton ? (
-                  <Skeleton variant="text" width={80} />
-                ) : (
-                  <Typography variant="h4">{user.firstName}</Typography>
-                )}
-                <Box width={8} />
-                {showSkeleton ? (
-                  <Skeleton variant="text" width={80} />
-                ) : (
-                  <Typography variant="h4">{user.lastName}</Typography>
-                )}
-              </div>
-              {showSkeleton ? (
-                <Skeleton variant="text" width={168} />
-              ) : (
-                <Typography variant="body1">{user.email}</Typography>
-              )}
-            </div>
+          <div className={styles.credentialsWrapper}>
             {showSkeleton ? (
-              <Skeleton variant="circle" width={40} height={40} />
+              <Skeleton variant="text" width={150} />
             ) : (
-              <Avatar
-                src={''}
-                firstName={user.firstName}
-                lastName={user.lastName}
-                onClick={handleAvatarClick}
-              />
+              <Typography variant="h6">{`${user.firstName} ${user.lastName}`}</Typography>
+            )}
+            {showSkeleton ? (
+              <Skeleton variant="text" width={120} />
+            ) : (
+              <Typography variant="body1">{user.email}</Typography>
             )}
           </div>
-          <IconButton onClick={handleLogoutClick}>
-            <ExitToApp className={styles.icon} />
+          {showSkeleton ? (
+            <Skeleton variant="circle" width={40} height={40} />
+          ) : (
+            <Avatar
+              src={''}
+              firstName={user.firstName}
+              lastName={user.lastName}
+              onClick={handleAvatarClick}
+            />
+          )}
+          <IconButton color="inherit" onClick={handleLogoutClick}>
+            <ExitToApp />
           </IconButton>
         </div>
       </Toolbar>

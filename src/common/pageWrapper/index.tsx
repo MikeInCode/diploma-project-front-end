@@ -1,8 +1,7 @@
 import React from 'react'
-import { Container } from '@material-ui/core'
+import { CircularProgress, Container } from '@material-ui/core'
 import { IPageWrapperProps } from './types'
 import { usePageWrapperClasses } from './styles'
-import { CircularProgress } from '../circularProgress'
 
 export const PageWrapper = React.memo<IPageWrapperProps>(
   ({ children, isLoading, ...rest }) => {
