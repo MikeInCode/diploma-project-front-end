@@ -6,6 +6,7 @@ import { AppRouter } from './router'
 import { history } from './router/history'
 import { GlobalCss, theme } from './theme'
 import { ThemeProvider } from '@material-ui/core'
+import './i18n'
 
 ReactDOM.render(
   <Provider store={store}>

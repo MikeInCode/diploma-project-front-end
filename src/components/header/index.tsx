@@ -1,21 +1,16 @@
-import React from 'react'
+import React, { Suspense } from 'react'
 import { IRootReducer } from '../../modules/types'
 import { batch, shallowEqual, useDispatch, useSelector } from 'react-redux'
 import { getProfileAction, onLogoutAction } from '../../modules/auth'
 import { getUniversityAction } from '../../modules/university'
-import {
-  AppBar,
-  Button,
-  IconButton,
-  Toolbar,
-  Typography
-} from '@material-ui/core'
+import { AppBar, Button, IconButton, Toolbar, Typography } from '@material-ui/core'
 import { Skeleton } from '@material-ui/lab'
 import { useHeaderStyles, useToolbarClasses } from './styles'
 import { ExitToApp, Notifications } from '@material-ui/icons'
 import { push } from 'connected-react-router'
 import { ROUTES } from '../../router/constants'
 import { Avatar } from '../../common/avatar'
+import { useTranslation } from 'react-i18next'
 
 const mapState = ({
   auth: { isAuthenticated, isLoading: isUserLoading, user },
@@ -27,9 +22,11 @@ const mapState = ({
   isUniversityLoading
 })
 
-export const Header = React.memo(() => {
+const HeaderComponent = React.memo(() => {
   const toolbarClasses = useToolbarClasses({})
   const styles = useHeaderStyles({})
+
+  const { t } = useTranslation()
 
   const {
     isAuthenticated,
@@ -88,11 +85,11 @@ export const Header = React.memo(() => {
     <AppBar position="sticky">
       <Toolbar classes={toolbarClasses}>
         <div className={styles.navigationContainer}>
-          <Button onClick={handleTimetableClick}>Timetable</Button>
-          <Button onClick={handleStudentsClick}>Students</Button>
-          <Button>Studying</Button>
-          <Button onClick={handleTeachersClick}>Teachers</Button>
-          <Button>Messages</Button>
+          <Button onClick={handleTimetableClick}>{t('timetableLabel')}</Button>
+          <Button onClick={handleStudentsClick}>{t('studentsLabel')}</Button>
+          <Button>{t('studyingLabel')}</Button>
+          <Button onClick={handleTeachersClick}>{t('teachersLabel')}</Button>
+          <Button>{t('messagesLabel')}</Button>
         </div>
         <div className={styles.profileContainer}>
           <IconButton color="inherit">
@@ -128,3 +125,9 @@ export const Header = React.memo(() => {
     </AppBar>
   )
 })
+
+export const Header = () => (
+  <Suspense fallback={null}>
+    <HeaderComponent />
+  </Suspense>
+)

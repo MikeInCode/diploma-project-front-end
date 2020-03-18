@@ -9,6 +9,7 @@ import { validationSchema } from './helpers'
 import { FormSelect } from '../common/formSelect'
 import { IRootReducer } from '../../../modules/types'
 import { shallowEqual, useSelector } from 'react-redux'
+import { useTranslation } from 'react-i18next'
 
 const mapState = ({
   university: { institutes, departments, specialities, groups }
@@ -21,6 +22,8 @@ const mapState = ({
 
 export const ProfileForm = React.memo<IProfileFormProps>(
   ({ initialValues, onSubmit, isProfileUpdating }) => {
+    const { t } = useTranslation()
+
     const { institutes, departments, specialities, groups } = useSelector(
       mapState,
       shallowEqual
@@ -66,7 +69,7 @@ export const ProfileForm = React.memo<IProfileFormProps>(
               </Grid>
               <Grid item={true} xs={12}>
                 <Button color="primary" variant="contained" fullWidth={true}>
-                  Upload image
+                  {t('uploadImageLabel')}
                 </Button>
               </Grid>
             </Grid>
@@ -74,43 +77,51 @@ export const ProfileForm = React.memo<IProfileFormProps>(
               <Grid item={true} xs={6}>
                 <FormTextField
                   name="firstName"
-                  label="First name"
+                  label={t('firstNameLabel')}
                   fullWidth={true}
                 />
               </Grid>
               <Grid item={true} xs={6}>
                 <FormTextField
                   name="phone"
-                  label="Phone number"
+                  label={t('phoneLabel')}
                   fullWidth={true}
                 />
               </Grid>
               <Grid item={true} xs={6}>
                 <FormTextField
                   name="lastName"
-                  label="Last name"
+                  label={t('lastNameLabel')}
                   fullWidth={true}
                 />
               </Grid>
               <Grid item={true} xs={6}>
-                <FormTextField name="email" label="Email" fullWidth={true} />
+                <FormTextField
+                  name="email"
+                  label={t('emailLabel')}
+                  fullWidth={true}
+                />
               </Grid>
               <Grid item={true} xs={6}>
                 <FormTextField
                   name="patronymicName"
-                  label="Patronymic name"
+                  label={t('patronymicNameLabel')}
                   fullWidth={true}
                 />
               </Grid>
               <Grid item={true} xs={6}>
                 <FormTextField
                   name="telegram"
-                  label="Telegram"
+                  label={t('telegramLabel')}
                   fullWidth={true}
                 />
               </Grid>
               <Grid item={true} xs={6}>
-                <FormSelect name="institute" label="Institute" fullWidth={true}>
+                <FormSelect
+                  name="institute"
+                  label={t('instituteLabel')}
+                  fullWidth={true}
+                >
                   {institutes.map(institute => (
                     <MenuItem key={institute.id} value={institute.id}>
                       {institute.name}
@@ -122,7 +133,7 @@ export const ProfileForm = React.memo<IProfileFormProps>(
               <Grid item={true} xs={6}>
                 <FormSelect
                   name="speciality"
-                  label="Speciality"
+                  label={t('specialityLabel')}
                   fullWidth={true}
                 >
                   {specialities.map(speciality => (
@@ -134,7 +145,11 @@ export const ProfileForm = React.memo<IProfileFormProps>(
               </Grid>
               <Grid item={true} xs={6} />
               <Grid item={true} xs={6}>
-                <FormSelect name="group" label="Group" fullWidth={true}>
+                <FormSelect
+                  name="group"
+                  label={t('groupLabel')}
+                  fullWidth={true}
+                >
                   {groups.map(group => (
                     <MenuItem key={group.id} value={group.id}>
                       {group.name}
@@ -144,7 +159,11 @@ export const ProfileForm = React.memo<IProfileFormProps>(
               </Grid>
               <Grid item={true} xs={6} />
               <Grid item={true} xs={6}>
-                <FormTextField name="course" label="Course" fullWidth={true} />
+                <FormTextField
+                  name="course"
+                  label={t('courseLabel')}
+                  fullWidth={true}
+                />
               </Grid>
               <Grid item={true} xs={6} />
               <Grid item={true} xs={6}>
@@ -158,7 +177,7 @@ export const ProfileForm = React.memo<IProfileFormProps>(
                     isProfileUpdating
                   }
                 >
-                  Update profile
+                  {t('updateProfileLabel')}
                 </Button>
               </Grid>
             </Grid>
