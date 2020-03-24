@@ -33,9 +33,10 @@ export interface Login_login_user {
   lastName: string;
   firstName: string;
   patronymicName: string;
-  phone: string | null;
-  email: string;
+  username: string;
   role: RolesEnum;
+  email: string | null;
+  phone: string | null;
   institute: Login_login_user_institute;
   department: Login_login_user_department | null;
   speciality: Login_login_user_speciality | null;
@@ -91,9 +92,10 @@ export interface UpdateProfile_updateProfile {
   lastName: string;
   firstName: string;
   patronymicName: string;
-  phone: string | null;
-  email: string;
+  username: string;
   role: RolesEnum;
+  email: string | null;
+  phone: string | null;
   institute: UpdateProfile_updateProfile_institute;
   department: UpdateProfile_updateProfile_department | null;
   speciality: UpdateProfile_updateProfile_speciality | null;
@@ -144,9 +146,10 @@ export interface GetProfile_profile {
   lastName: string;
   firstName: string;
   patronymicName: string;
-  phone: string | null;
-  email: string;
+  username: string;
   role: RolesEnum;
+  email: string | null;
+  phone: string | null;
   institute: GetProfile_profile_institute;
   department: GetProfile_profile_department | null;
   speciality: GetProfile_profile_speciality | null;
@@ -210,7 +213,7 @@ export interface GetUniversity {
 
 export enum CourseEnum {
   FIVE = "FIVE",
-  FOURE = "FOURE",
+  FOUR = "FOUR",
   ONE = "ONE",
   SIX = "SIX",
   THREE = "THREE",
@@ -224,13 +227,14 @@ export enum RolesEnum {
 }
 
 export interface LoginInput {
-  email: string;
+  username: string;
   password: string;
 }
 
 export interface UpdateProfileInput {
-  image?: string | null;
-  phone?: string | null;
+  image: string;
+  email: string;
+  phone: string;
 }
 
 //==============================================================

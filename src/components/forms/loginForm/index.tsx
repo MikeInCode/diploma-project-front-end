@@ -31,7 +31,11 @@ export const LoginForm = React.memo<ILoginFormProps>(
     return (
       <FormContext {...methods}>
         <form onSubmit={methods.handleSubmit(onSubmit)} className={styles.form}>
-          <FormTextField name="email" label={t('emailLabel')} required={true} />
+          <FormTextField
+            name="username"
+            label={t('usernameLabel')}
+            required={true}
+          />
           <FormTextField
             name="password"
             label={t('passwordLabel')}

@@ -1,4 +1,5 @@
 {
+  "usernameLabel": "Username",
   "emailLabel": "Email",
   "passwordLabel": "Password",
   "loginLabel": "Login",

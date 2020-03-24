@@ -2,13 +2,11 @@ import { ILoginFormValues } from './types'
 import * as Yup from 'yup'
 
 export const defaultValues: ILoginFormValues = {
-  email: '',
+  username: '',
   password: ''
 }
 
 export const validationSchema = Yup.object<ILoginFormValues>({
-  email: Yup.string()
-    .required('Required field')
-    .email('Invalid email'),
+  username: Yup.string().required('Required field'),
   password: Yup.string().required('Required field')
 })

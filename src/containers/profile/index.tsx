@@ -44,6 +44,7 @@ const Profile = React.memo(() => {
         initialValues={initialValues}
         onSubmit={handleSubmit}
         isProfileUpdating={isProfileUpdating}
+        userRole={user?.role}
       />
     </PageWrapper>
   )

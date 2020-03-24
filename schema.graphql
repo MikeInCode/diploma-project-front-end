@@ -26,7 +26,7 @@ type Institute {
 }
 
 type Lesson {
-    course: CourseEnum
+    course: CourseEnum!
     endTime: DateTime!
     group: Group!
     id: ID!
@@ -46,6 +46,7 @@ type LessonTeacher {
 type Mutation {
     login(input: LoginInput!): AuthenticatedUser!
     updateProfile(input: UpdateProfileInput!): User!
+    updateUser(id: ID!, input: UpdateUserInput!): User!
 }
 
 type Query {
@@ -78,7 +79,7 @@ type University {
 type User {
     course: CourseEnum
     department: Department
-    email: String!
+    email: String
     firstName: String!
     group: Group
     id: ID!
@@ -89,11 +90,12 @@ type User {
     phone: String
     role: RolesEnum!
     speciality: Speciality
+    username: String!
 }
 
 enum CourseEnum {
     FIVE
-    FOURE
+    FOUR
     ONE
     SIX
     THREE
@@ -119,13 +121,25 @@ enum SubjectTypeEnum {
 }
 
 input LoginInput {
-    email: String!
     password: String!
+    username: String!
 }
 
 input UpdateProfileInput {
-    image: String
-    phone: String
+    email: String!
+    image: String!
+    phone: String!
+}
+
+input UpdateUserInput {
+    department: String!
+    email: String!
+    firstName: String!
+    group: String!
+    image: String!
+    lastName: String!
+    patronymicName: String!
+    phone: String!
 }
 
 

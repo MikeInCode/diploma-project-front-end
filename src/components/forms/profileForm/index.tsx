@@ -10,6 +10,9 @@ import { FormSelect } from '../common/formSelect'
 import { IRootReducer } from '../../../modules/types'
 import { shallowEqual, useSelector } from 'react-redux'
 import { useTranslation } from 'react-i18next'
+import { RolesEnum } from '../../../graphQLTypes'
+import { AccessControl } from '../../accessControl'
+import { COURSES_OPTIONS } from '../../../constants'
 
 const mapState = ({
   university: { institutes, departments, specialities, groups }
@@ -21,7 +24,7 @@ const mapState = ({
 })
 
 export const ProfileForm = React.memo<IProfileFormProps>(
-  ({ initialValues, onSubmit, isProfileUpdating }) => {
+  ({ initialValues, onSubmit, isProfileUpdating, userRole }) => {
     const { t } = useTranslation()
 
     const { institutes, departments, specialities, groups } = useSelector(
@@ -52,12 +55,18 @@ export const ProfileForm = React.memo<IProfileFormProps>(
       // eslint-disable-next-line
     }, [initialValues])
 
+    const isFieldDisabled = React.useMemo(
+      () => userRole === RolesEnum.STUDENT || userRole === RolesEnum.TEACHER,
+      [userRole]
+    )
+
     return (
       <FormContext {...methods}>
         <form onSubmit={methods.handleSubmit(onSubmit)}>
           <Grid container={true} spacing={3} alignItems="flex-start">
             <Grid container={true} item={true} xs={3} spacing={3}>
               <Grid item={true} xs={12}>
+                <input name="image" ref={methods.register} type="hidden" />
                 <Avatar
                   innerRef={setHeight}
                   src=""
@@ -79,6 +88,23 @@ export const ProfileForm = React.memo<IProfileFormProps>(
                   name="firstName"
                   label={t('firstNameLabel')}
                   fullWidth={true}
+                  disabled={isFieldDisabled}
+                />
+              </Grid>
+              <Grid item={true} xs={6}>
+                <FormTextField
+                  name="username"
+                  label={t('usernameLabel')}
+                  fullWidth={true}
+                  disabled={true}
+                />
+              </Grid>
+              <Grid item={true} xs={6}>
+                <FormTextField
+                  name="lastName"
+                  label={t('lastNameLabel')}
+                  fullWidth={true}
+                  disabled={isFieldDisabled}
                 />
               </Grid>
               <Grid item={true} xs={6}>
@@ -90,9 +116,10 @@ export const ProfileForm = React.memo<IProfileFormProps>(
               </Grid>
               <Grid item={true} xs={6}>
                 <FormTextField
-                  name="lastName"
-                  label={t('lastNameLabel')}
+                  name="patronymicName"
+                  label={t('patronymicNameLabel')}
                   fullWidth={true}
+                  disabled={isFieldDisabled}
                 />
               </Grid>
               <Grid item={true} xs={6}>
@@ -103,24 +130,11 @@ export const ProfileForm = React.memo<IProfileFormProps>(
                 />
               </Grid>
               <Grid item={true} xs={6}>
-                <FormTextField
-                  name="patronymicName"
-                  label={t('patronymicNameLabel')}
-                  fullWidth={true}
-                />
-              </Grid>
-              <Grid item={true} xs={6}>
-                <FormTextField
-                  name="telegram"
-                  label={t('telegramLabel')}
-                  fullWidth={true}
-                />
-              </Grid>
-              <Grid item={true} xs={6}>
                 <FormSelect
                   name="institute"
                   label={t('instituteLabel')}
                   fullWidth={true}
+                  disabled={isFieldDisabled}
                 >
                   {institutes.map(institute => (
                     <MenuItem key={institute.id} value={institute.id}>
@@ -129,43 +143,81 @@ export const ProfileForm = React.memo<IProfileFormProps>(
                   ))}
                 </FormSelect>
               </Grid>
-              <Grid item={true} xs={6} />
-              <Grid item={true} xs={6}>
-                <FormSelect
-                  name="speciality"
-                  label={t('specialityLabel')}
-                  fullWidth={true}
-                >
-                  {specialities.map(speciality => (
-                    <MenuItem key={speciality.id} value={speciality.id}>
-                      {`${speciality.code} ${speciality.name}`}
-                    </MenuItem>
-                  ))}
-                </FormSelect>
-              </Grid>
-              <Grid item={true} xs={6} />
-              <Grid item={true} xs={6}>
-                <FormSelect
-                  name="group"
-                  label={t('groupLabel')}
-                  fullWidth={true}
-                >
-                  {groups.map(group => (
-                    <MenuItem key={group.id} value={group.id}>
-                      {group.name}
-                    </MenuItem>
-                  ))}
-                </FormSelect>
-              </Grid>
-              <Grid item={true} xs={6} />
               <Grid item={true} xs={6}>
                 <FormTextField
-                  name="course"
-                  label={t('courseLabel')}
+                  name="telegram"
+                  label={t('telegramLabel')}
                   fullWidth={true}
                 />
               </Grid>
-              <Grid item={true} xs={6} />
+              <AccessControl allowedRoles={[RolesEnum.TEACHER]}>
+                <Grid item={true} xs={6}>
+                  <FormSelect
+                    name="department"
+                    label={t('departmentLabel')}
+                    fullWidth={true}
+                    disabled={isFieldDisabled}
+                  >
+                    {departments.map(department => (
+                      <MenuItem key={department.id} value={department.id}>
+                        {department.name}
+                      </MenuItem>
+                    ))}
+                  </FormSelect>
+                </Grid>
+                <Grid item={true} xs={6} />
+              </AccessControl>
+              <AccessControl allowedRoles={[RolesEnum.STUDENT]}>
+                <Grid item={true} xs={6}>
+                  <FormSelect
+                    name="speciality"
+                    label={t('specialityLabel')}
+                    fullWidth={true}
+                    disabled={isFieldDisabled}
+                  >
+                    {specialities.map(speciality => (
+                      <MenuItem key={speciality.id} value={speciality.id}>
+                        {`${speciality.code} ${speciality.name}`}
+                      </MenuItem>
+                    ))}
+                  </FormSelect>
+                </Grid>
+                <Grid item={true} xs={6} />
+              </AccessControl>
+              <AccessControl allowedRoles={[RolesEnum.STUDENT]}>
+                <Grid item={true} xs={6}>
+                  <FormSelect
+                    name="group"
+                    label={t('groupLabel')}
+                    fullWidth={true}
+                    disabled={isFieldDisabled}
+                  >
+                    {groups.map(group => (
+                      <MenuItem key={group.id} value={group.id}>
+                        {group.name}
+                      </MenuItem>
+                    ))}
+                  </FormSelect>
+                </Grid>
+                <Grid item={true} xs={6} />
+              </AccessControl>
+              <AccessControl allowedRoles={[RolesEnum.STUDENT]}>
+                <Grid item={true} xs={6}>
+                  <FormSelect
+                    name="course"
+                    label={t('courseLabel')}
+                    fullWidth={true}
+                    disabled={isFieldDisabled}
+                  >
+                    {COURSES_OPTIONS.map(course => (
+                      <MenuItem key={course.value} value={course.value}>
+                        {course.label}
+                      </MenuItem>
+                    ))}
+                  </FormSelect>
+                </Grid>
+                <Grid item={true} xs={6} />
+              </AccessControl>
               <Grid item={true} xs={6}>
                 <Button
                   type="submit"

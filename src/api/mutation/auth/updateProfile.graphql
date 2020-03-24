@@ -4,9 +4,10 @@ mutation UpdateProfile($input: UpdateProfileInput!) {
     lastName
     firstName
     patronymicName
-    phone
-    email
+    username
     role
+    email
+    phone
     institute {
       id
       name

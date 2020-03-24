@@ -4,9 +4,10 @@ query GetProfile {
     lastName
     firstName
     patronymicName
-    phone
-    email
+    username
     role
+    email
+    phone
     institute {
       id
       name

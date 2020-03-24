@@ -12,18 +12,25 @@ export const adaptValuesToForm: (
   lastName: user?.lastName || '',
   firstName: user?.firstName || '',
   patronymicName: user?.patronymicName || '',
-  phone: user?.phone || '',
+  username: user?.username || '',
   email: user?.email || '',
+  phone: user?.phone || '',
+  telegram: 'todo',
   institute: user?.institute?.id || '',
   department: user?.department?.id || '',
   speciality: user?.speciality?.id || '',
-  group: user?.group?.id || ''
+  group: user?.group?.id || '',
+  course: user?.course || null
 })
 
 export const adaptValuesToResponse: (
   values: IProfileFormValues
 ) => UpdateProfileVariables = values => ({
-  input: { image: values.image || '', phone: values.phone }
+  input: {
+    image: values.image,
+    email: values.email,
+    phone: values.phone
+  }
 })
 
 export const validationSchema = Yup.object<Partial<IProfileFormValues>>({

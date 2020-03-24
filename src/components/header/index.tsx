@@ -104,7 +104,7 @@ const HeaderComponent = React.memo(() => {
             {showSkeleton ? (
               <Skeleton variant="text" width={120} />
             ) : (
-              <Typography variant="body1">{user.email}</Typography>
+              <Typography variant="body1">{user.username}</Typography>
             )}
           </div>
           {showSkeleton ? (
