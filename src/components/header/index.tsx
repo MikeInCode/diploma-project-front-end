@@ -3,7 +3,13 @@ import { IRootReducer } from '../../modules/types'
 import { batch, shallowEqual, useDispatch, useSelector } from 'react-redux'
 import { getProfileAction, onLogoutAction } from '../../modules/auth'
 import { getUniversityAction } from '../../modules/university'
-import { AppBar, Button, IconButton, Toolbar, Typography } from '@material-ui/core'
+import {
+  AppBar,
+  Button,
+  IconButton,
+  Toolbar,
+  Typography
+} from '@material-ui/core'
 import { Skeleton } from '@material-ui/lab'
 import { useHeaderStyles, useToolbarClasses } from './styles'
 import { ExitToApp, Notifications } from '@material-ui/icons'
@@ -85,11 +91,17 @@ const HeaderComponent = React.memo(() => {
     <AppBar position="sticky">
       <Toolbar classes={toolbarClasses}>
         <div className={styles.navigationContainer}>
-          <Button onClick={handleTimetableClick}>{t('timetableLabel')}</Button>
-          <Button>{t('studyingLabel')}</Button>
-          <Button onClick={handleStudentsClick}>{t('studentsLabel')}</Button>
-          <Button onClick={handleTeachersClick}>{t('teachersLabel')}</Button>
-          <Button>{t('messagesLabel')}</Button>
+          <Button onClick={handleTimetableClick} color="inherit">
+            {t('timetableLabel')}
+          </Button>
+          <Button color="inherit">{t('studyingLabel')}</Button>
+          <Button onClick={handleStudentsClick} color="inherit">
+            {t('studentsLabel')}
+          </Button>
+          <Button onClick={handleTeachersClick} color="inherit">
+            {t('teachersLabel')}
+          </Button>
+          <Button color="inherit">{t('messagesLabel')}</Button>
         </div>
         <div className={styles.profileContainer}>
           <IconButton color="inherit">
