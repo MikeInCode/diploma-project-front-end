@@ -86,8 +86,8 @@ const HeaderComponent = React.memo(() => {
       <Toolbar classes={toolbarClasses}>
         <div className={styles.navigationContainer}>
           <Button onClick={handleTimetableClick}>{t('timetableLabel')}</Button>
-          <Button onClick={handleStudentsClick}>{t('studentsLabel')}</Button>
           <Button>{t('studyingLabel')}</Button>
+          <Button onClick={handleStudentsClick}>{t('studentsLabel')}</Button>
           <Button onClick={handleTeachersClick}>{t('teachersLabel')}</Button>
           <Button>{t('messagesLabel')}</Button>
         </div>
