@@ -14,7 +14,7 @@ import {
   UpdateUser,
   UpdateUserVariables
 } from '../../graphQLTypes'
-import { ProfileService } from '../../api/profile'
+import { ProfileService } from 'api/profile'
 import { onLoginAction } from '../auth'
 
 function* getProfileSaga(action: Action<GetProfileVariables>) {

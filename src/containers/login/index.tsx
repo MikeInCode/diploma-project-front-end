@@ -1,13 +1,13 @@
 import React from 'react'
 import { useLoginPageStyles } from './styles'
-import background from '../../assets/login-image.jpeg'
+import background from 'assets/login-image.jpeg'
 import { Redirect } from 'react-router-dom'
-import { ROUTES } from '../../router/constants'
-import { IRootReducer } from '../../modules/types'
+import { ROUTES } from 'router/constants'
+import { IRootReducer } from 'modules/types'
+import { onLoginAction } from 'modules/auth'
 import { shallowEqual, useDispatch, useSelector } from 'react-redux'
-import { ILoginFormValues } from '../../components/forms/loginForm/types'
-import { onLoginAction } from '../../modules/auth'
-import { LoginForm } from '../../components/forms/loginForm'
+import { LoginForm } from 'components/forms/loginForm'
+import { ILoginFormValues } from 'components/forms/loginForm/types'
 
 const mapState = ({
   auth: { isAuthenticated, isLoading, isInvalidCredentials }

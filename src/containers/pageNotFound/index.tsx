@@ -1,5 +1,5 @@
 import React from 'react'
-import pageNotFound from '../../assets/page-not-found.png'
+import pageNotFound from 'assets/page-not-found.png'
 import { usePageNotFoundStyles } from './styles'
 
 const PageNotFound = React.memo(() => {

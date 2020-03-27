@@ -1,14 +1,14 @@
 import React from 'react'
-import { IRootReducer } from '../../modules/types'
 import { shallowEqual, useDispatch, useSelector } from 'react-redux'
-import { PageWrapper } from '../../common/pageWrapper'
-import { ProfileForm } from '../../components/forms/profileForm'
-import { IProfileFormValues } from '../../components/forms/profileForm/types'
+import { PageWrapper } from 'common/pageWrapper'
+import { ProfileForm } from 'components/forms/profileForm'
+import { IProfileFormValues } from 'components/forms/profileForm/types'
+import { IRootReducer } from 'modules/types'
 import {
   getProfileAction,
   updateProfileAction,
   updateUserAction
-} from '../../modules/profile'
+} from 'modules/profile'
 import { useMount } from 'react-use'
 import { useParams } from 'react-router-dom'
 

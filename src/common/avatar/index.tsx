@@ -1,7 +1,7 @@
 import React from 'react'
 import { Avatar as MuiAvatar } from '@material-ui/core'
 import { IAvatarProps } from './types'
-import { getUserInitials } from '../../utils/getUserInitials'
+import { getUserInitials } from 'utils/getUserInitials'
 import { useAvatarClasses } from './styles'
 
 export const Avatar = React.memo<IAvatarProps>(

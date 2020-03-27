@@ -1,5 +1,5 @@
 import React, { PropsWithChildren } from 'react'
-import { IRootReducer } from '../../modules/types'
+import { IRootReducer } from 'modules/types'
 import { shallowEqual, useSelector } from 'react-redux'
 import { IAccessControlProps } from './types'
 

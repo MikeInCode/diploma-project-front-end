@@ -1,6 +1,6 @@
 import { all, call, put, takeLatest } from 'redux-saga/effects'
 import { ApolloQueryResult } from 'apollo-client'
-import { StudentsService } from '../../api/students'
+import { StudentsService } from 'api/students'
 import { getStudentsAction } from './actions'
 
 function* getStudentsSaga() {

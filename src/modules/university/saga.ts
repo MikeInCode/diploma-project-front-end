@@ -1,6 +1,6 @@
 import { all, call, put, takeLatest } from 'redux-saga/effects'
 import { ApolloQueryResult } from 'apollo-client'
-import { UniversityService } from '../../api/university'
+import { UniversityService } from 'api/university'
 import { getAcademicUnitsAction } from './actions'
 import { GetAcademicUnits } from '../../graphQLTypes'
 

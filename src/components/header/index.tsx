@@ -1,22 +1,16 @@
 import React, { Suspense } from 'react'
-import { IRootReducer } from '../../modules/types'
+import { IRootReducer } from 'modules/types'
 import { batch, shallowEqual, useDispatch, useSelector } from 'react-redux'
-import { onLogoutAction } from '../../modules/auth'
-import { getProfileAction } from '../../modules/profile'
-import { getAcademicUnitsAction } from '../../modules/university'
-import {
-  AppBar,
-  Button,
-  IconButton,
-  Toolbar,
-  Typography
-} from '@material-ui/core'
+import { onLogoutAction } from 'modules/auth'
+import { getProfileAction } from 'modules/profile'
+import { getAcademicUnitsAction } from 'modules/university'
+import { AppBar, Button, IconButton, Toolbar, Typography } from '@material-ui/core'
 import { Skeleton } from '@material-ui/lab'
 import { useHeaderStyles, useToolbarClasses } from './styles'
 import { ExitToApp, Notifications } from '@material-ui/icons'
 import { push } from 'connected-react-router'
-import { ROUTES } from '../../router/constants'
-import { Avatar } from '../../common/avatar'
+import { ROUTES } from 'router/constants'
+import { Avatar } from 'common/avatar'
 import { useTranslation } from 'react-i18next'
 
 const mapState = ({

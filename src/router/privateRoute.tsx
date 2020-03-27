@@ -1,10 +1,10 @@
 import React from 'react'
 import { Redirect, Route, RouteProps } from 'react-router-dom'
 import { ROUTES } from './constants'
-import { IRootReducer } from '../modules/types'
+import { IRootReducer } from 'modules/types'
 import { shallowEqual, useSelector } from 'react-redux'
 import { RolesEnum } from '../graphQLTypes'
-import { AccessControl } from '../components/accessControl'
+import { AccessControl } from 'components/accessControl'
 
 const mapState = ({ auth: { isAuthenticated } }: IRootReducer) => ({
   isAuthenticated

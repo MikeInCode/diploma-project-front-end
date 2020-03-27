@@ -11,8 +11,8 @@ import {
 } from './routes'
 import { ROUTES } from './constants'
 import { PrivateRoute } from './privateRoute'
-import { Header } from '../components/header'
-import { DrawerSwitcher } from '../components/drawers'
+import { Header } from 'components/header'
+import { DrawerSwitcher } from 'components/drawers'
 import { RolesEnum } from '../graphQLTypes'
 
 export const AppRouter = React.memo<{ history }>(({ history }) => (
