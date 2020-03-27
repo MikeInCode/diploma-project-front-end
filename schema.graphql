@@ -5,42 +5,29 @@ schema {
     mutation: Mutation
 }
 
+type AcademicBaseUnit {
+    id: String!
+    name: String!
+    parentId: String
+}
+
+type AcademicExtendedUnit {
+    code: String!
+    id: String!
+    name: String!
+    parentId: String
+}
+
+type AcademicUnits {
+    departments: [AcademicBaseUnit!]!
+    groups: [AcademicBaseUnit!]!
+    institutes: [AcademicBaseUnit!]!
+    specialities: [AcademicExtendedUnit!]!
+}
+
 type AuthenticatedUser {
     token: String!
     user: User!
-}
-
-type Department {
-    id: ID!
-    name: String!
-}
-
-type Group {
-    id: ID!
-    name: String!
-}
-
-type Institute {
-    id: ID!
-    name: String!
-}
-
-type Lesson {
-    course: CourseEnum!
-    endTime: DateTime!
-    group: Group!
-    id: ID!
-    room: String!
-    startTime: DateTime!
-    subject: Subject!
-    teacher: LessonTeacher!
-}
-
-type LessonTeacher {
-    firstName: String!
-    id: ID!
-    lastName: String!
-    patronymicName: String!
 }
 
 type Mutation {
@@ -50,47 +37,36 @@ type Mutation {
 }
 
 type Query {
-    lessons: [Lesson!]!
-    profile: User!
-    university: University!
-}
-
-type Speciality {
-    code: String!
-    id: ID!
-    name: String!
-}
-
-type Subject {
-    ECTS: String!
-    id: ID!
-    name: String!
-    subjectCode: String!
-    subjectType: SubjectTypeEnum!
-}
-
-type University {
-    departments: [Department!]!
-    groups: [Group!]!
-    institutes: [Institute!]!
-    specialities: [Speciality!]!
+    academicUnits: AcademicUnits!
+    profile(id: ID): User!
 }
 
 type User {
     course: CourseEnum
-    department: Department
+    department: UserAcademicBaseUnit
     email: String
     firstName: String!
-    group: Group
+    group: UserAcademicBaseUnit
     id: ID!
     image: String
-    institute: Institute!
+    institute: UserAcademicBaseUnit!
     lastName: String!
     patronymicName: String!
     phone: String
     role: RolesEnum!
-    speciality: Speciality
+    speciality: UserAcademicExtendedUnit
     username: String!
+}
+
+type UserAcademicBaseUnit {
+    id: String!
+    name: String!
+}
+
+type UserAcademicExtendedUnit {
+    code: String!
+    id: String!
+    name: String!
 }
 
 enum CourseEnum {

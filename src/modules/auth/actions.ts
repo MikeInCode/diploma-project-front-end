@@ -1,26 +1,12 @@
 import actionCreatorFactory from 'typescript-fsa'
-import {
-  GetProfile,
-  Login,
+import { Login_login_user, LoginVariables } from '../../graphQLTypes'
+
+const actionCreator = actionCreatorFactory('auth')
+
+export const onLoginAction = actionCreator.async<
   LoginVariables,
-  UpdateProfile,
-  UpdateProfileVariables
-} from '../../graphQLTypes'
-
-const actionCreator = actionCreatorFactory('profile')
-
-export const onLoginAction = actionCreator.async<LoginVariables, Login, Error>(
-  'ON_LOGIN'
-)
+  Login_login_user,
+  Error
+>('ON_LOGIN')
 
 export const onLogoutAction = actionCreator('ON_LOGOUT')
-
-export const getProfileAction = actionCreator.async<void, GetProfile, Error>(
-  'GET_PROFILE'
-)
-
-export const updateProfileAction = actionCreator.async<
-  UpdateProfileVariables,
-  UpdateProfile,
-  Error
->('UPDATE_PROFILE')

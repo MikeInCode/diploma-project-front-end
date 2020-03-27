@@ -1,8 +1,9 @@
 import React, { Suspense } from 'react'
 import { IRootReducer } from '../../modules/types'
 import { batch, shallowEqual, useDispatch, useSelector } from 'react-redux'
-import { getProfileAction, onLogoutAction } from '../../modules/auth'
-import { getUniversityAction } from '../../modules/university'
+import { onLogoutAction } from '../../modules/auth'
+import { getProfileAction } from '../../modules/profile'
+import { getAcademicUnitsAction } from '../../modules/university'
 import {
   AppBar,
   Button,
@@ -19,13 +20,12 @@ import { Avatar } from '../../common/avatar'
 import { useTranslation } from 'react-i18next'
 
 const mapState = ({
-  auth: { isAuthenticated, isLoading: isUserLoading, user },
-  university: { isLoading: isUniversityLoading }
+  auth: { isAuthenticated, user },
+  university: { isAcademicUnitsLoading }
 }: IRootReducer) => ({
   isAuthenticated,
-  isUserLoading,
   user,
-  isUniversityLoading
+  isAcademicUnitsLoading
 })
 
 const HeaderComponent = React.memo(() => {
@@ -34,24 +34,21 @@ const HeaderComponent = React.memo(() => {
 
   const { t } = useTranslation()
 
-  const {
-    isAuthenticated,
-    isUserLoading,
-    user,
-    isUniversityLoading
-  } = useSelector(mapState, shallowEqual)
+  const { isAuthenticated, user, isAcademicUnitsLoading } = useSelector(
+    mapState,
+    shallowEqual
+  )
 
   const dispatch = useDispatch()
 
   React.useEffect(() => {
     if (isAuthenticated) {
       batch(() => {
-        !user && dispatch(getProfileAction.started())
-        dispatch(getUniversityAction.started())
+        !user && dispatch(getProfileAction.started({}))
+        dispatch(getAcademicUnitsAction.started())
       })
     }
-    // eslint-disable-next-line
-  }, [dispatch, isAuthenticated])
+  }, [isAuthenticated]) // eslint-disable-line
 
   const handleTimetableClick = React.useCallback(
     () => dispatch(push(ROUTES.HOME)),
@@ -78,10 +75,10 @@ const HeaderComponent = React.memo(() => {
     [dispatch]
   )
 
-  const showSkeleton = React.useMemo(
-    () => isUserLoading || isUniversityLoading || !user,
-    [isUniversityLoading, isUserLoading, user]
-  )
+  const showSkeleton = React.useMemo(() => !user || isAcademicUnitsLoading, [
+    isAcademicUnitsLoading,
+    user
+  ])
 
   if (!isAuthenticated) {
     return null

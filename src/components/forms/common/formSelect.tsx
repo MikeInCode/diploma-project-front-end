@@ -4,9 +4,13 @@ import { Controller, useFormContext } from 'react-hook-form'
 import { getFormErrors } from './helpers'
 
 export const FormSelect = React.memo<TextFieldProps>(({ name, ...rest }) => {
-  const { control, errors } = useFormContext()
+  const { control, errors, triggerValidation } = useFormContext()
 
   const { error, helperText } = getFormErrors(name, errors)
+
+  const handleBlur = React.useCallback(() => {
+    triggerValidation(name)
+  }, [name, triggerValidation])
 
   return (
     <Controller
@@ -20,6 +24,7 @@ export const FormSelect = React.memo<TextFieldProps>(({ name, ...rest }) => {
         />
       }
       control={control}
+      onBlur={handleBlur}
       defaultValue=""
     />
   )

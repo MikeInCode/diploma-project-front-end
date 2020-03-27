@@ -6,6 +6,7 @@ import { useLoginFormStyles } from './styles'
 import { defaultValues, validationSchema } from './helpers'
 import { FormTextField } from '../common'
 import { useTranslation } from 'react-i18next'
+import { useUpdateEffect } from 'react-use'
 
 export const LoginForm = React.memo<ILoginFormProps>(
   ({ isLoading, isInvalidCredentials, onSubmit }) => {
@@ -19,13 +20,12 @@ export const LoginForm = React.memo<ILoginFormProps>(
       validationSchema
     })
 
-    React.useEffect(() => {
+    useUpdateEffect(() => {
       if (isInvalidCredentials) {
         Object.keys(methods.getValues()).map(key =>
           methods.setError(key, 'credentials', 'Invalid credentials')
         )
       }
-      // eslint-disable-next-line
     }, [isInvalidCredentials])
 
     return (

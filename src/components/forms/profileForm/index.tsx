@@ -5,32 +5,29 @@ import { Button, Grid, MenuItem } from '@material-ui/core'
 import { Avatar } from '../../../common/avatar'
 import { useProfileFormStyles } from './styles'
 import { FormTextField } from '../common'
-import { validationSchema } from './helpers'
+import { adaptValuesToForm, validationSchema } from './helpers'
 import { FormSelect } from '../common/formSelect'
 import { IRootReducer } from '../../../modules/types'
 import { shallowEqual, useSelector } from 'react-redux'
 import { useTranslation } from 'react-i18next'
-import { RolesEnum } from '../../../graphQLTypes'
-import { AccessControl } from '../../accessControl'
 import { COURSES_OPTIONS } from '../../../constants'
+import { useUpdateEffect } from 'react-use'
+import { RolesEnum } from '../../../graphQLTypes'
+import { useParams } from 'react-router-dom'
 
 const mapState = ({
-  university: { institutes, departments, specialities, groups }
-}: IRootReducer) => ({
-  institutes,
-  departments,
-  specialities,
-  groups
-})
+  university: {
+    academicUnits: { institutes, ...academicUnits }
+  }
+}: IRootReducer) => ({ institutes, academicUnits })
 
 export const ProfileForm = React.memo<IProfileFormProps>(
-  ({ initialValues, onSubmit, isProfileUpdating, userRole }) => {
+  ({ user, onSubmit, isProfileUpdating }) => {
     const { t } = useTranslation()
 
-    const { institutes, departments, specialities, groups } = useSelector(
-      mapState,
-      shallowEqual
-    )
+    const { institutes, academicUnits } = useSelector(mapState, shallowEqual)
+
+    const { id } = useParams<{ id: string }>()
 
     const [avatarHeight, setAvatarHeight] = React.useState(0)
 
@@ -46,19 +43,50 @@ export const ProfileForm = React.memo<IProfileFormProps>(
 
     const methods = useForm<IProfileFormValues>({
       mode: 'onChange',
-      defaultValues: initialValues,
-      validationSchema
+      defaultValues: adaptValuesToForm(user),
+      validationSchema: validationSchema(user.role)
     })
 
-    React.useEffect(() => {
-      methods.reset({ ...initialValues })
-      // eslint-disable-next-line
-    }, [initialValues])
+    useUpdateEffect(() => {
+      methods.reset(adaptValuesToForm(user))
+    }, [user])
 
-    const isFieldDisabled = React.useMemo(
-      () => userRole === RolesEnum.STUDENT || userRole === RolesEnum.TEACHER,
-      [userRole]
+    const { institute, department, speciality } = methods.watch([
+      'institute',
+      'department',
+      'speciality'
+    ])
+
+    useUpdateEffect(() => {
+      methods.setValue('department', '')
+    }, [institute])
+
+    useUpdateEffect(() => {
+      methods.setValue('speciality', '')
+    }, [department])
+
+    useUpdateEffect(() => {
+      methods.setValue('group', '')
+    }, [speciality])
+
+    const departments = React.useMemo(
+      () =>
+        academicUnits.departments.filter(item => item.parentId === institute),
+      [academicUnits.departments, institute]
     )
+
+    const specialities = React.useMemo(
+      () =>
+        academicUnits.specialities.filter(item => item.parentId === department),
+      [academicUnits.specialities, department]
+    )
+
+    const groups = React.useMemo(
+      () => academicUnits.groups.filter(item => item.parentId === speciality),
+      [academicUnits.groups, speciality]
+    )
+
+    const isFieldDisabled = React.useMemo(() => !id, [id])
 
     return (
       <FormContext {...methods}>
@@ -70,8 +98,8 @@ export const ProfileForm = React.memo<IProfileFormProps>(
                 <Avatar
                   innerRef={setHeight}
                   src=""
-                  firstName={initialValues.firstName}
-                  lastName={initialValues.lastName}
+                  firstName={user.firstName}
+                  lastName={user.lastName}
                   variant="square"
                   className={styles.avatar}
                 />
@@ -150,74 +178,82 @@ export const ProfileForm = React.memo<IProfileFormProps>(
                   fullWidth={true}
                 />
               </Grid>
-              <AccessControl allowedRoles={[RolesEnum.TEACHER]}>
-                <Grid item={true} xs={6}>
-                  <FormSelect
-                    name="department"
-                    label={t('departmentLabel')}
-                    fullWidth={true}
-                    disabled={isFieldDisabled}
-                  >
-                    {departments.map(department => (
-                      <MenuItem key={department.id} value={department.id}>
-                        {department.name}
-                      </MenuItem>
-                    ))}
-                  </FormSelect>
-                </Grid>
-                <Grid item={true} xs={6} />
-              </AccessControl>
-              <AccessControl allowedRoles={[RolesEnum.STUDENT]}>
-                <Grid item={true} xs={6}>
-                  <FormSelect
-                    name="speciality"
-                    label={t('specialityLabel')}
-                    fullWidth={true}
-                    disabled={isFieldDisabled}
-                  >
-                    {specialities.map(speciality => (
-                      <MenuItem key={speciality.id} value={speciality.id}>
-                        {`${speciality.code} ${speciality.name}`}
-                      </MenuItem>
-                    ))}
-                  </FormSelect>
-                </Grid>
-                <Grid item={true} xs={6} />
-              </AccessControl>
-              <AccessControl allowedRoles={[RolesEnum.STUDENT]}>
-                <Grid item={true} xs={6}>
-                  <FormSelect
-                    name="group"
-                    label={t('groupLabel')}
-                    fullWidth={true}
-                    disabled={isFieldDisabled}
-                  >
-                    {groups.map(group => (
-                      <MenuItem key={group.id} value={group.id}>
-                        {group.name}
-                      </MenuItem>
-                    ))}
-                  </FormSelect>
-                </Grid>
-                <Grid item={true} xs={6} />
-              </AccessControl>
-              <AccessControl allowedRoles={[RolesEnum.STUDENT]}>
-                <Grid item={true} xs={6}>
-                  <FormSelect
-                    name="course"
-                    label={t('courseLabel')}
-                    fullWidth={true}
-                    disabled={isFieldDisabled}
-                  >
-                    {COURSES_OPTIONS.map(course => (
-                      <MenuItem key={course.value} value={course.value}>
-                        {course.label}
-                      </MenuItem>
-                    ))}
-                  </FormSelect>
-                </Grid>
-                <Grid item={true} xs={6} />
-              </AccessControl>
+              {user.role !== RolesEnum.ADMIN && (
+                <>
+                  <Grid item={true} xs={6}>
+                    <FormSelect
+                      name="department"
+                      label={t('departmentLabel')}
+                      fullWidth={true}
+                      disabled={isFieldDisabled}
+                    >
+                      {departments.map(department => (
+                        <MenuItem key={department.id} value={department.id}>
+                          {department.name}
+                        </MenuItem>
+                      ))}
+                    </FormSelect>
+                  </Grid>
+                  <Grid item={true} xs={6} />
+                </>
+              )}
+              {user.role === RolesEnum.STUDENT && (
+                <>
+                  <Grid item={true} xs={6}>
+                    <FormSelect
+                      name="speciality"
+                      label={t('specialityLabel')}
+                      fullWidth={true}
+                      disabled={isFieldDisabled}
+                    >
+                      {specialities.map(speciality => (
+                        <MenuItem key={speciality.id} value={speciality.id}>
+                          {`${speciality.code} ${speciality.name}`}
+                        </MenuItem>
+                      ))}
+                    </FormSelect>
+                  </Grid>
+                  <Grid item={true} xs={6} />
+                </>
+              )}
+              {user.role === RolesEnum.STUDENT && (
+                <>
+                  <Grid item={true} xs={6}>
+                    <FormSelect
+                      name="course"
+                      label={t('courseLabel')}
+                      fullWidth={true}
+                      disabled={isFieldDisabled}
+                    >
+                      {COURSES_OPTIONS.map(course => (
+                        <MenuItem key={course.value} value={course.value}>
+                          {course.label}
+                        </MenuItem>
+                      ))}
+                    </FormSelect>
+                  </Grid>
+                  <Grid item={true} xs={6} />
+                </>
+              )}
+              {user.role === RolesEnum.STUDENT && (
+                <>
+                  <Grid item={true} xs={6}>
+                    <FormSelect
+                      name="group"
+                      label={t('groupLabel')}
+                      fullWidth={true}
+                      disabled={isFieldDisabled}
+                    >
+                      {groups.map(group => (
+                        <MenuItem key={group.id} value={group.id}>
+                          {group.name}
+                        </MenuItem>
+                      ))}
+                    </FormSelect>
+                  </Grid>
+                  <Grid item={true} xs={6} />
+                </>
+              )}
               <Grid item={true} xs={6}>
                 <Button
                   type="submit"

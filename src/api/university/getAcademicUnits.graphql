@@ -1,21 +1,25 @@
-query GetUniversity {
-  university {
+query GetAcademicUnits {
+  academicUnits {
     institutes {
       id
       name
+      parentId
     }
     departments {
       id
       name
+      parentId
     }
     specialities {
       id
       code
       name
+      parentId
     }
     groups {
       id
       name
+      parentId
     }
   }
 }

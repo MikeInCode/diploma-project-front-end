@@ -1,20 +1,21 @@
 import { all, call, put, takeLatest } from 'redux-saga/effects'
 import { ApolloQueryResult } from 'apollo-client'
-import { UniversityQueryService } from '../../api/query/university'
-import { getUniversityAction } from './actions'
+import { UniversityService } from '../../api/university'
+import { getAcademicUnitsAction } from './actions'
+import { GetAcademicUnits } from '../../graphQLTypes'
 
-function* getUniversitySaga() {
+function* getAcademicUnitsSaga() {
   try {
-    const response: ApolloQueryResult<any> = yield call(
-      UniversityQueryService.getUniversity
+    const response: ApolloQueryResult<GetAcademicUnits> = yield call(
+      UniversityService.getAcademicUnits
     )
     const result = response.data
-    yield put(getUniversityAction.done({ result }))
+    yield put(getAcademicUnitsAction.done({ result }))
   } catch (error) {
-    yield put(getUniversityAction.failed({ error }))
+    yield put(getAcademicUnitsAction.failed({ error }))
   }
 }
 
 export function* saga() {
-  yield all([takeLatest(getUniversityAction.started, getUniversitySaga)])
+  yield all([takeLatest(getAcademicUnitsAction.started, getAcademicUnitsSaga)])
 }

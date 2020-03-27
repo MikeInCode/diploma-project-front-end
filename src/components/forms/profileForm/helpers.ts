@@ -1,8 +1,9 @@
 import * as Yup from 'yup'
 import { IProfileFormValues } from './types'
 import {
+  CourseEnum,
   GetProfile_profile,
-  UpdateProfileVariables
+  RolesEnum
 } from '../../../graphQLTypes'
 
 export const adaptValuesToForm: (
@@ -20,23 +21,30 @@ export const adaptValuesToForm: (
   department: user?.department?.id || '',
   speciality: user?.speciality?.id || '',
   group: user?.group?.id || '',
-  course: user?.course || null
+  course: user?.course || ('' as CourseEnum)
 })
 
-export const adaptValuesToResponse: (
-  values: IProfileFormValues
-) => UpdateProfileVariables = values => ({
-  input: {
-    image: values.image,
-    email: values.email,
-    phone: values.phone
-  }
-})
-
-export const validationSchema = Yup.object<Partial<IProfileFormValues>>({
-  firstName: Yup.string().required('Required field'),
-  lastName: Yup.string().required('Required field'),
-  email: Yup.string()
-    .required('Required field')
-    .email('Invalid email')
-})
+export const validationSchema = (userRole: RolesEnum) =>
+  Yup.object<Partial<IProfileFormValues>>({
+    lastName: Yup.string().required('Required field'),
+    firstName: Yup.string().required('Required field'),
+    patronymicName: Yup.string().required('Required field'),
+    email: Yup.string().email('Invalid email'),
+    institute: Yup.string().required('Required field'),
+    department:
+      userRole !== RolesEnum.ADMIN
+        ? Yup.string().required('Required field')
+        : Yup.string().notRequired(),
+    speciality:
+      userRole === RolesEnum.STUDENT
+        ? Yup.string().required('Required field')
+        : Yup.string().notRequired(),
+    group:
+      userRole === RolesEnum.STUDENT
+        ? Yup.string().required('Required field')
+        : Yup.string().notRequired(),
+    course:
+      userRole === RolesEnum.STUDENT
+        ? Yup.mixed().required('Required field')
+        : Yup.string().notRequired()
+  })

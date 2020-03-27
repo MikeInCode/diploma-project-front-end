@@ -1,9 +1,11 @@
 import { IUniversityState } from './types'
 
 export const initialState: IUniversityState = {
-  institutes: [],
-  departments: [],
-  specialities: [],
-  groups: [],
-  isLoading: false
+  isAcademicUnitsLoading: false,
+  academicUnits: {
+    institutes: [],
+    departments: [],
+    specialities: [],
+    groups: []
+  }
 }

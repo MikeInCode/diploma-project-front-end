@@ -1,4 +1,4 @@
-import { CourseEnum, RolesEnum } from '../../../graphQLTypes'
+import { CourseEnum, GetProfile_profile } from '../../../graphQLTypes'
 
 export interface IProfileFormValues {
   image: string
@@ -17,8 +17,7 @@ export interface IProfileFormValues {
 }
 
 export interface IProfileFormProps {
-  initialValues: IProfileFormValues
+  user: GetProfile_profile
   onSubmit: (values: IProfileFormValues) => void
   isProfileUpdating: boolean
-  userRole: RolesEnum
 }

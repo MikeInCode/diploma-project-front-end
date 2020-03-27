@@ -6,10 +6,13 @@ import { IAccessControlProps } from './types'
 const mapState = ({ auth: { user } }: IRootReducer) => user
 
 export const AccessControl = React.memo<PropsWithChildren<IAccessControlProps>>(
-  ({ allowedRoles, children }) => {
+  ({ permissions, children }) => {
     const user = useSelector(mapState, shallowEqual)
 
-    if (allowedRoles.includes(user?.role)) {
+    if (
+      !permissions ||
+      (Array.isArray(permissions) && permissions.includes(user?.role))
+    ) {
       return <>{children}</>
     }
 

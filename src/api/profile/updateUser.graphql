@@ -1,5 +1,5 @@
-query GetProfile {
-  profile {
+mutation UpdateUser($id: ID!, $input: UpdateUserInput!) {
+  updateUser(id: $id, input: $input) {
     image
     lastName
     firstName

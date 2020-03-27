@@ -1,0 +1,30 @@
+query GetProfile($id: ID) {
+  profile(id: $id) {
+    image
+    lastName
+    firstName
+    patronymicName
+    username
+    role
+    email
+    phone
+    institute {
+      id
+      name
+    }
+    department {
+      id
+      name
+    }
+    speciality {
+      id
+      code
+      name
+    }
+    group {
+      id
+      name
+    }
+    course
+  }
+}

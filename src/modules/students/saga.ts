@@ -1,12 +1,12 @@
 import { all, call, put, takeLatest } from 'redux-saga/effects'
 import { ApolloQueryResult } from 'apollo-client'
-import { StudentsQueryService } from '../../api/query/students'
+import { StudentsService } from '../../api/students'
 import { getStudentsAction } from './actions'
 
 function* getStudentsSaga() {
   try {
     const response: ApolloQueryResult<any> = yield call(
-      StudentsQueryService.getStudents
+      StudentsService.getStudents
     )
     const result = response.data
     yield put(getStudentsAction.done({ result }))

@@ -1,10 +1,10 @@
 import actionCreatorFactory from 'typescript-fsa'
-import { GetUniversity } from '../../graphQLTypes'
+import { GetAcademicUnits } from '../../graphQLTypes'
 
 const actionCreator = actionCreatorFactory('university')
 
-export const getUniversityAction = actionCreator.async<
+export const getAcademicUnitsAction = actionCreator.async<
   void,
-  GetUniversity,
+  GetAcademicUnits,
   Error
->('GET_UNIVERSITY')
+>('GET_ACADEMIC_UNITS')

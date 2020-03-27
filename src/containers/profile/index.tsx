@@ -4,47 +4,76 @@ import { shallowEqual, useDispatch, useSelector } from 'react-redux'
 import { PageWrapper } from '../../common/pageWrapper'
 import { ProfileForm } from '../../components/forms/profileForm'
 import { IProfileFormValues } from '../../components/forms/profileForm/types'
-import { updateProfileAction } from '../../modules/auth'
 import {
-  adaptValuesToForm,
-  adaptValuesToResponse
-} from '../../components/forms/profileForm/helpers'
+  getProfileAction,
+  updateProfileAction,
+  updateUserAction
+} from '../../modules/profile'
+import { useMount } from 'react-use'
+import { useParams } from 'react-router-dom'
 
 const mapState = ({
-  auth: { isLoading: isUserLoading, isProfileUpdating, user },
-  university: { isLoading: isUniversityLoading }
+  profile: { user, isLoading, isProfileUpdating },
+  university: { isAcademicUnitsLoading }
 }: IRootReducer) => ({
-  isUserLoading,
-  isProfileUpdating,
   user,
-  isUniversityLoading
+  isLoading,
+  isProfileUpdating,
+  isAcademicUnitsLoading
 })
 
 const Profile = React.memo(() => {
   const {
-    isUserLoading,
-    isProfileUpdating,
     user,
-    isUniversityLoading
+    isLoading,
+    isProfileUpdating,
+    isAcademicUnitsLoading
   } = useSelector(mapState, shallowEqual)
 
   const dispatch = useDispatch()
 
-  const initialValues = React.useMemo(() => adaptValuesToForm(user), [user])
+  const { id } = useParams<{ id: string }>()
+
+  useMount(() => {
+    dispatch(getProfileAction.started({ ...(id ? { id } : {}) }))
+  })
 
   const handleSubmit = React.useCallback(
-    (values: IProfileFormValues) =>
-      dispatch(updateProfileAction.started(adaptValuesToResponse(values))),
-    [dispatch]
+    (values: IProfileFormValues) => {
+      const {
+        institute,
+        speciality,
+        telegram,
+        username,
+        course,
+        ...input
+      } = values
+      return id
+        ? dispatch(
+            updateUserAction.started({
+              id,
+              input
+            })
+          )
+        : dispatch(
+            updateProfileAction.started({
+              input: {
+                image: input.image,
+                email: input.email,
+                phone: input.phone
+              }
+            })
+          )
+    },
+    [dispatch, id]
   )
 
   return (
-    <PageWrapper isLoading={isUserLoading || isUniversityLoading}>
+    <PageWrapper isLoading={isLoading || isAcademicUnitsLoading}>
       <ProfileForm
-        initialValues={initialValues}
+        user={user}
         onSubmit={handleSubmit}
         isProfileUpdating={isProfileUpdating}
-        userRole={user?.role}
       />
     </PageWrapper>
   )
