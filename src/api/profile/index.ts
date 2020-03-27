@@ -13,7 +13,10 @@ const updateUserGraphql = loader('./updateUser.graphql')
 
 export const ProfileService = {
   getProfile: (variables: GetProfileVariables) =>
-    apolloClient.query({ variables, query: getProfileGraphql }),
+    apolloClient.query({
+      variables,
+      query: getProfileGraphql
+    }),
   updateProfile: (variables: UpdateProfileVariables) =>
     apolloClient.mutate({ variables, mutation: updateProfileGraphql }),
   updateUser: (variables: UpdateUserVariables) =>

@@ -69,7 +69,7 @@ const Profile = React.memo(() => {
   )
 
   return (
-    <PageWrapper isLoading={isLoading || isAcademicUnitsLoading}>
+    <PageWrapper isLoading={isLoading || isAcademicUnitsLoading || !user}>
       <ProfileForm
         user={user}
         onSubmit={handleSubmit}

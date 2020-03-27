@@ -1,6 +1,6 @@
 import { all, call, put, takeLatest } from 'redux-saga/effects'
 import { Action } from 'typescript-fsa'
-import { ApolloQueryResult } from 'apollo-boost'
+import { ApolloQueryResult } from 'apollo-client'
 import {
   getProfileAction,
   updateProfileAction,

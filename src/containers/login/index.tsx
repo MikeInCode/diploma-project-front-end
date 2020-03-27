@@ -1,5 +1,4 @@
 import React from 'react'
-import { LoginForm } from '../../components/forms/loginForm'
 import { useLoginPageStyles } from './styles'
 import background from '../../assets/login-image.jpeg'
 import { Redirect } from 'react-router-dom'
@@ -8,6 +7,7 @@ import { IRootReducer } from '../../modules/types'
 import { shallowEqual, useDispatch, useSelector } from 'react-redux'
 import { ILoginFormValues } from '../../components/forms/loginForm/types'
 import { onLoginAction } from '../../modules/auth'
+import { LoginForm } from '../../components/forms/loginForm'
 
 const mapState = ({
   auth: { isAuthenticated, isLoading, isInvalidCredentials }
