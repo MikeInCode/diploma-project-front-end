@@ -1,0 +1,22 @@
+query GetUniversity {
+  university {
+    id
+    name
+    children {
+      id
+      name
+      children {
+        id
+        name
+        children {
+          id
+          name
+          children {
+            id
+            name
+          }
+        }
+      }
+    }
+  }
+}

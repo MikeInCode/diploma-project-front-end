@@ -270,6 +270,48 @@ export interface GetAcademicUnits {
 // @generated
 // This file was automatically generated and should not be edited.
 
+// ====================================================
+// GraphQL query operation: GetUniversity
+// ====================================================
+
+export interface GetUniversity_university_children_children_children_children {
+  id: string;
+  name: string;
+}
+
+export interface GetUniversity_university_children_children_children {
+  id: string;
+  name: string;
+  children: GetUniversity_university_children_children_children_children[];
+}
+
+export interface GetUniversity_university_children_children {
+  id: string;
+  name: string;
+  children: GetUniversity_university_children_children_children[];
+}
+
+export interface GetUniversity_university_children {
+  id: string;
+  name: string;
+  children: GetUniversity_university_children_children[];
+}
+
+export interface GetUniversity_university {
+  id: string;
+  name: string;
+  children: GetUniversity_university_children[];
+}
+
+export interface GetUniversity {
+  university: GetUniversity_university[];
+}
+
+/* tslint:disable */
+/* eslint-disable */
+// @generated
+// This file was automatically generated and should not be edited.
+
 //==============================================================
 // START Enums and Input Objects
 //==============================================================

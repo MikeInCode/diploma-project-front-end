@@ -1,4 +1,8 @@
-import { CourseEnum, GetProfile_profile } from '../../../graphQLTypes'
+import {
+  CourseEnum,
+  GetAcademicUnits_academicUnits,
+  GetProfile_profile
+} from '../../../graphQLTypes'
 
 export interface IProfileFormValues {
   image: string
@@ -18,6 +22,7 @@ export interface IProfileFormValues {
 
 export interface IProfileFormProps {
   user: GetProfile_profile
+  academicUnits: GetAcademicUnits_academicUnits
   onSubmit: (values: IProfileFormValues) => void
   isProfileUpdating: boolean
 }

@@ -1,24 +1,22 @@
 import React from 'react'
-import { shallowEqual, useDispatch, useSelector } from 'react-redux'
+import { batch, shallowEqual, useDispatch, useSelector } from 'react-redux'
 import { PageWrapper } from 'common/pageWrapper'
 import { ProfileForm } from 'components/forms/profileForm'
 import { IProfileFormValues } from 'components/forms/profileForm/types'
 import { IRootReducer } from 'modules/types'
-import {
-  getProfileAction,
-  updateProfileAction,
-  updateUserAction
-} from 'modules/profile'
+import { getProfileAction, updateProfileAction, updateUserAction } from 'modules/profile'
 import { useMount } from 'react-use'
 import { useParams } from 'react-router-dom'
+import { getAcademicUnitsAction } from '../../modules/university'
 
 const mapState = ({
   profile: { user, isLoading, isProfileUpdating },
-  university: { isAcademicUnitsLoading }
+  university: { academicUnits, isAcademicUnitsLoading }
 }: IRootReducer) => ({
   user,
   isLoading,
   isProfileUpdating,
+  academicUnits,
   isAcademicUnitsLoading
 })
 
@@ -27,6 +25,7 @@ const Profile = React.memo(() => {
     user,
     isLoading,
     isProfileUpdating,
+    academicUnits,
     isAcademicUnitsLoading
   } = useSelector(mapState, shallowEqual)
 
@@ -35,7 +34,10 @@ const Profile = React.memo(() => {
   const { id } = useParams<{ id: string }>()
 
   useMount(() => {
-    dispatch(getProfileAction.started({ ...(id ? { id } : {}) }))
+    batch(() => {
+      dispatch(getProfileAction.started({ ...(id ? { id } : {}) }))
+      !academicUnits && dispatch(getAcademicUnitsAction.started())
+    })
   })
 
   const handleSubmit = React.useCallback(
@@ -69,12 +71,15 @@ const Profile = React.memo(() => {
   )
 
   return (
-    <PageWrapper isLoading={isLoading || isAcademicUnitsLoading || !user}>
-      <ProfileForm
-        user={user}
-        onSubmit={handleSubmit}
-        isProfileUpdating={isProfileUpdating}
-      />
+    <PageWrapper isLoading={isLoading || isAcademicUnitsLoading}>
+      {user && academicUnits && (
+        <ProfileForm
+          user={user}
+          academicUnits={academicUnits}
+          onSubmit={handleSubmit}
+          isProfileUpdating={isProfileUpdating}
+        />
+      )}
     </PageWrapper>
   )
 })

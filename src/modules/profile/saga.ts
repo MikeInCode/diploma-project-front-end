@@ -1,4 +1,4 @@
-import { all, call, put, takeLatest } from 'redux-saga/effects'
+import { all, call, put, select, takeLatest } from 'redux-saga/effects'
 import { Action } from 'typescript-fsa'
 import { ApolloQueryResult } from 'apollo-client'
 import {
@@ -16,6 +16,7 @@ import {
 } from '../../graphQLTypes'
 import { ProfileService } from 'api/profile'
 import { onLoginAction } from '../auth'
+import { IRootReducer } from '../types'
 
 function* getProfileSaga(action: Action<GetProfileVariables>) {
   const params = action.payload
@@ -26,7 +27,8 @@ function* getProfileSaga(action: Action<GetProfileVariables>) {
     )
     const result = response.data
     yield put(getProfileAction.done({ params, result }))
-    if (!action.payload.id) {
+    const user = yield select(({ auth: { user } }: IRootReducer) => user)
+    if (!user) {
       yield put(onLoginAction.done({ params: null, result: result.profile }))
     }
   } catch (error) {

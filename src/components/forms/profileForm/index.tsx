@@ -6,25 +6,20 @@ import { Avatar } from 'common/avatar'
 import { useProfileFormStyles } from './styles'
 import { FormSelect, FormTextField } from '../common'
 import { adaptValuesToForm, validationSchema } from './helpers'
-import { IRootReducer } from 'modules/types'
-import { shallowEqual, useSelector } from 'react-redux'
 import { useTranslation } from 'react-i18next'
 import { COURSES_OPTIONS } from '../../../constants'
 import { useUpdateEffect } from 'react-use'
 import { RolesEnum } from '../../../graphQLTypes'
 import { useParams } from 'react-router-dom'
 
-const mapState = ({
-  university: {
-    academicUnits: { institutes, ...academicUnits }
-  }
-}: IRootReducer) => ({ institutes, academicUnits })
-
 export const ProfileForm = React.memo<IProfileFormProps>(
-  ({ user, onSubmit, isProfileUpdating }) => {
+  ({
+    user,
+    academicUnits: { institutes, ...academicUnits },
+    onSubmit,
+    isProfileUpdating
+  }) => {
     const { t } = useTranslation()
-
-    const { institutes, academicUnits } = useSelector(mapState, shallowEqual)
 
     const { id } = useParams<{ id: string }>()
 

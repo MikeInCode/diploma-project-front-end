@@ -39,6 +39,13 @@ type Mutation {
 type Query {
     academicUnits: AcademicUnits!
     profile(id: ID): User!
+    university: [UniversityItem!]!
+}
+
+type UniversityItem {
+    children: [UniversityItem!]!
+    id: String!
+    name: String!
 }
 
 type User {
@@ -108,10 +115,10 @@ input UpdateProfileInput {
 }
 
 input UpdateUserInput {
-    department: String!
+    department: String
     email: String!
     firstName: String!
-    group: String!
+    group: String
     image: String!
     lastName: String!
     patronymicName: String!

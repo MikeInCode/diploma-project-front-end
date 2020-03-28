@@ -1,10 +1,15 @@
 import React, { Suspense } from 'react'
 import { IRootReducer } from 'modules/types'
-import { batch, shallowEqual, useDispatch, useSelector } from 'react-redux'
+import { shallowEqual, useDispatch, useSelector } from 'react-redux'
 import { onLogoutAction } from 'modules/auth'
 import { getProfileAction } from 'modules/profile'
-import { getAcademicUnitsAction } from 'modules/university'
-import { AppBar, Button, IconButton, Toolbar, Typography } from '@material-ui/core'
+import {
+  AppBar,
+  Button,
+  IconButton,
+  Toolbar,
+  Typography
+} from '@material-ui/core'
 import { Skeleton } from '@material-ui/lab'
 import { useHeaderStyles, useToolbarClasses } from './styles'
 import { ExitToApp, Notifications } from '@material-ui/icons'
@@ -12,14 +17,13 @@ import { push } from 'connected-react-router'
 import { ROUTES } from 'router/constants'
 import { Avatar } from 'common/avatar'
 import { useTranslation } from 'react-i18next'
+import { CascadingMenu } from './components/cascadingMenu'
+import { AccessControl } from '../accessControl'
+import { RolesEnum } from '../../graphQLTypes'
 
-const mapState = ({
-  auth: { isAuthenticated, user },
-  university: { isAcademicUnitsLoading }
-}: IRootReducer) => ({
+const mapState = ({ auth: { isAuthenticated, user } }: IRootReducer) => ({
   isAuthenticated,
-  user,
-  isAcademicUnitsLoading
+  user
 })
 
 const HeaderComponent = React.memo(() => {
@@ -28,29 +32,18 @@ const HeaderComponent = React.memo(() => {
 
   const { t } = useTranslation()
 
-  const { isAuthenticated, user, isAcademicUnitsLoading } = useSelector(
-    mapState,
-    shallowEqual
-  )
+  const { isAuthenticated, user } = useSelector(mapState, shallowEqual)
 
   const dispatch = useDispatch()
 
   React.useEffect(() => {
-    if (isAuthenticated) {
-      batch(() => {
-        !user && dispatch(getProfileAction.started({}))
-        dispatch(getAcademicUnitsAction.started())
-      })
+    if (isAuthenticated && !user) {
+      dispatch(getProfileAction.started({}))
     }
   }, [isAuthenticated]) // eslint-disable-line
 
   const handleTimetableClick = React.useCallback(
     () => dispatch(push(ROUTES.HOME)),
-    [dispatch]
-  )
-
-  const handleStudentsClick = React.useCallback(
-    () => dispatch(push(ROUTES.STUDENTS)),
     [dispatch]
   )
 
@@ -69,10 +62,7 @@ const HeaderComponent = React.memo(() => {
     [dispatch]
   )
 
-  const showSkeleton = React.useMemo(() => !user || isAcademicUnitsLoading, [
-    isAcademicUnitsLoading,
-    user
-  ])
+  const showSkeleton = React.useMemo(() => !user, [user])
 
   if (!isAuthenticated) {
     return null
@@ -86,9 +76,9 @@ const HeaderComponent = React.memo(() => {
             {t('timetableLabel')}
           </Button>
           <Button color="inherit">{t('studyingLabel')}</Button>
-          <Button onClick={handleStudentsClick} color="inherit">
-            {t('studentsLabel')}
-          </Button>
+          <AccessControl permissions={[RolesEnum.ADMIN, RolesEnum.TEACHER]}>
+            <CascadingMenu />
+          </AccessControl>
           <Button onClick={handleTeachersClick} color="inherit">
             {t('teachersLabel')}
           </Button>
