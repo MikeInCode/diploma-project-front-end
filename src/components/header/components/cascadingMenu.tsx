@@ -9,6 +9,7 @@ import { useMount } from 'react-use'
 import { getUniversityAction } from '../../../modules/university'
 import { push } from 'connected-react-router'
 import { ROUTES } from '../../../router/constants'
+import { GetUniversity_university } from '../../../graphQLTypes'
 
 const mapState = ({ university: { university } }: IRootReducer) => ({
   university
@@ -40,8 +41,7 @@ export const CascadingMenu = React.memo(() => {
   }, [])
 
   const handleSubMenuOpen = React.useCallback(
-    node => e => {
-      const { id } = node
+    (id: string) => e => {
       const { currentTarget: anchor } = e
       setExpandedNodes(prevState => [...prevState, { id, anchor }])
     },
@@ -49,32 +49,31 @@ export const CascadingMenu = React.memo(() => {
   )
 
   const handleSubMenuClose = React.useCallback(
-    node => () => {
-      setExpandedNodes(prevState =>
-        prevState.filter(item => item.id !== node.id)
-      )
+    (id: string) => () => {
+      setExpandedNodes(prevState => prevState.filter(item => item.id !== id))
     },
     []
   )
 
   const handleItemClick = React.useCallback(
-    (index: number) => () => {
+    (groupId: string, index: number) => () => {
       if (index === 3) {
         handleMenuClose()
-        dispatch(push(ROUTES.STUDENTS))
+        dispatch(push(ROUTES.STUDENTS_LINK(groupId)))
       }
     },
     [dispatch, handleMenuClose]
   )
 
   const renderMenuItem = React.useCallback(
-    (node: any, index: number) => {
-      if (node.children.length > 0) {
+    (node: GetUniversity_university, index: number) => {
+      if (node.children.length > 0 && 'children' in node) {
         const anchorEl = expandedNodes.find(item => item.id === node.id)?.anchor
         return (
           <div
-            onMouseEnter={handleSubMenuOpen(node)}
-            onMouseLeave={handleSubMenuClose(node)}
+            key={node.id}
+            onMouseEnter={handleSubMenuOpen(node.id)}
+            onMouseLeave={handleSubMenuClose(node.id)}
           >
             <MenuItem className={styles.menuItem}>
               <Typography>{node.name}</Typography>
@@ -87,7 +86,9 @@ export const CascadingMenu = React.memo(() => {
               disablePortal={true}
             >
               <Paper>
-                {node.children.map(item => renderMenuItem(item, index + 1))}
+                {node.children.map(item =>
+                  renderMenuItem(item as any, index + 1)
+                )}
               </Paper>
             </Popper>
           </div>
@@ -95,7 +96,11 @@ export const CascadingMenu = React.memo(() => {
       }
 
       return (
-        <MenuItem className={styles.menuItem} onClick={handleItemClick(index)}>
+        <MenuItem
+          key={node.id}
+          className={styles.menuItem}
+          onClick={handleItemClick(node.id, index)}
+        >
           <Typography>{node.name}</Typography>
         </MenuItem>
       )

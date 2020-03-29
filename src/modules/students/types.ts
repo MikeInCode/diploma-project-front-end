@@ -1,4 +1,7 @@
+import { GetStudents_students } from '../../graphQLTypes'
+
 export interface IStudentsState {
   isLoading: boolean
-  students: any[]
+  isLoaded: boolean
+  students: GetStudents_students[]
 }

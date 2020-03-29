@@ -4,6 +4,7 @@ import { Button, IconButton } from '@material-ui/core'
 import { Message } from '@material-ui/icons'
 import { ICellType } from '../../components/table/types'
 import { TFunction } from 'i18next'
+import { GetTeachers_teachers } from '../../graphQLTypes'
 
 export const header: (t: TFunction) => ICellType[] = t => [
   {
@@ -12,7 +13,7 @@ export const header: (t: TFunction) => ICellType[] = t => [
   },
   {
     id: v4(),
-    children: t('subjectsLabel')
+    children: t('instituteLabel')
   },
   {
     id: v4(),
@@ -26,8 +27,8 @@ export const header: (t: TFunction) => ICellType[] = t => [
 
 export const row: (
   t: TFunction,
-  teacher: any,
-  handleProfileClick: (teacher) => () => void
+  teacher: GetTeachers_teachers,
+  handleProfileClick: (teacher: GetTeachers_teachers) => () => void
 ) => ICellType[] = (t, teacher, handleProfileClick) => {
   return [
     {
@@ -36,11 +37,11 @@ export const row: (
     },
     {
       id: v4(),
-      children: teacher.subjects
+      children: teacher.institute.name
     },
     {
       id: v4(),
-      children: teacher.department
+      children: teacher.department.name
     },
     {
       id: v4(),
@@ -59,7 +60,8 @@ export const row: (
         </div>
       ),
       cellProps: {
-        align: 'right'
+        align: 'right',
+        style: { width: 260 }
       }
     }
   ]

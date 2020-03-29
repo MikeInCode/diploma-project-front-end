@@ -1,7 +1,7 @@
 import { reducerWithInitialState } from 'typescript-fsa-reducers'
 import { initialState } from './state'
 import { IStudentsState } from './types'
-import { getStudentsAction } from './actions'
+import { clearStudents, getStudentsAction } from './actions'
 
 export const reducer = reducerWithInitialState<IStudentsState>(initialState)
   .case(getStudentsAction.started, state => ({
@@ -11,9 +11,12 @@ export const reducer = reducerWithInitialState<IStudentsState>(initialState)
   .case(getStudentsAction.done, (state, payload) => ({
     ...state,
     isLoading: false,
-    students: payload.result
+    isLoaded: true,
+    students: payload.result.students
   }))
   .case(getStudentsAction.failed, state => ({
     ...state,
-    isLoading: false
+    isLoading: false,
+    isLoaded: true
   }))
+  .case(clearStudents, () => initialState)

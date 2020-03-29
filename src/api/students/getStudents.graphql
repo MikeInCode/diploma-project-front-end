@@ -1,0 +1,31 @@
+query GetStudents($groupId: String!, $searchText: String) {
+  students(groupId: $groupId, searchText: $searchText) {
+    id
+    image
+    lastName
+    firstName
+    patronymicName
+    username
+    role
+    email
+    phone
+    institute {
+      id
+      name
+    }
+    department {
+      id
+      name
+    }
+    speciality {
+      id
+      code
+      name
+    }
+    group {
+      id
+      name
+    }
+    course
+  }
+}

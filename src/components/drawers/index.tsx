@@ -24,11 +24,11 @@ export const DrawerSwitcher = React.memo(() => {
     const { type, data } = opened
     switch (type) {
       case DrawerEnum.PROFILE_DRAWER:
-        return <ProfileDrawer profile={data} />
+        return <ProfileDrawer onClose={handleClose} {...data} />
       default:
         return null
     }
-  }, [opened])
+  }, [handleClose, opened])
 
   return (
     <Drawer anchor="right" open={!!opened} onClose={handleClose}>

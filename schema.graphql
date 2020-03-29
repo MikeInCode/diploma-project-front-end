@@ -39,6 +39,8 @@ type Mutation {
 type Query {
     academicUnits: AcademicUnits!
     profile(id: ID): User!
+    students(groupId: String!, searchText: String): [User!]!
+    teachers(searchText: String): [User!]!
     university: [UniversityItem!]!
 }
 

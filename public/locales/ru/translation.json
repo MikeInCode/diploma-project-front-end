@@ -21,6 +21,6 @@
   "updateProfileLabel": "Обновить профиль",
   "uploadImageLabel": "Загрузить изображение",
   "fullNameLabel": "ФИО",
-  "subjectsLabel": "Предметы",
-  "profileLabel": "Профиль"
+  "profileLabel": "Профиль",
+  "tableSearchLabel": "Поиск по ФИО"
 }

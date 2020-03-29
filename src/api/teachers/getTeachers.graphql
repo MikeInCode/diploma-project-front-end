@@ -1,0 +1,21 @@
+query GetTeachers($searchText: String) {
+  teachers(searchText: $searchText) {
+    id
+    image
+    lastName
+    firstName
+    patronymicName
+    username
+    role
+    email
+    phone
+    institute {
+      id
+      name
+    }
+    department {
+      id
+      name
+    }
+  }
+}

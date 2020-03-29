@@ -20,7 +20,8 @@
   "telegramLabel": "Telegram",
   "updateProfileLabel": "Оновити профіль",
   "uploadImageLabel": "Завантажити зображення",
-  "fullNameLabel": "ФІО",
+  "fullNameLabel": "ПІБ",
   "subjectsLabel": "Предмети",
-  "profileLabel": "Профіль"
+  "profileLabel": "Профіль",
+  "tableSearchLabel": "Пошук за ПІБ"
 }

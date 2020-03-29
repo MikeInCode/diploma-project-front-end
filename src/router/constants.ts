@@ -3,7 +3,8 @@ export const ROUTES = {
   LOGIN: '/login',
   PROFILE: '/profile',
   PROFILE_EDIT: '/profile/:id',
-  STUDENTS: '/students',
+  STUDENTS: '/students/:groupId',
+  STUDENTS_LINK: (groupId: string) => `/students/${groupId}`,
   TEACHERS: '/teachers',
   NOT_FOUND: '/*'
 }

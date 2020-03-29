@@ -6,6 +6,8 @@ export interface ITableProps<T> {
   header: ICellType[]
   row: (rowData: T) => ICellType[]
   paginationProps?: TablePaginationProps
+  toolbar?: React.ReactNode
+  isLoading?: boolean
 }
 
 export interface ICellType {

@@ -226,6 +226,103 @@ export interface UpdateUserVariables {
 // This file was automatically generated and should not be edited.
 
 // ====================================================
+// GraphQL query operation: GetStudents
+// ====================================================
+
+export interface GetStudents_students_institute {
+  id: string;
+  name: string;
+}
+
+export interface GetStudents_students_department {
+  id: string;
+  name: string;
+}
+
+export interface GetStudents_students_speciality {
+  id: string;
+  code: string;
+  name: string;
+}
+
+export interface GetStudents_students_group {
+  id: string;
+  name: string;
+}
+
+export interface GetStudents_students {
+  id: string;
+  image: string | null;
+  lastName: string;
+  firstName: string;
+  patronymicName: string;
+  username: string;
+  role: RolesEnum;
+  email: string | null;
+  phone: string | null;
+  institute: GetStudents_students_institute;
+  department: GetStudents_students_department | null;
+  speciality: GetStudents_students_speciality | null;
+  group: GetStudents_students_group | null;
+  course: CourseEnum | null;
+}
+
+export interface GetStudents {
+  students: GetStudents_students[];
+}
+
+export interface GetStudentsVariables {
+  groupId: string;
+  searchText?: string | null;
+}
+
+/* tslint:disable */
+/* eslint-disable */
+// @generated
+// This file was automatically generated and should not be edited.
+
+// ====================================================
+// GraphQL query operation: GetTeachers
+// ====================================================
+
+export interface GetTeachers_teachers_institute {
+  id: string;
+  name: string;
+}
+
+export interface GetTeachers_teachers_department {
+  id: string;
+  name: string;
+}
+
+export interface GetTeachers_teachers {
+  id: string;
+  image: string | null;
+  lastName: string;
+  firstName: string;
+  patronymicName: string;
+  username: string;
+  role: RolesEnum;
+  email: string | null;
+  phone: string | null;
+  institute: GetTeachers_teachers_institute;
+  department: GetTeachers_teachers_department | null;
+}
+
+export interface GetTeachers {
+  teachers: GetTeachers_teachers[];
+}
+
+export interface GetTeachersVariables {
+  searchText?: string | null;
+}
+
+/* tslint:disable */
+/* eslint-disable */
+// @generated
+// This file was automatically generated and should not be edited.
+
+// ====================================================
 // GraphQL query operation: GetAcademicUnits
 // ====================================================
 

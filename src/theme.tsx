@@ -1,5 +1,6 @@
 import React from 'react'
 import { createMuiTheme, CssBaseline, withStyles } from '@material-ui/core'
+import { SCROLL_WIDTH } from './constants'
 
 export const Color = {
   Grey: '#aab7bd', // input border
@@ -26,16 +27,16 @@ export const GlobalCss = withStyles({
       minHeight: '100vh',
       display: 'flex',
       flexDirection: 'column'
+    },
+    '::-webkit-scrollbar': {
+      width: SCROLL_WIDTH
+    },
+    '::-webkit-scrollbar-thumb': {
+      background: Color.Grey2
+    },
+    '::-webkit-scrollbar-track': {
+      background: Color.Grey1
     }
-    // '::-webkit-scrollbar': {
-    //   width: SCROLL_WIDTH
-    // },
-    // '::-webkit-scrollbar-thumb': {
-    //   background: Color.Grey2
-    // },
-    // '::-webkit-scrollbar-track': {
-    //   background: Color.Grey1
-    // }
   }
 })(() => <CssBaseline />)
 

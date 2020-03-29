@@ -1,3 +1,3 @@
-export interface IProfileDrawerProps {
-  profile: any
+export interface IBaseDrawerProps {
+  onClose: () => void
 }

@@ -4,6 +4,8 @@ import v4 from 'uuid/v4'
 import { Button, IconButton } from '@material-ui/core'
 import { MenuBook, Message } from '@material-ui/icons'
 import { TFunction } from 'i18next'
+import { GetStudents_students } from '../../graphQLTypes'
+import { courseDictionary } from '../../dictionary'
 
 export const header: (t: TFunction) => ICellType[] = t => [
   {
@@ -24,18 +26,14 @@ export const header: (t: TFunction) => ICellType[] = t => [
   },
   {
     id: v4(),
-    children: 'Tags'
-  },
-  {
-    id: v4(),
     children: null
   }
 ]
 
 export const row: (
   t: TFunction,
-  student: any,
-  handleProfileClick: (student) => () => void
+  student: GetStudents_students,
+  handleProfileClick: (student: GetStudents_students) => () => void
 ) => ICellType[] = (t, student, handleProfileClick) => [
   {
     id: v4(),
@@ -43,19 +41,15 @@ export const row: (
   },
   {
     id: v4(),
-    children: student.specialty
+    children: student.speciality.name
   },
   {
     id: v4(),
-    children: student.course
+    children: courseDictionary[student.course]
   },
   {
     id: v4(),
-    children: student.group
-  },
-  {
-    id: v4(),
-    children: 'Chill'
+    children: student.group.name
   },
   {
     id: v4(),
@@ -77,7 +71,8 @@ export const row: (
       </div>
     ),
     cellProps: {
-      align: 'right'
+      align: 'right',
+      style: { width: 260 }
     }
   }
 ]

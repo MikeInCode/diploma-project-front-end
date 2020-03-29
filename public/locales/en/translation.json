@@ -22,5 +22,6 @@
   "uploadImageLabel": "Upload image",
   "fullNameLabel": "Full name",
   "subjectsLabel": "Subjects",
-  "profileLabel": "Profile"
+  "profileLabel": "Profile",
+  "tableSearchLabel": "Find by Full Name"
 }
