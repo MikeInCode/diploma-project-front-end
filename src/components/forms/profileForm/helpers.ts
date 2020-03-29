@@ -1,10 +1,7 @@
 import * as Yup from 'yup'
 import { IProfileFormValues } from './types'
-import {
-  CourseEnum,
-  GetProfile_profile,
-  RolesEnum
-} from '../../../graphQLTypes'
+import { GetProfile_profile, RolesEnum } from '../../../graphQLTypes'
+import { courseDictionary } from '../../../dictionary'
 
 export const adaptValuesToForm: (
   user: GetProfile_profile
@@ -21,7 +18,7 @@ export const adaptValuesToForm: (
   department: user?.department?.id || '',
   speciality: user?.speciality?.id || '',
   group: user?.group?.id || '',
-  course: user?.course || ('' as CourseEnum)
+  course: courseDictionary[user?.course]
 })
 
 export const validationSchema = (userRole: RolesEnum) =>
@@ -32,7 +29,7 @@ export const validationSchema = (userRole: RolesEnum) =>
     email: Yup.string().email('Invalid email'),
     institute: Yup.string().required('Required field'),
     department:
-      userRole !== RolesEnum.ADMIN
+      userRole === RolesEnum.TEACHER
         ? Yup.string().required('Required field')
         : Yup.string().notRequired(),
     speciality:
@@ -42,9 +39,5 @@ export const validationSchema = (userRole: RolesEnum) =>
     group:
       userRole === RolesEnum.STUDENT
         ? Yup.string().required('Required field')
-        : Yup.string().notRequired(),
-    course:
-      userRole === RolesEnum.STUDENT
-        ? Yup.mixed().required('Required field')
         : Yup.string().notRequired()
   })

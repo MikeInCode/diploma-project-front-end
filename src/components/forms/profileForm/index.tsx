@@ -7,7 +7,6 @@ import { useProfileFormStyles } from './styles'
 import { FormSelect, FormTextField } from '../common'
 import { adaptValuesToForm, validationSchema } from './helpers'
 import { useTranslation } from 'react-i18next'
-import { COURSES_OPTIONS } from '../../../constants'
 import { useUpdateEffect } from 'react-use'
 import { RolesEnum } from '../../../graphQLTypes'
 import { useParams } from 'react-router-dom'
@@ -45,10 +44,11 @@ export const ProfileForm = React.memo<IProfileFormProps>(
       methods.reset(adaptValuesToForm(user))
     }, [user])
 
-    const { institute, department, speciality } = methods.watch([
+    const { institute, department, speciality, group } = methods.watch([
       'institute',
       'department',
-      'speciality'
+      'speciality',
+      'group'
     ])
 
     useUpdateEffect(() => {
@@ -57,7 +57,7 @@ export const ProfileForm = React.memo<IProfileFormProps>(
 
     useUpdateEffect(() => {
       methods.setValue('speciality', '')
-    }, [department])
+    }, [institute, department])
 
     useUpdateEffect(() => {
       methods.setValue('group', '')
@@ -71,8 +71,14 @@ export const ProfileForm = React.memo<IProfileFormProps>(
 
     const specialities = React.useMemo(
       () =>
-        academicUnits.specialities.filter(item => item.parentId === department),
-      [academicUnits.specialities, department]
+        academicUnits.specialities.filter(speciality =>
+          academicUnits.departments.some(
+            department =>
+              department.parentId === institute &&
+              speciality.parentId === department.id
+          )
+        ),
+      [academicUnits.departments, academicUnits.specialities, institute]
     )
 
     const groups = React.useMemo(
@@ -172,7 +178,7 @@ export const ProfileForm = React.memo<IProfileFormProps>(
                   fullWidth={true}
                 />
               </Grid>
-              {user.role !== RolesEnum.ADMIN && (
+              {user.role === RolesEnum.TEACHER && (
                 <>
                   <Grid item={true} xs={6}>
                     <FormSelect
@@ -214,25 +220,6 @@ export const ProfileForm = React.memo<IProfileFormProps>(
                 <>
                   <Grid item={true} xs={6}>
                     <FormSelect
-                      name="course"
-                      label={t('courseLabel')}
-                      fullWidth={true}
-                      disabled={isFieldDisabled}
-                    >
-                      {COURSES_OPTIONS.map(course => (
-                        <MenuItem key={course.value} value={course.value}>
-                          {course.label}
-                        </MenuItem>
-                      ))}
-                    </FormSelect>
-                  </Grid>
-                  <Grid item={true} xs={6} />
-                </>
-              )}
-              {user.role === RolesEnum.STUDENT && (
-                <>
-                  <Grid item={true} xs={6}>
-                    <FormSelect
                       name="group"
                       label={t('groupLabel')}
                       fullWidth={true}
@@ -244,6 +231,19 @@ export const ProfileForm = React.memo<IProfileFormProps>(
                         </MenuItem>
                       ))}
                     </FormSelect>
+                  </Grid>
+                  <Grid item={true} xs={6} />
+                </>
+              )}
+              {user.role === RolesEnum.STUDENT && (
+                <>
+                  <Grid item={true} xs={6}>
+                    <FormTextField
+                      name="course"
+                      label={t('courseLabel')}
+                      fullWidth={true}
+                      disabled={true}
+                    />
                   </Grid>
                   <Grid item={true} xs={6} />
                 </>

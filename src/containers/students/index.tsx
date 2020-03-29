@@ -79,6 +79,7 @@ const Students = React.memo(() => {
             placeholder={t('tableSearchLabel')}
             value={searchText}
             onChange={handleTextChange}
+            style={{ width: 300 }}
           />
         }
       />

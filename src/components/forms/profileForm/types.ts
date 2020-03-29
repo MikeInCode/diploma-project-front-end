@@ -1,5 +1,4 @@
 import {
-  CourseEnum,
   GetAcademicUnits_academicUnits,
   GetProfile_profile
 } from '../../../graphQLTypes'
@@ -17,7 +16,7 @@ export interface IProfileFormValues {
   department: string
   speciality: string
   group: string
-  course: CourseEnum
+  course: string
 }
 
 export interface IProfileFormProps {

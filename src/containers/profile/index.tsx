@@ -4,7 +4,11 @@ import { PageWrapper } from 'common/pageWrapper'
 import { ProfileForm } from 'components/forms/profileForm'
 import { IProfileFormValues } from 'components/forms/profileForm/types'
 import { IRootReducer } from 'modules/types'
-import { getProfileAction, updateProfileAction, updateUserAction } from 'modules/profile'
+import {
+  getProfileAction,
+  updateProfileAction,
+  updateUserAction
+} from 'modules/profile'
 import { useMount } from 'react-use'
 import { useParams } from 'react-router-dom'
 import { getAcademicUnitsAction } from '../../modules/university'
