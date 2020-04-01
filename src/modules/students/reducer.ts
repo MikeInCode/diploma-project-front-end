@@ -12,7 +12,10 @@ export const reducer = reducerWithInitialState<IStudentsState>(initialState)
     ...state,
     isLoading: false,
     isLoaded: true,
-    students: payload.result.students
+    students: payload.result.students.map((student, i) => ({
+      ...student,
+      orderNumber: i + 1
+    }))
   }))
   .case(getStudentsAction.failed, state => ({
     ...state,

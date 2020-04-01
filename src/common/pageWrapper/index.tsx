@@ -13,7 +13,7 @@ export const PageWrapper = React.memo<IPageWrapperProps>(
             <CircularProgress />
           </div>
         ) : (
-          children
+          !!children && children
         )}
       </Container>
     )

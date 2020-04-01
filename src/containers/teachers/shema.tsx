@@ -37,7 +37,7 @@ export const row: (
     },
     {
       id: v4(),
-      children: teacher.institute.name
+      children: teacher.department.institute.name
     },
     {
       id: v4(),

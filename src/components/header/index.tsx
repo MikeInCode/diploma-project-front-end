@@ -17,8 +17,8 @@ import { push } from 'connected-react-router'
 import { ROUTES } from 'router/constants'
 import { Avatar } from 'common/avatar'
 import { useTranslation } from 'react-i18next'
-import { CascadingMenu } from './components/cascadingMenu'
-import { AccessControl } from '../accessControl'
+import { StudentGroupsMenu } from './components/studentGroupsMenu'
+import { AccessControl } from 'components/accessControl'
 import { RolesEnum } from '../../graphQLTypes'
 
 const mapState = ({ auth: { isAuthenticated, user } }: IRootReducer) => ({
@@ -77,7 +77,7 @@ const HeaderComponent = React.memo(() => {
           </Button>
           <Button color="inherit">{t('studyingLabel')}</Button>
           <AccessControl permissions={[RolesEnum.ADMIN, RolesEnum.TEACHER]}>
-            <CascadingMenu />
+            <StudentGroupsMenu />
           </AccessControl>
           <Button onClick={handleTeachersClick} color="inherit">
             {t('teachersLabel')}

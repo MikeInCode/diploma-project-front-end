@@ -4,25 +4,21 @@ import v4 from 'uuid/v4'
 import { Button, IconButton } from '@material-ui/core'
 import { MenuBook, Message } from '@material-ui/icons'
 import { TFunction } from 'i18next'
-import { GetStudents_students } from '../../graphQLTypes'
-import { courseDictionary } from '../../dictionary'
+import { IStudentType } from '../../modules/students'
+import { Avatar } from 'common/avatar'
 
 export const header: (t: TFunction) => ICellType[] = t => [
   {
     id: v4(),
+    children: '№'
+  },
+  {
+    id: v4(),
+    children: null
+  },
+  {
+    id: v4(),
     children: t('fullNameLabel')
-  },
-  {
-    id: v4(),
-    children: t('specialityLabel')
-  },
-  {
-    id: v4(),
-    children: t('courseLabel')
-  },
-  {
-    id: v4(),
-    children: t('groupLabel')
   },
   {
     id: v4(),
@@ -32,24 +28,32 @@ export const header: (t: TFunction) => ICellType[] = t => [
 
 export const row: (
   t: TFunction,
-  student: GetStudents_students,
-  handleProfileClick: (student: GetStudents_students) => () => void
+  student: IStudentType,
+  handleProfileClick: (student: IStudentType) => () => void
 ) => ICellType[] = (t, student, handleProfileClick) => [
   {
     id: v4(),
+    children: student.orderNumber,
+    cellProps: {
+      style: { width: 60 }
+    }
+  },
+  {
+    id: v4(),
+    children: (
+      <Avatar
+        src=""
+        firstName={student.firstName}
+        lastName={student.lastName}
+      />
+    ),
+    cellProps: {
+      style: { width: 100 }
+    }
+  },
+  {
+    id: v4(),
     children: `${student.lastName} ${student.firstName} ${student.patronymicName}`
-  },
-  {
-    id: v4(),
-    children: student.speciality.name
-  },
-  {
-    id: v4(),
-    children: courseDictionary[student.course]
-  },
-  {
-    id: v4(),
-    children: student.group.name
   },
   {
     id: v4(),

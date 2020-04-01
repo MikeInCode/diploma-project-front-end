@@ -1,0 +1,20 @@
+query GetGroups {
+  groups {
+    id
+    name
+    course
+    speciality {
+      id
+      name
+      code
+      department {
+        id
+        name
+        institute {
+          id
+          name
+        }
+      }
+    }
+  }
+}

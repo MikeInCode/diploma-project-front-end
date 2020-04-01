@@ -30,6 +30,19 @@ type AuthenticatedUser {
     user: User!
 }
 
+type Department {
+    id: String!
+    institute: UserAcademicBaseUnit!
+    name: String!
+}
+
+type Group {
+    course: CourseEnum!
+    id: String!
+    name: String!
+    speciality: Speciality!
+}
+
 type Mutation {
     login(input: LoginInput!): AuthenticatedUser!
     updateProfile(input: UpdateProfileInput!): User!
@@ -38,16 +51,53 @@ type Mutation {
 
 type Query {
     academicUnits: AcademicUnits!
+    groups: [Group!]!
     profile(id: ID): User!
-    students(groupId: String!, searchText: String): [User!]!
-    teachers(searchText: String): [User!]!
-    university: [UniversityItem!]!
+    students(groupId: String): [Student!]!
+    teachers: [Teacher!]!
 }
 
-type UniversityItem {
-    children: [UniversityItem!]!
+type ScheduledSubject {
+    id: ID!
+    subject: Subject!
+}
+
+type Speciality {
+    code: String!
+    department: Department!
     id: String!
     name: String!
+}
+
+type Student {
+    email: String
+    firstName: String!
+    group: Group!
+    id: ID!
+    image: String
+    lastName: String!
+    patronymicName: String!
+    phone: String
+}
+
+type Subject {
+    ECTS: String!
+    id: ID!
+    name: String!
+    subjectCode: String!
+    subjectType: SubjectTypeEnum!
+}
+
+type Teacher {
+    department: Department!
+    email: String
+    firstName: String!
+    id: ID!
+    image: String
+    lastName: String!
+    patronymicName: String!
+    phone: String
+    teacherScheduledSubjects: [ScheduledSubject!]!
 }
 
 type User {

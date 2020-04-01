@@ -229,25 +229,29 @@ export interface UpdateUserVariables {
 // GraphQL query operation: GetStudents
 // ====================================================
 
-export interface GetStudents_students_institute {
+export interface GetStudents_students_group_speciality_department_institute {
   id: string;
   name: string;
 }
 
-export interface GetStudents_students_department {
+export interface GetStudents_students_group_speciality_department {
   id: string;
   name: string;
+  institute: GetStudents_students_group_speciality_department_institute;
 }
 
-export interface GetStudents_students_speciality {
+export interface GetStudents_students_group_speciality {
   id: string;
+  name: string;
   code: string;
-  name: string;
+  department: GetStudents_students_group_speciality_department;
 }
 
 export interface GetStudents_students_group {
   id: string;
   name: string;
+  course: CourseEnum;
+  speciality: GetStudents_students_group_speciality;
 }
 
 export interface GetStudents_students {
@@ -256,15 +260,9 @@ export interface GetStudents_students {
   lastName: string;
   firstName: string;
   patronymicName: string;
-  username: string;
-  role: RolesEnum;
   email: string | null;
   phone: string | null;
-  institute: GetStudents_students_institute;
-  department: GetStudents_students_department | null;
-  speciality: GetStudents_students_speciality | null;
-  group: GetStudents_students_group | null;
-  course: CourseEnum | null;
+  group: GetStudents_students_group;
 }
 
 export interface GetStudents {
@@ -272,8 +270,7 @@ export interface GetStudents {
 }
 
 export interface GetStudentsVariables {
-  groupId: string;
-  searchText?: string | null;
+  groupId?: string | null;
 }
 
 /* tslint:disable */
@@ -285,7 +282,7 @@ export interface GetStudentsVariables {
 // GraphQL query operation: GetTeachers
 // ====================================================
 
-export interface GetTeachers_teachers_institute {
+export interface GetTeachers_teachers_department_institute {
   id: string;
   name: string;
 }
@@ -293,6 +290,20 @@ export interface GetTeachers_teachers_institute {
 export interface GetTeachers_teachers_department {
   id: string;
   name: string;
+  institute: GetTeachers_teachers_department_institute;
+}
+
+export interface GetTeachers_teachers_teacherScheduledSubjects_subject {
+  id: string;
+  name: string;
+  ECTS: string;
+  subjectCode: string;
+  subjectType: SubjectTypeEnum;
+}
+
+export interface GetTeachers_teachers_teacherScheduledSubjects {
+  id: string;
+  subject: GetTeachers_teachers_teacherScheduledSubjects_subject;
 }
 
 export interface GetTeachers_teachers {
@@ -301,20 +312,14 @@ export interface GetTeachers_teachers {
   lastName: string;
   firstName: string;
   patronymicName: string;
-  username: string;
-  role: RolesEnum;
   email: string | null;
   phone: string | null;
-  institute: GetTeachers_teachers_institute;
-  department: GetTeachers_teachers_department | null;
+  department: GetTeachers_teachers_department;
+  teacherScheduledSubjects: GetTeachers_teachers_teacherScheduledSubjects[];
 }
 
 export interface GetTeachers {
   teachers: GetTeachers_teachers[];
-}
-
-export interface GetTeachersVariables {
-  searchText?: string | null;
 }
 
 /* tslint:disable */
@@ -368,40 +373,36 @@ export interface GetAcademicUnits {
 // This file was automatically generated and should not be edited.
 
 // ====================================================
-// GraphQL query operation: GetUniversity
+// GraphQL query operation: GetGroups
 // ====================================================
 
-export interface GetUniversity_university_children_children_children_children {
+export interface GetGroups_groups_speciality_department_institute {
   id: string;
   name: string;
 }
 
-export interface GetUniversity_university_children_children_children {
+export interface GetGroups_groups_speciality_department {
   id: string;
   name: string;
-  children: GetUniversity_university_children_children_children_children[];
+  institute: GetGroups_groups_speciality_department_institute;
 }
 
-export interface GetUniversity_university_children_children {
+export interface GetGroups_groups_speciality {
   id: string;
   name: string;
-  children: GetUniversity_university_children_children_children[];
+  code: string;
+  department: GetGroups_groups_speciality_department;
 }
 
-export interface GetUniversity_university_children {
+export interface GetGroups_groups {
   id: string;
   name: string;
-  children: GetUniversity_university_children_children[];
+  course: CourseEnum;
+  speciality: GetGroups_groups_speciality;
 }
 
-export interface GetUniversity_university {
-  id: string;
-  name: string;
-  children: GetUniversity_university_children[];
-}
-
-export interface GetUniversity {
-  university: GetUniversity_university[];
+export interface GetGroups {
+  groups: GetGroups_groups[];
 }
 
 /* tslint:disable */
@@ -426,6 +427,13 @@ export enum RolesEnum {
   ADMIN = "ADMIN",
   STUDENT = "STUDENT",
   TEACHER = "TEACHER",
+}
+
+export enum SubjectTypeEnum {
+  LABORATORY = "LABORATORY",
+  LECTURE = "LECTURE",
+  SEMINAR = "SEMINAR",
+  TUTORIALS = "TUTORIALS",
 }
 
 export interface LoginInput {

@@ -1,7 +1,7 @@
 import { reducerWithInitialState } from 'typescript-fsa-reducers'
 import { initialState } from './state'
 import { IUniversityState } from './types'
-import { getAcademicUnitsAction, getUniversityAction } from './actions'
+import { getAcademicUnitsAction, getGroupsAction } from './actions'
 
 export const reducer = reducerWithInitialState<IUniversityState>(initialState)
   .case(getAcademicUnitsAction.started, state => ({
@@ -17,16 +17,16 @@ export const reducer = reducerWithInitialState<IUniversityState>(initialState)
     ...state,
     isAcademicUnitsLoading: false
   }))
-  .case(getUniversityAction.started, state => ({
+  .case(getGroupsAction.started, state => ({
     ...state,
-    isUniversityLoading: true
+    isGroupsLoading: true
   }))
-  .case(getUniversityAction.done, (state, payload) => ({
+  .case(getGroupsAction.done, (state, payload) => ({
     ...state,
-    university: payload.result.university,
-    isUniversityLoading: false
+    groups: payload.result.groups,
+    isGroupsLoading: false
   }))
-  .case(getUniversityAction.failed, state => ({
+  .case(getGroupsAction.failed, state => ({
     ...state,
-    isUniversityLoading: false
+    isGroupsLoading: false
   }))

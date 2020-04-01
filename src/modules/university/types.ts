@@ -1,11 +1,11 @@
 import {
   GetAcademicUnits_academicUnits,
-  GetUniversity_university
+  GetGroups_groups
 } from '../../graphQLTypes'
 
 export interface IUniversityState {
   isAcademicUnitsLoading: boolean
   academicUnits: GetAcademicUnits_academicUnits
-  isUniversityLoading: boolean
-  university: GetUniversity_university[]
+  isGroupsLoading: boolean
+  groups: GetGroups_groups[]
 }

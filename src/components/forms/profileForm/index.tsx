@@ -44,7 +44,7 @@ export const ProfileForm = React.memo<IProfileFormProps>(
       methods.reset(adaptValuesToForm(user))
     }, [user])
 
-    const { institute, department, speciality, group } = methods.watch([
+    const { institute, department, speciality } = methods.watch([
       'institute',
       'department',
       'speciality',

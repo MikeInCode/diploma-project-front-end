@@ -9,13 +9,10 @@ import { header, row } from './shema'
 import { DrawerEnum } from '../../enums'
 import { useTranslation } from 'react-i18next'
 import { GetTeachers_teachers } from '../../graphQLTypes'
-import { useDebounce, useUnmount } from 'react-use'
+import { useDebounce, useMount, useUnmount, useUpdateEffect } from 'react-use'
 import { Input } from '@material-ui/core'
 
-const mapState = ({
-  teachers: { isLoading, isLoaded, teachers }
-}: IRootReducer) => ({
-  isLoading,
+const mapState = ({ teachers: { isLoaded, teachers } }: IRootReducer) => ({
   isLoaded,
   teachers
 })
@@ -23,7 +20,15 @@ const mapState = ({
 const Teachers = React.memo(() => {
   const { t } = useTranslation()
 
-  const { isLoading, isLoaded, teachers } = useSelector(mapState, shallowEqual)
+  const { isLoaded, teachers } = useSelector(mapState, shallowEqual)
+
+  const [teachersList, setTeachersList] = React.useState<
+    GetTeachers_teachers[]
+  >([])
+
+  useUpdateEffect(() => {
+    setTeachersList(teachers)
+  }, [teachers])
 
   const [searchText, setSearchText] = React.useState('')
 
@@ -31,17 +36,27 @@ const Teachers = React.memo(() => {
     setSearchText(e.target.value)
   }, [])
 
-  const dispatch = useDispatch()
-
   useDebounce(
     () => {
       if (searchText.length > 2 || searchText.length === 0) {
-        dispatch(getTeachersAction.started({ searchText }))
+        setTeachersList(
+          teachers.filter(teacher =>
+            `${teacher.lastName.toLowerCase()} ${teacher.firstName.toLowerCase()} ${teacher.patronymicName.toLowerCase()}`.includes(
+              searchText.toLowerCase()
+            )
+          )
+        )
       }
     },
     800,
     [searchText]
   )
+
+  const dispatch = useDispatch()
+
+  useMount(() => {
+    dispatch(getTeachersAction.started())
+  })
 
   useUnmount(() => {
     dispatch(clearTeachers())
@@ -67,8 +82,7 @@ const Teachers = React.memo(() => {
   return (
     <PageWrapper isLoading={!isLoaded}>
       <Table<GetTeachers_teachers>
-        isLoading={isLoading}
-        data={teachers}
+        data={teachersList}
         header={header(t)}
         row={rowCells}
         toolbar={

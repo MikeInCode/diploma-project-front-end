@@ -1,16 +1,10 @@
 import { makeStyles } from '@material-ui/core/styles'
 
-export const useCascadingMenuStyles = makeStyles(
+export const useStudentGroupsMenuStyles = makeStyles(
   {
-    menuItem: {
-      maxWidth: 320,
-      minHeight: 40,
-      justifyContent: 'space-between',
-      '& p': {
-        overflow: 'hidden',
-        textOverflow: 'ellipsis'
-      }
+    menuList: {
+      minWidth: 140
     }
   },
-  { name: 'CascadingMenuStyles' }
+  { name: 'StudentGroupsMenuStyles' }
 )
