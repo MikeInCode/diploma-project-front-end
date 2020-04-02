@@ -1,6 +1,6 @@
 import React from 'react'
 import v4 from 'uuid/v4'
-import { Button, IconButton } from '@material-ui/core'
+import { Button, IconButton, Typography } from '@material-ui/core'
 import { Message } from '@material-ui/icons'
 import { ICellType } from '../../components/table/types'
 import { TFunction } from 'i18next'
@@ -9,15 +9,15 @@ import { GetTeachers_teachers } from '../../graphQLTypes'
 export const header: (t: TFunction) => ICellType[] = t => [
   {
     id: v4(),
-    children: t('fullNameLabel')
+    children: <Typography>{t('fullNameLabel')}</Typography>
   },
   {
     id: v4(),
-    children: t('instituteLabel')
+    children: <Typography>{t('instituteLabel')}</Typography>
   },
   {
     id: v4(),
-    children: t('departmentLabel')
+    children: <Typography>{t('departmentLabel')}</Typography>
   },
   {
     id: v4(),
@@ -33,15 +33,17 @@ export const row: (
   return [
     {
       id: v4(),
-      children: `${teacher.lastName} ${teacher.firstName} ${teacher.patronymicName}`
+      children: (
+        <Typography>{`${teacher.lastName} ${teacher.firstName} ${teacher.patronymicName}`}</Typography>
+      )
     },
     {
       id: v4(),
-      children: teacher.department.institute.name
+      children: <Typography>{teacher.department.institute.name}</Typography>
     },
     {
       id: v4(),
-      children: teacher.department.name
+      children: <Typography>{teacher.department.name}</Typography>
     },
     {
       id: v4(),

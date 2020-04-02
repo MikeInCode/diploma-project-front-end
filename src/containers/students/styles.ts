@@ -7,16 +7,22 @@ export const useStudentsStyles = makeStyles(
       alignItems: 'center',
       justifyContent: 'space-between'
     },
-    groupDetailsContainer: {
-      display: 'flex',
-      flexDirection: 'column',
-      alignItems: 'flex-end',
-      '& p span': {
-        fontWeight: 500
-      }
-    },
     input: {
       width: 300
+    },
+    groupDetailsContainer: {
+      padding: 0,
+      '& li': {
+        padding: 0,
+        '& > div': {
+          margin: 0,
+          alignItems: 'flex-end'
+        }
+      }
+    },
+    listItemText: {
+      display: 'flex',
+      flexDirection: 'row-reverse'
     }
   },
   { name: 'StudentsStyles' }

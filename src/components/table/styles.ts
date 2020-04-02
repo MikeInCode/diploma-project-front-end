@@ -29,6 +29,11 @@ export const useTableStyles = makeStyles<Theme, { showOverlay?: boolean }>(
       '& img': {
         width: 80
       }
+    },
+    headerCell: {
+      "& p": {
+        fontWeight: 500
+      }
     }
   },
   { name: 'TableStyles' }

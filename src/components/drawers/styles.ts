@@ -5,7 +5,7 @@ export const useDrawerStyles = makeStyles(
   {
     root: {
       width: DRAWER_WIDTH,
-      padding: 25,
+      padding: 10,
       display: 'flex',
       flexDirection: 'column',
       height: '100%',

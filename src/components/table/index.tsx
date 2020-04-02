@@ -59,7 +59,11 @@ const TableComponent = <T extends any>({
           <TableHead>
             <TableRow>
               {header.map(({ id, children, cellProps }) => (
-                <TableCell key={id} {...cellProps}>
+                <TableCell
+                  key={id}
+                  className={styles.headerCell}
+                  {...cellProps}
+                >
                   {children}
                 </TableCell>
               ))}

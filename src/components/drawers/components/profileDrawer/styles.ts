@@ -2,16 +2,13 @@ import { makeStyles } from '@material-ui/core'
 
 export const useProfileDrawerStyles = makeStyles(
   {
-    avatarWrapper: {
-      display: 'flex'
+    listItemText: {
+      display: 'flex',
+      flexDirection: 'column-reverse'
     },
     avatar: {
-      width: 125,
-      height: 125,
-      marginRight: 15
-    },
-    label: {
-      fontWeight: 'bold'
+      width: 190,
+      height: 190
     }
   },
   { name: 'ProfileDrawerStyles' }

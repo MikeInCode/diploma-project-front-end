@@ -1,7 +1,7 @@
 import React from 'react'
 import { ICellType } from '../../components/table/types'
 import v4 from 'uuid/v4'
-import { Button, IconButton } from '@material-ui/core'
+import { Button, IconButton, Typography } from '@material-ui/core'
 import { MenuBook, Message } from '@material-ui/icons'
 import { TFunction } from 'i18next'
 import { IStudentType } from '../../modules/students'
@@ -10,7 +10,7 @@ import { Avatar } from 'common/avatar'
 export const header: (t: TFunction) => ICellType[] = t => [
   {
     id: v4(),
-    children: '№'
+    children: <Typography>№</Typography>
   },
   {
     id: v4(),
@@ -18,7 +18,7 @@ export const header: (t: TFunction) => ICellType[] = t => [
   },
   {
     id: v4(),
-    children: t('fullNameLabel')
+    children: <Typography>{t('fullNameLabel')}</Typography>
   },
   {
     id: v4(),
@@ -53,7 +53,11 @@ export const row: (
   },
   {
     id: v4(),
-    children: `${student.lastName} ${student.firstName} ${student.patronymicName}`
+    children: (
+      <Typography>
+        {`${student.lastName} ${student.firstName} ${student.patronymicName}`}
+      </Typography>
+    )
   },
   {
     id: v4(),

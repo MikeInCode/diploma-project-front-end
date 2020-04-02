@@ -1,6 +1,9 @@
 import { IBaseDrawerProps } from '../types'
-import { GetProfile_profile } from '../../../../graphQLTypes'
+import {
+  GetStudents_students,
+  GetTeachers_teachers
+} from '../../../../graphQLTypes'
 
 export interface IProfileDrawerProps extends IBaseDrawerProps {
-  profile: GetProfile_profile
+  profile: GetTeachers_teachers | GetStudents_students
 }

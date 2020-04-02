@@ -10,13 +10,13 @@ import { PageWrapper } from 'common/pageWrapper'
 import { Table } from 'components/table'
 import { shallowEqual, useDispatch, useSelector } from 'react-redux'
 import { header, row } from './shema'
-import { DrawerEnum } from '../../enums'
+import { DrawerEnum } from 'enums'
 import { useTranslation } from 'react-i18next'
 import { useParams } from 'react-router-dom'
 import { useDebounce, useMount, useUnmount, useUpdateEffect } from 'react-use'
-import { Input, Typography } from '@material-ui/core'
+import { Input, List, ListItem, ListItemText } from '@material-ui/core'
 import { useStudentsStyles } from './styles'
-import { courseDictionary } from '../../dictionary'
+import { courseDictionary } from 'dictionary'
 
 const mapState = ({
   students: { isLoaded, students },
@@ -106,20 +106,29 @@ const Students = React.memo(() => {
           onChange={handleTextChange}
         />
         {group && (
-          <div className={styles.groupDetailsContainer}>
-            <Typography>
-              <span>{`${t('specialityLabel')}: `}</span>
-              {`${group.speciality.name}`}
-            </Typography>
-            <Typography>
-              <span>{`${t('courseLabel')}: `}</span>
-              {`${courseDictionary[group.course]}`}
-            </Typography>
-            <Typography>
-              <span>{`${t('groupLabel')}: `}</span>
-              {`${group.name}`}
-            </Typography>
-          </div>
+          <List dense={true} className={styles.groupDetailsContainer}>
+            <ListItem>
+              <ListItemText
+                className={styles.listItemText}
+                primary={group.speciality.name}
+                secondary={`${t('specialityLabel')}:\u00A0`}
+              />
+            </ListItem>
+            <ListItem>
+              <ListItemText
+                className={styles.listItemText}
+                primary={courseDictionary[group.course]}
+                secondary={`${t('courseLabel')}:\u00A0`}
+              />
+            </ListItem>
+            <ListItem>
+              <ListItemText
+                className={styles.listItemText}
+                primary={group.name}
+                secondary={`${t('groupLabel')}:\u00A0`}
+              />
+            </ListItem>
+          </List>
         )}
       </div>
     ),
@@ -129,6 +138,7 @@ const Students = React.memo(() => {
       searchText,
       styles.groupDetailsContainer,
       styles.input,
+      styles.listItemText,
       styles.toolbar,
       t
     ]
