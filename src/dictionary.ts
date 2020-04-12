@@ -1,4 +1,4 @@
-import { CourseEnum } from './graphQLTypes'
+import { CourseEnum, SubjectTypeEnum } from './graphQLTypes'
 
 export const courseDictionary = {
   [CourseEnum.ONE]: '1',
@@ -7,4 +7,9 @@ export const courseDictionary = {
   [CourseEnum.FOUR]: '4',
   [CourseEnum.FIVE]: '5',
   [CourseEnum.SIX]: '6'
+}
+
+export const subjectTypeDictionary = {
+  [SubjectTypeEnum.LABORATORY]: 'laboratoryLabel',
+  [SubjectTypeEnum.LECTURE]: 'lectureLabel'
 }

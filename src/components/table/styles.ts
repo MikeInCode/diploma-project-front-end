@@ -1,6 +1,6 @@
-import { makeStyles, Theme } from '@material-ui/core'
+import { makeStyles } from '@material-ui/core'
 
-export const useTableStyles = makeStyles<Theme, { showOverlay?: boolean }>(
+export const useTableStyles = makeStyles(
   {
     paper: {
       width: '100%',
@@ -9,8 +9,7 @@ export const useTableStyles = makeStyles<Theme, { showOverlay?: boolean }>(
     },
     tableContainer: {
       flex: '1 0 220px',
-      position: 'relative',
-      overflowY: ({ showOverlay }) => (showOverlay ? 'hidden' : 'auto')
+      position: 'relative'
     },
     toolbar: {
       width: 1280
@@ -22,16 +21,14 @@ export const useTableStyles = makeStyles<Theme, { showOverlay?: boolean }>(
       position: 'absolute',
       left: 0,
       right: 0,
-      top: 56,
+      top: 52,
       bottom: 0,
-      background: 'rgba(250, 250, 250, 0.3)',
-      zIndex: 1,
       '& img': {
         width: 80
       }
     },
     headerCell: {
-      "& p": {
+      '& p': {
         fontWeight: 500
       }
     }

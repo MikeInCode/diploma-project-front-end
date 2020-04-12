@@ -24,5 +24,11 @@
   "fullNameLabel": "ПІБ",
   "subjectsLabel": "Предмети",
   "profileLabel": "Профіль",
-  "tableSearchLabel": "Пошук за ПІБ"
+  "tableSearchLabel": "Пошук за ПІБ",
+  "roomLabel": "Аудиторія",
+  "laboratoryLabel": "Лабораторна",
+  "lectureLabel": "Лекція",
+  "weekViewLabel": "На тиждень",
+  "monthViewLabel": "На місяць",
+  "todayLabel": "Сьогодні"
 }

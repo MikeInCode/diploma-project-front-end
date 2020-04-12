@@ -2,7 +2,7 @@ import React from 'react'
 import { PageWrapper } from 'common/pageWrapper'
 import { Table } from 'components/table'
 import { IRootReducer } from 'modules/types'
-import { clearTeachers, getTeachersAction } from 'modules/teachers'
+import { clearTeachersAction, getTeachersAction } from 'modules/teachers'
 import { openDrawerAction } from 'modules/drawer'
 import { shallowEqual, useDispatch, useSelector } from 'react-redux'
 import { header, row } from './shema'
@@ -59,7 +59,7 @@ const Teachers = React.memo(() => {
   })
 
   useUnmount(() => {
-    dispatch(clearTeachers())
+    dispatch(clearTeachersAction())
   })
 
   const handleClickProfile = React.useCallback(

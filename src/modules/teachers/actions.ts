@@ -7,4 +7,4 @@ export const getTeachersAction = actionCreator.async<void, GetTeachers, Error>(
   'GET_TEACHERS'
 )
 
-export const clearTeachers = actionCreator('CLEAR_TEACHERS')
+export const clearTeachersAction = actionCreator('CLEAR_TEACHERS')

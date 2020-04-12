@@ -43,6 +43,29 @@ type Group {
     speciality: Speciality!
 }
 
+type Lesson {
+    endTime: String!
+    id: String!
+    room: String!
+    scheduledSubject: LessonScheduledSubject!
+    startTime: String!
+}
+
+type LessonScheduledSubject {
+    group: UserAcademicBaseUnit!
+    id: String!
+    subject: Subject!
+    teacher: LessonTeacher!
+}
+
+type LessonTeacher {
+    department: Department!
+    firstName: String!
+    id: String!
+    lastName: String!
+    patronymicName: String!
+}
+
 type Mutation {
     login(input: LoginInput!): AuthenticatedUser!
     updateProfile(input: UpdateProfileInput!): User!
@@ -53,13 +76,9 @@ type Query {
     academicUnits: AcademicUnits!
     groups: [Group!]!
     profile(id: ID): User!
+    schedule: [Lesson!]!
     students(groupId: String): [Student!]!
     teachers: [Teacher!]!
-}
-
-type ScheduledSubject {
-    id: ID!
-    subject: Subject!
 }
 
 type Speciality {
@@ -97,7 +116,12 @@ type Teacher {
     lastName: String!
     patronymicName: String!
     phone: String
-    teacherScheduledSubjects: [ScheduledSubject!]!
+    teacherScheduledSubjects: [TeacherScheduledSubject!]!
+}
+
+type TeacherScheduledSubject {
+    id: ID!
+    subject: Subject!
 }
 
 type User {

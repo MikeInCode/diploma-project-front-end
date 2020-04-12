@@ -1,0 +1,28 @@
+query GetSchedule {
+  schedule {
+    id
+    startTime
+    endTime
+    room
+    scheduledSubject {
+      id
+      subject {
+        id
+        name
+        ECTS
+        subjectCode
+        subjectType
+      }
+      group {
+        id
+        name
+      }
+      teacher {
+        id
+        lastName
+        firstName
+        patronymicName
+      }
+    }
+  }
+}

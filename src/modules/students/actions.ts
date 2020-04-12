@@ -9,4 +9,4 @@ export const getStudentsAction = actionCreator.async<
   Error
 >('GET_STUDENTS')
 
-export const clearStudents = actionCreator('CLEAR_STUDENTS')
+export const clearStudentsAction = actionCreator('CLEAR_STUDENTS')

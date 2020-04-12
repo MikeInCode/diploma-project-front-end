@@ -1,7 +1,7 @@
 import React from 'react'
 import { IRootReducer } from 'modules/types'
 import {
-  clearStudents,
+  clearStudentsAction,
   getStudentsAction,
   IStudentType
 } from 'modules/students'
@@ -76,7 +76,7 @@ const Students = React.memo(() => {
   })
 
   useUnmount(() => {
-    dispatch(clearStudents())
+    dispatch(clearStudentsAction())
   })
 
   const handleClickProfile = React.useCallback(

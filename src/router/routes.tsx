@@ -11,7 +11,7 @@ const LazyLoader = props => {
 }
 
 export const Home = props => (
-  <LazyLoader lazy={lazy(() => import('../containers/home'))} {...props} />
+  <LazyLoader lazy={lazy(() => import('../containers/schedule'))} {...props} />
 )
 
 export const Login = props => (

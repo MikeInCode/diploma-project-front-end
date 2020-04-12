@@ -23,5 +23,11 @@
   "uploadImageLabel": "Загрузить изображение",
   "fullNameLabel": "ФИО",
   "profileLabel": "Профиль",
-  "tableSearchLabel": "Поиск по ФИО"
+  "tableSearchLabel": "Поиск по ФИО",
+  "roomLabel": "Аудитория",
+  "laboratoryLabel": "Лабораторная",
+  "lectureLabel": "Лекция",
+  "weekViewLabel": "На неделю",
+  "monthViewLabel": "На месяц",
+  "todayLabel": "Сегодня"
 }

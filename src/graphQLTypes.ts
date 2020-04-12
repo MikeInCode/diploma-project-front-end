@@ -226,6 +226,54 @@ export interface UpdateUserVariables {
 // This file was automatically generated and should not be edited.
 
 // ====================================================
+// GraphQL query operation: GetSchedule
+// ====================================================
+
+export interface GetSchedule_schedule_scheduledSubject_subject {
+  id: string;
+  name: string;
+  ECTS: string;
+  subjectCode: string;
+  subjectType: SubjectTypeEnum;
+}
+
+export interface GetSchedule_schedule_scheduledSubject_group {
+  id: string;
+  name: string;
+}
+
+export interface GetSchedule_schedule_scheduledSubject_teacher {
+  id: string;
+  lastName: string;
+  firstName: string;
+  patronymicName: string;
+}
+
+export interface GetSchedule_schedule_scheduledSubject {
+  id: string;
+  subject: GetSchedule_schedule_scheduledSubject_subject;
+  group: GetSchedule_schedule_scheduledSubject_group;
+  teacher: GetSchedule_schedule_scheduledSubject_teacher;
+}
+
+export interface GetSchedule_schedule {
+  id: string;
+  startTime: string;
+  endTime: string;
+  room: string;
+  scheduledSubject: GetSchedule_schedule_scheduledSubject;
+}
+
+export interface GetSchedule {
+  schedule: GetSchedule_schedule[];
+}
+
+/* tslint:disable */
+/* eslint-disable */
+// @generated
+// This file was automatically generated and should not be edited.
+
+// ====================================================
 // GraphQL query operation: GetStudents
 // ====================================================
 

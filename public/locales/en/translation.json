@@ -24,5 +24,11 @@
   "fullNameLabel": "Full name",
   "subjectsLabel": "Subjects",
   "profileLabel": "Profile",
-  "tableSearchLabel": "Find by Full Name"
+  "tableSearchLabel": "Find by Full Name",
+  "roomLabel": "Room",
+  "laboratoryLabel": "Laboratory",
+  "lectureLabel": "Lecture",
+  "weekViewLabel": "Week",
+  "monthViewLabel": "Month",
+  "todayLabel": "Today"
 }

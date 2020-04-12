@@ -1,6 +1,5 @@
 import React from 'react'
 import {
-  CircularProgress,
   Paper,
   Table as MuiTable,
   TableBody,
@@ -19,30 +18,9 @@ const TableComponent = <T extends any>({
   row,
   data,
   paginationProps,
-  toolbar,
-  isLoading
+  toolbar
 }: ITableProps<T>) => {
-  const showOverlay = React.useMemo(() => isLoading || data.length === 0, [
-    data.length,
-    isLoading
-  ])
-
-  const styles = useTableStyles({
-    showOverlay
-  })
-
-  const overlay = React.useMemo(
-    () => (
-      <div className={styles.overlay}>
-        {isLoading ? (
-          <CircularProgress />
-        ) : data.length === 0 ? (
-          <img src={emptyState} alt="Users not found" />
-        ) : null}
-      </div>
-    ),
-    [data.length, isLoading, styles.overlay]
-  )
+  const styles = useTableStyles({})
 
   return (
     <Paper className={styles.paper}>
@@ -54,7 +32,11 @@ const TableComponent = <T extends any>({
         </TableRow>
       )}
       <TableContainer className={styles.tableContainer}>
-        {showOverlay && overlay}
+        {data.length === 0 && (
+          <div className={styles.overlay}>
+            <img src={emptyState} alt="Users not found" />
+          </div>
+        )}
         <MuiTable stickyHeader={true}>
           <TableHead>
             <TableRow>
