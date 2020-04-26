@@ -7,6 +7,7 @@ export interface ITableProps<T> {
   row: (rowData: T) => ICellType[]
   paginationProps?: TablePaginationProps
   toolbar?: React.ReactNode
+  paperClassName?: string
 }
 
 export interface ICellType {

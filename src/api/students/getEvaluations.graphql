@@ -1,0 +1,26 @@
+query GetEvaluations($studentId: ID, $subjectId: ID) {
+  studentMarks(studentId: $studentId, subjectId: $subjectId) {
+    id
+    student {
+      lastName
+      firstName
+      patronymicName
+    }
+    scheduledSubject {
+      subject {
+        id
+        name
+        subjectType
+      }
+    }
+    marks {
+      id
+      value
+      notes
+      lesson {
+        id
+        startTime
+      }
+    }
+  }
+}

@@ -113,8 +113,8 @@ export const ProfileForm = React.memo<IProfileFormProps>(
             <Grid container={true} item={true} xs={9} spacing={3}>
               <Grid item={true} xs={6}>
                 <FormTextField
-                  name="firstName"
-                  label={t('firstNameLabel')}
+                  name="lastName"
+                  label={t('lastNameLabel')}
                   fullWidth={true}
                   disabled={isFieldDisabled}
                 />
@@ -129,8 +129,8 @@ export const ProfileForm = React.memo<IProfileFormProps>(
               </Grid>
               <Grid item={true} xs={6}>
                 <FormTextField
-                  name="lastName"
-                  label={t('lastNameLabel')}
+                  name="firstName"
+                  label={t('firstNameLabel')}
                   fullWidth={true}
                   disabled={isFieldDisabled}
                 />

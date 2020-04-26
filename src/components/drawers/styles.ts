@@ -1,5 +1,5 @@
 import { makeStyles } from '@material-ui/core'
-import { DRAWER_WIDTH } from '../../constants'
+import { DRAWER_WIDTH } from 'appConstants'
 
 export const useDrawerStyles = makeStyles(
   {
@@ -9,7 +9,10 @@ export const useDrawerStyles = makeStyles(
       display: 'flex',
       flexDirection: 'column',
       height: '100%',
-      overflow: 'auto'
+      overflow: 'auto',
+      '&.ASSESSMENT': {
+        width: 700
+      }
     }
   },
   { name: 'DrawerStyles' }

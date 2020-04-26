@@ -16,7 +16,7 @@ export const PrivateRoute = React.memo<
   const { isAuthenticated } = useSelector(mapState, shallowEqual)
 
   return isAuthenticated ? (
-    <AccessControl permissions={permissions}>
+    <AccessControl permissions={permissions} renderPageNotFound={true}>
       <Route {...props} />
     </AccessControl>
   ) : (

@@ -1,7 +1,7 @@
-import { SubjectTypeEnum } from '../../graphQLTypes'
+import { SubjectTypeEnum } from 'graphQLTypes'
 
 export interface IScheduleState {
-  isLoaded: boolean
+  isLoading: boolean
   schedule: IScheduleItem[]
 }
 

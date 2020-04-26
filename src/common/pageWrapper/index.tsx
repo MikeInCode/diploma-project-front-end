@@ -5,7 +5,7 @@ import { usePageWrapperClasses } from './styles'
 
 export const PageWrapper = React.memo<IPageWrapperProps>(
   ({ children, isLoading, ...rest }) => {
-    const classes = usePageWrapperClasses({})
+    const classes = usePageWrapperClasses({ isLoading })
     return (
       <Container classes={{ root: classes.root }} fixed={true} {...rest}>
         {isLoading ? (

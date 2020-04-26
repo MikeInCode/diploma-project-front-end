@@ -1,0 +1,25 @@
+query GetSubjects {
+  studentSubjects {
+    teacher {
+      lastName
+      firstName
+      patronymicName
+    }
+    subject {
+      id
+      name
+      subjectType
+    }
+    evaluation {
+      marks {
+        id
+        value
+        notes
+        lesson {
+          id
+          startTime
+        }
+      }
+    }
+  }
+}

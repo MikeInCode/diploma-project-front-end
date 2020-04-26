@@ -1,6 +1,11 @@
 import { IStudentsState } from './types'
 
 export const initialState: IStudentsState = {
-  isLoaded: false,
-  students: []
+  isLoading: false,
+  students: [],
+  studentEvaluation: {
+    isLoading: false,
+    isUpdating: false,
+    evaluations: []
+  }
 }

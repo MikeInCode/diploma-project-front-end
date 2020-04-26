@@ -1,15 +1,22 @@
 import React from 'react'
 import { IProfileDrawerProps } from './types'
 import { useProfileDrawerStyles } from './styles'
-import { Button, Divider, List, ListItem, ListItemAvatar, ListItemText } from '@material-ui/core'
+import { DrawerWrapper } from 'common/drawerWrapper'
+import {
+  Button,
+  Divider,
+  ListItem,
+  ListItemAvatar,
+  ListItemText
+} from '@material-ui/core'
 import { useTranslation } from 'react-i18next'
 import { Avatar } from 'common/avatar'
 import { courseDictionary } from 'dictionary'
-import { AccessControl } from '../../../accessControl'
-import { RolesEnum } from '../../../../graphQLTypes'
+import { AccessControl } from 'components/accessControl'
+import { RolesEnum } from 'graphQLTypes'
 import { batch, useDispatch } from 'react-redux'
 import { push } from 'connected-react-router'
-import { ROUTES } from '../../../../router/constants'
+import { ROUTES } from 'router/constants'
 
 export const ProfileDrawer = React.memo<IProfileDrawerProps>(
   ({ onClose, profile }) => {
@@ -27,7 +34,7 @@ export const ProfileDrawer = React.memo<IProfileDrawerProps>(
     }, [dispatch, onClose, profile.id])
 
     return (
-      <List>
+      <DrawerWrapper>
         <ListItem>
           <ListItemAvatar>
             <Avatar
@@ -42,8 +49,22 @@ export const ProfileDrawer = React.memo<IProfileDrawerProps>(
         <ListItem>
           <ListItemText
             className={styles.listItemText}
-            primary={`${profile.lastName} ${profile.firstName} ${profile.patronymicName}`}
-            secondary={t('fullNameLabel')}
+            primary={profile.lastName}
+            secondary={t('lastNameLabel')}
+          />
+        </ListItem>
+        <ListItem>
+          <ListItemText
+            className={styles.listItemText}
+            primary={profile.firstName}
+            secondary={t('firstNameLabel')}
+          />
+        </ListItem>
+        <ListItem>
+          <ListItemText
+            className={styles.listItemText}
+            primary={profile.patronymicName}
+            secondary={t('patronymicNameLabel')}
           />
         </ListItem>
         <ListItem>
@@ -133,7 +154,7 @@ export const ProfileDrawer = React.memo<IProfileDrawerProps>(
             </Button>
           </ListItem>
         </AccessControl>
-      </List>
+      </DrawerWrapper>
     )
   }
 )

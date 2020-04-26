@@ -1,4 +1,4 @@
-import { makeStyles, Theme } from '@material-ui/core/styles'
+import { makeStyles } from '@material-ui/core/styles'
 
 export const useAppointmentContentStyles = makeStyles(
   {
@@ -17,8 +17,8 @@ export const useAppointmentContentStyles = makeStyles(
   { name: 'AppointmentContentStyles' }
 )
 
-export const useAppointmentTooltipContentStyles = makeStyles<Theme>(
-  theme => ({
+export const useAppointmentTooltipContentStyles = makeStyles(
+  {
     item: {
       alignItems: 'center',
       marginTop: 10
@@ -27,10 +27,7 @@ export const useAppointmentTooltipContentStyles = makeStyles<Theme>(
       display: 'flex',
       alignItems: 'center',
       justifyContent: 'center'
-    },
-    icon: {
-      color: theme.palette.action.active
     }
-  }),
+  },
   { name: 'AppointmentTooltipContentStyles' }
 )

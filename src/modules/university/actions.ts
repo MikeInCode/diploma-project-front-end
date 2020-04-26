@@ -1,5 +1,5 @@
 import actionCreatorFactory from 'typescript-fsa'
-import { GetAcademicUnits, GetGroups } from '../../graphQLTypes'
+import { GetAcademicUnits, GetGroups } from 'graphQLTypes'
 
 const actionCreator = actionCreatorFactory('university')
 

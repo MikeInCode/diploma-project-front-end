@@ -1,6 +1,6 @@
 import { ITeachersState } from './types'
 
 export const initialState: ITeachersState = {
-  isLoaded: false,
+  isLoading: false,
   teachers: []
 }

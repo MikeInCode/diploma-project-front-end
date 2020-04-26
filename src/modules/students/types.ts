@@ -1,8 +1,13 @@
-import { GetStudents_students } from '../../graphQLTypes'
+import { GetEvaluations_studentMarks, GetStudents_students } from 'graphQLTypes'
 
 export interface IStudentsState {
-  isLoaded: boolean
+  isLoading: boolean
   students: IStudentType[]
+  studentEvaluation: {
+    isLoading: boolean
+    isUpdating: boolean
+    evaluations: GetEvaluations_studentMarks[]
+  }
 }
 
 export interface IStudentType extends GetStudents_students {

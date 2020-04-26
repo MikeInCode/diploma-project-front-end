@@ -7,4 +7,3 @@ export const getScheduleAction = actionCreator.async<void, GetSchedule, Error>(
   'GET_SCHEDULE'
 )
 
-export const clearScheduleAction = actionCreator('CLEAR_SCHEDULE')

@@ -1,9 +1,8 @@
 import { ApolloClient } from 'apollo-client'
-import { store } from '../modules'
-import { API_URL } from '../constants'
-import { onLogoutAction } from '../modules/auth'
+import { store } from 'modules'
+import { onLogoutAction } from 'modules/auth'
 import { setContext } from 'apollo-link-context'
-import { getToken } from '../utils/token'
+import { getToken } from 'utils/token'
 import { onError } from 'apollo-link-error'
 import { createHttpLink } from 'apollo-link-http'
 import { ApolloLink } from 'apollo-link'
@@ -29,7 +28,7 @@ const errorLink = onError(({ graphQLErrors }) => {
 })
 
 const httpLink = createHttpLink({
-  uri: API_URL
+  uri: process.env.REACT_APP_API_URL
 })
 
 export const apolloClient = new ApolloClient({

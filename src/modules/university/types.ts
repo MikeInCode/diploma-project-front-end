@@ -1,7 +1,7 @@
 import {
   GetAcademicUnits_academicUnits,
   GetGroups_groups
-} from '../../graphQLTypes'
+} from 'graphQLTypes'
 
 export interface IUniversityState {
   isAcademicUnitsLoading: boolean

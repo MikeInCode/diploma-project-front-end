@@ -5,7 +5,8 @@ import { shallowEqual, useDispatch, useSelector } from 'react-redux'
 import { closeDrawerAction } from '../../modules/drawer'
 import { useDrawerStyles } from './styles'
 import { DrawerEnum } from '../../enums'
-import { ProfileDrawer } from './components'
+import { AssessmentDrawer, ProfileDrawer } from './components'
+import clsx from 'clsx'
 
 const mapState = ({ drawer: { opened } }: IRootReducer) => opened
 
@@ -23,8 +24,10 @@ export const DrawerSwitcher = React.memo(() => {
   const renderDrawerContent = React.useCallback(() => {
     const { type, data } = opened
     switch (type) {
-      case DrawerEnum.PROFILE_DRAWER:
+      case DrawerEnum.PROFILE:
         return <ProfileDrawer onClose={handleClose} {...data} />
+      case DrawerEnum.ASSESSMENT:
+        return <AssessmentDrawer onClose={handleClose} {...data} />
       default:
         return null
     }
@@ -32,7 +35,9 @@ export const DrawerSwitcher = React.memo(() => {
 
   return (
     <Drawer anchor="right" open={!!opened} onClose={handleClose}>
-      <div className={styles.root}>{!!opened && renderDrawerContent()}</div>
+      <div className={clsx(styles.root, opened?.type)}>
+        {!!opened && renderDrawerContent()}
+      </div>
     </Drawer>
   )
 })

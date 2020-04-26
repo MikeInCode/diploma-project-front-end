@@ -5,7 +5,7 @@
   "loginLabel": "Войти",
   "timetableLabel": "Расписание",
   "studentsLabel": "Студенты",
-  "studyingLabel": "Обучение",
+  "subjectsLabel": "Предметы",
   "teachersLabel": "Преподаватели",
   "messagesLabel": "Чат",
   "firstNameLabel": "Имя",
@@ -21,13 +21,16 @@
   "updateProfileLabel": "Обновить профиль",
   "editProfileLabel": "Редактировать профиль",
   "uploadImageLabel": "Загрузить изображение",
-  "fullNameLabel": "ФИО",
   "profileLabel": "Профиль",
-  "tableSearchLabel": "Поиск по ФИО",
+  "tableSearchLabel": "Поиск",
+  "emptyTableLabel": "По поиску ничего не найдено",
   "roomLabel": "Аудитория",
   "laboratoryLabel": "Лабораторная",
   "lectureLabel": "Лекция",
   "weekViewLabel": "На неделю",
   "monthViewLabel": "На месяц",
-  "todayLabel": "Сегодня"
+  "todayLabel": "Сегодня",
+  "studentLabel": "Студент",
+  "subjectLabel": "Предмет",
+  "subjectTypeLabel": "Тип предмета"
 }

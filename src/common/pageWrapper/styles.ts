@@ -1,12 +1,11 @@
-import { makeStyles } from '@material-ui/core'
+import { makeStyles, Theme } from '@material-ui/core'
 
-export const usePageWrapperClasses = makeStyles(
+export const usePageWrapperClasses = makeStyles<Theme, { isLoading: boolean }>(
   {
-    root: {
-      flex: 1,
+    root: ({ isLoading }) => ({
       padding: '50px 0',
-      display: 'flex'
-    },
+      ...(isLoading ? { flex: 1, display: 'flex' } : {})
+    }),
     progressWrapper: {
       display: 'flex',
       justifyContent: 'center',

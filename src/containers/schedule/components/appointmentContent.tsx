@@ -1,7 +1,7 @@
 import React from 'react'
 import { Appointments } from '@devexpress/dx-react-scheduler-material-ui'
 import { Typography } from '@material-ui/core'
-import { IScheduleItem } from '../../../modules/schedule'
+import { IScheduleItem } from 'modules/schedule'
 import { useTranslation } from 'react-i18next'
 import { useAppointmentContentStyles } from './styles'
 

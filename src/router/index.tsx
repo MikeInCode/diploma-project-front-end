@@ -7,6 +7,7 @@ import {
   PageNotFound,
   Profile,
   Students,
+  Subjects,
   Teachers
 } from './routes'
 import { ROUTES } from './constants'
@@ -20,6 +21,7 @@ export const AppRouter = React.memo<{ history }>(({ history }) => (
     <DrawerSwitcher />
     <Header />
     <Switch>
+      <Route exact={true} path={ROUTES.LOGIN} render={Login} />
       <PrivateRoute exact={true} path={ROUTES.HOME} render={Home} />
       <PrivateRoute exact={true} path={ROUTES.PROFILE} render={Profile} />
       <PrivateRoute
@@ -28,9 +30,9 @@ export const AppRouter = React.memo<{ history }>(({ history }) => (
         render={Profile}
         permissions={[RolesEnum.ADMIN]}
       />
-      <Route exact={true} path={ROUTES.LOGIN} render={Login} />
       <PrivateRoute exact={true} path={ROUTES.STUDENTS} render={Students} />
       <PrivateRoute exact={true} path={ROUTES.TEACHERS} render={Teachers} />
+      <PrivateRoute exact={true} path={ROUTES.SUBJECTS} render={Subjects} />
       <Route exact={true} path={ROUTES.NOT_FOUND} render={PageNotFound} />
     </Switch>
   </ConnectedRouter>

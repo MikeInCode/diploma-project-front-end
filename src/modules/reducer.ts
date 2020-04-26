@@ -7,6 +7,7 @@ import { reducer as teachers } from './teachers'
 import { reducer as drawer } from './drawer'
 import { reducer as university } from './university'
 import { reducer as schedule } from './schedule'
+import { reducer as subjects } from './subjects'
 import { connectRouter } from 'connected-react-router'
 import { history } from '../router/history'
 
@@ -20,5 +21,6 @@ export const rootReducer = combineReducers<IRootReducer>({
   teachers,
   drawer,
   university,
-  schedule
+  schedule,
+  subjects
 })

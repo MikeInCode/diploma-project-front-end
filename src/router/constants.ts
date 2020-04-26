@@ -7,5 +7,6 @@ export const ROUTES = {
   STUDENTS: '/students/:groupId',
   STUDENTS_LINK: (groupId: string) => `/students/${groupId}`,
   TEACHERS: '/teachers',
+  SUBJECTS: '/subjects',
   NOT_FOUND: '/*'
 }

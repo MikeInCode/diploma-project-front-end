@@ -6,14 +6,14 @@ schema {
 }
 
 type AcademicBaseUnit {
-    id: String!
+    id: ID!
     name: String!
     parentId: String
 }
 
 type AcademicExtendedUnit {
     code: String!
-    id: String!
+    id: ID!
     name: String!
     parentId: String
 }
@@ -31,29 +31,59 @@ type AuthenticatedUser {
 }
 
 type Department {
-    id: String!
+    id: ID!
     institute: UserAcademicBaseUnit!
     name: String!
 }
 
+type Evaluation {
+    id: ID!
+    marks: [EvaluationMark!]!
+    scheduledSubject: EvaluationScheduledSubject!
+    student: EvaluationStudent!
+}
+
+type EvaluationLesson {
+    id: ID!
+    startTime: String!
+}
+
+type EvaluationMark {
+    id: ID!
+    lesson: EvaluationLesson!
+    notes: String
+    value: MarkValueEnum!
+}
+
+type EvaluationScheduledSubject {
+    id: ID!
+    subject: Subject!
+}
+
+type EvaluationStudent {
+    firstName: String!
+    lastName: String!
+    patronymicName: String!
+}
+
 type Group {
     course: CourseEnum!
-    id: String!
+    id: ID!
     name: String!
     speciality: Speciality!
 }
 
 type Lesson {
     endTime: String!
-    id: String!
+    id: ID!
     room: String!
     scheduledSubject: LessonScheduledSubject!
     startTime: String!
 }
 
 type LessonScheduledSubject {
-    group: UserAcademicBaseUnit!
-    id: String!
+    groups: [UserAcademicBaseUnit!]!
+    id: ID!
     subject: Subject!
     teacher: LessonTeacher!
 }
@@ -61,13 +91,15 @@ type LessonScheduledSubject {
 type LessonTeacher {
     department: Department!
     firstName: String!
-    id: String!
+    id: ID!
     lastName: String!
     patronymicName: String!
 }
 
 type Mutation {
     login(input: LoginInput!): AuthenticatedUser!
+    updateCreateMark(markData: MarkUpdateInput!, markId: ID): EvaluationMark!
+    updateEvaluation(evaluationId: ID, input: [EvaluationUpdateInput]!): Evaluation!
     updateProfile(input: UpdateProfileInput!): User!
     updateUser(id: ID!, input: UpdateUserInput!): User!
 }
@@ -77,14 +109,17 @@ type Query {
     groups: [Group!]!
     profile(id: ID): User!
     schedule: [Lesson!]!
-    students(groupId: String): [Student!]!
+    studentMarks(studentId: ID, subjectId: ID): [Evaluation!]!
+    studentSubjects: [StudentSubject!]!
+    students(groupId: ID): [Student!]!
     teachers: [Teacher!]!
+    teachersSubjects: [TeachersSubject!]!
 }
 
 type Speciality {
     code: String!
     department: Department!
-    id: String!
+    id: ID!
     name: String!
 }
 
@@ -97,6 +132,12 @@ type Student {
     lastName: String!
     patronymicName: String!
     phone: String
+}
+
+type StudentSubject {
+    evaluation: Evaluation
+    subject: Subject!
+    teacher: LessonTeacher!
 }
 
 type Subject {
@@ -124,6 +165,18 @@ type TeacherScheduledSubject {
     subject: Subject!
 }
 
+type TeachersSubject {
+    groups: [TeachersSubjectGroup!]!
+    subject: Subject!
+}
+
+type TeachersSubjectGroup {
+    course: CourseEnum
+    id: ID!
+    name: String!
+    students: [Student!]!
+}
+
 type User {
     course: CourseEnum
     department: UserAcademicBaseUnit
@@ -142,13 +195,13 @@ type User {
 }
 
 type UserAcademicBaseUnit {
-    id: String!
+    id: ID!
     name: String!
 }
 
 type UserAcademicExtendedUnit {
     code: String!
-    id: String!
+    id: ID!
     name: String!
 }
 
@@ -159,6 +212,17 @@ enum CourseEnum {
     SIX
     THREE
     TWO
+}
+
+enum MarkValueEnum {
+    EMPTY
+    FIVE
+    FOUR
+    FOUR_AND_A_HALF
+    THREE
+    THREE_AND_A_HALF
+    TWO
+    TWO_AND_A_HALF
 }
 
 enum RolesEnum {
@@ -179,9 +243,21 @@ enum SubjectTypeEnum {
     TUTORIALS
 }
 
+input EvaluationUpdateInput {
+    id: ID!
+    value: MarkValueEnum!
+}
+
 input LoginInput {
     password: String!
     username: String!
+}
+
+input MarkUpdateInput {
+    evaluationId: ID
+    lessonId: ID
+    notes: String
+    value: MarkValueEnum!
 }
 
 input UpdateProfileInput {

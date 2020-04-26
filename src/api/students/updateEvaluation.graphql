@@ -1,0 +1,29 @@
+mutation UpdateEvaluation(
+  $evaluationId: ID!
+  $input: [EvaluationUpdateInput!]!
+) {
+  updateEvaluation(evaluationId: $evaluationId, input: $input) {
+    id
+    student {
+      lastName
+      firstName
+      patronymicName
+    }
+    scheduledSubject {
+      subject {
+        id
+        name
+        subjectType
+      }
+    }
+    marks {
+      id
+      value
+      notes
+      lesson {
+        id
+        startTime
+      }
+    }
+  }
+}

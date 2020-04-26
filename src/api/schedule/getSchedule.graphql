@@ -13,10 +13,6 @@ query GetSchedule {
         subjectCode
         subjectType
       }
-      group {
-        id
-        name
-      }
       teacher {
         id
         lastName

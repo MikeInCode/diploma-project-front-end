@@ -1,2 +1,5 @@
-export const getUserInitials = (firstName: string, lastName: string) =>
-  `${firstName[0]}${lastName[0]}`
+export const getUserInitials = (
+  firstName: string,
+  lastName: string,
+  endSymbol = ''
+) => `${firstName[0]}${endSymbol}${lastName[0]}${endSymbol}`

@@ -12,22 +12,17 @@ export const useToolbarClasses = makeStyles(
 export const useHeaderStyles = makeStyles(
   {
     navigationContainer: {
-      display: 'flex',
-      '& > *': {
-        marginRight: 10
-      }
+      display: 'flex'
     },
     profileContainer: {
       display: 'flex',
-      alignItems: 'center',
-      '& > *': {
-        marginLeft: 10
-      }
+      alignItems: 'center'
     },
     credentialsWrapper: {
       display: 'flex',
       flexDirection: 'column',
-      alignItems: 'flex-end'
+      alignItems: 'flex-end',
+      marginRight: 15
     }
   },
   { name: 'HeaderStyles' }

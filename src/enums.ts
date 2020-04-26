@@ -1,3 +1,4 @@
 export enum DrawerEnum {
-  PROFILE_DRAWER
+  PROFILE = 'PROFILE',
+  ASSESSMENT = 'ASSESSMENT'
 }

@@ -12,18 +12,20 @@ import {
 import { ITableProps } from './types'
 import { useTableStyles } from './styles'
 import emptyState from 'assets/empty-state.png'
+import clsx from 'clsx'
 
 const TableComponent = <T extends any>({
   header,
   row,
   data,
   paginationProps,
-  toolbar
+  toolbar,
+  paperClassName
 }: ITableProps<T>) => {
   const styles = useTableStyles({})
 
   return (
-    <Paper className={styles.paper}>
+    <Paper className={clsx(paperClassName, styles.paper)}>
       {toolbar && (
         <TableRow component="div">
           <TableCell component="div" className={styles.toolbar}>

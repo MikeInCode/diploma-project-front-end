@@ -4,6 +4,7 @@ import { PageWrapper } from 'common/pageWrapper'
 import { ProfileForm } from 'components/forms/profileForm'
 import { IProfileFormValues } from 'components/forms/profileForm/types'
 import { IRootReducer } from 'modules/types'
+import { getAcademicUnitsAction } from 'modules/university'
 import {
   getProfileAction,
   updateProfileAction,
@@ -11,7 +12,6 @@ import {
 } from 'modules/profile'
 import { useMount } from 'react-use'
 import { useParams } from 'react-router-dom'
-import { getAcademicUnitsAction } from '../../modules/university'
 
 const mapState = ({
   profile: { user, isLoading, isProfileUpdating },

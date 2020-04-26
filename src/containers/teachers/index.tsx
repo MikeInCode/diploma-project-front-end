@@ -1,56 +1,24 @@
 import React from 'react'
 import { PageWrapper } from 'common/pageWrapper'
-import { Table } from 'components/table'
 import { IRootReducer } from 'modules/types'
-import { clearTeachersAction, getTeachersAction } from 'modules/teachers'
+import { getTeachersAction } from 'modules/teachers'
 import { openDrawerAction } from 'modules/drawer'
 import { shallowEqual, useDispatch, useSelector } from 'react-redux'
-import { header, row } from './shema'
-import { DrawerEnum } from '../../enums'
+import { DrawerEnum } from 'enums'
 import { useTranslation } from 'react-i18next'
-import { GetTeachers_teachers } from '../../graphQLTypes'
-import { useDebounce, useMount, useUnmount, useUpdateEffect } from 'react-use'
-import { Input } from '@material-ui/core'
+import { useMount } from 'react-use'
+import MaterialTable from 'material-table'
+import { TABLE_HEIGHT } from 'appConstants'
 
-const mapState = ({ teachers: { isLoaded, teachers } }: IRootReducer) => ({
-  isLoaded,
+const mapState = ({ teachers: { isLoading, teachers } }: IRootReducer) => ({
+  isLoading,
   teachers
 })
 
 const Teachers = React.memo(() => {
   const { t } = useTranslation()
 
-  const { isLoaded, teachers } = useSelector(mapState, shallowEqual)
-
-  const [teachersList, setTeachersList] = React.useState<
-    GetTeachers_teachers[]
-  >([])
-
-  useUpdateEffect(() => {
-    setTeachersList(teachers)
-  }, [teachers])
-
-  const [searchText, setSearchText] = React.useState('')
-
-  const handleTextChange = React.useCallback(e => {
-    setSearchText(e.target.value)
-  }, [])
-
-  useDebounce(
-    () => {
-      if (searchText.length > 2 || searchText.length === 0) {
-        setTeachersList(
-          teachers.filter(teacher =>
-            `${teacher.lastName.toLowerCase()} ${teacher.firstName.toLowerCase()} ${teacher.patronymicName.toLowerCase()}`.includes(
-              searchText.toLowerCase()
-            )
-          )
-        )
-      }
-    },
-    800,
-    [searchText]
-  )
+  const { isLoading, teachers } = useSelector(mapState, shallowEqual)
 
   const dispatch = useDispatch()
 
@@ -58,41 +26,72 @@ const Teachers = React.memo(() => {
     dispatch(getTeachersAction.started())
   })
 
-  useUnmount(() => {
-    dispatch(clearTeachersAction())
-  })
-
   const handleClickProfile = React.useCallback(
-    (teacher: GetTeachers_teachers) => () => {
+    (event, profile) => {
       dispatch(
         openDrawerAction({
-          type: DrawerEnum.PROFILE_DRAWER,
-          data: { profile: teacher }
+          type: DrawerEnum.PROFILE,
+          data: { profile }
         })
       )
     },
     [dispatch]
   )
 
-  const rowCells = React.useCallback(
-    (teacher: GetTeachers_teachers) => row(t, teacher, handleClickProfile),
-    [handleClickProfile, t]
-  )
-
   return (
-    <PageWrapper isLoading={!isLoaded}>
-      <Table<GetTeachers_teachers>
-        data={teachersList}
-        header={header(t)}
-        row={rowCells}
-        toolbar={
-          <Input
-            placeholder={t('tableSearchLabel')}
-            value={searchText}
-            onChange={handleTextChange}
-            style={{ width: 300 }}
-          />
-        }
+    <PageWrapper isLoading={isLoading}>
+      <MaterialTable
+        columns={[
+          {
+            field: 'lastName',
+            title: t('lastNameLabel'),
+            defaultSort: 'asc'
+          },
+          {
+            field: 'firstName',
+            title: t('firstNameLabel')
+          },
+          {
+            field: 'patronymicName',
+            title: t('patronymicNameLabel')
+          },
+          {
+            field: 'department.institute.name',
+            title: t('instituteLabel')
+          },
+          {
+            field: 'department.name',
+            title: t('departmentLabel')
+          }
+        ]}
+        actions={[
+          {
+            icon: 'message',
+            onClick: console.log
+          },
+          {
+            icon: 'account_circle',
+            onClick: handleClickProfile
+          }
+        ]}
+        data={teachers}
+        options={{
+          paging: false,
+          draggable: false,
+          showTitle: false,
+          searchFieldAlignment: 'left',
+          actionsColumnIndex: -1,
+          maxBodyHeight: TABLE_HEIGHT
+        }}
+        localization={{
+          header: {
+            actions: ''
+          },
+          toolbar: {
+            searchTooltip: '',
+            searchPlaceholder: t('tableSearchLabel')
+          }
+        }}
       />
     </PageWrapper>
   )

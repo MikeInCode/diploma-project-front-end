@@ -1,4 +1,4 @@
-query GetStudents($groupId: String) {
+query GetStudents($groupId: ID) {
   students(groupId: $groupId) {
     id
     image

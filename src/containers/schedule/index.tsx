@@ -1,9 +1,9 @@
 import React from 'react'
 import { PageWrapper } from 'common/pageWrapper'
-import { useMount, useUnmount } from 'react-use'
+import { useMount } from 'react-use'
 import { shallowEqual, useDispatch, useSelector } from 'react-redux'
 import { IRootReducer } from 'modules/types'
-import { clearScheduleAction, getScheduleAction } from 'modules/schedule'
+import { getScheduleAction } from 'modules/schedule'
 import { Paper } from '@material-ui/core'
 import {
   Appointments,
@@ -20,28 +20,24 @@ import {
 } from '@devexpress/dx-react-scheduler-material-ui'
 import { Resource, ViewState } from '@devexpress/dx-react-scheduler'
 import { AppointmentContent, AppointmentTooltipContent } from './components'
-import { SubjectTypeEnum } from '../../graphQLTypes'
+import { SubjectTypeEnum } from 'graphQLTypes'
 import { useTranslation } from 'react-i18next'
 import { purple, teal } from '@material-ui/core/colors'
 
-const mapState = ({ schedule: { schedule, isLoaded } }: IRootReducer) => ({
+const mapState = ({ schedule: { schedule, isLoading } }: IRootReducer) => ({
   schedule,
-  isLoaded
+  isLoading
 })
 
 const Schedule = React.memo(() => {
   const { t, i18n } = useTranslation()
 
-  const { schedule, isLoaded } = useSelector(mapState, shallowEqual)
+  const { schedule, isLoading } = useSelector(mapState, shallowEqual)
 
   const dispatch = useDispatch()
 
   useMount(() => {
     dispatch(getScheduleAction.started())
-  })
-
-  useUnmount(() => {
-    dispatch(clearScheduleAction())
   })
 
   const resources: Resource[] = React.useMemo(
@@ -66,13 +62,9 @@ const Schedule = React.memo(() => {
   )
 
   return (
-    <PageWrapper isLoading={!isLoaded}>
+    <PageWrapper isLoading={isLoading}>
       <Paper>
-        <Scheduler
-          data={schedule}
-          height={window.innerHeight - 64 - 100}
-          locale={i18n.language}
-        >
+        <Scheduler data={schedule} locale={i18n.language}>
           <ViewState />
           <WeekView
             displayName={t('weekViewLabel')}

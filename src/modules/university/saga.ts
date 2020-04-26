@@ -2,7 +2,7 @@ import { all, call, put, takeLatest } from 'redux-saga/effects'
 import { ApolloQueryResult } from 'apollo-client'
 import { UniversityService } from 'api/university'
 import { getAcademicUnitsAction, getGroupsAction } from './actions'
-import { GetAcademicUnits, GetGroups } from '../../graphQLTypes'
+import { GetAcademicUnits, GetGroups } from 'graphQLTypes'
 
 function* getAcademicUnitsSaga() {
   try {

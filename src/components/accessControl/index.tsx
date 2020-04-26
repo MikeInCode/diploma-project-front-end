@@ -2,11 +2,12 @@ import React, { PropsWithChildren } from 'react'
 import { IRootReducer } from 'modules/types'
 import { shallowEqual, useSelector } from 'react-redux'
 import { IAccessControlProps } from './types'
+import PageNotFound from 'containers/pageNotFound'
 
 const mapState = ({ auth: { user } }: IRootReducer) => user
 
 export const AccessControl = React.memo<PropsWithChildren<IAccessControlProps>>(
-  ({ permissions, children }) => {
+  ({ permissions, children, renderPageNotFound }) => {
     const user = useSelector(mapState, shallowEqual)
 
     if (
@@ -16,6 +17,6 @@ export const AccessControl = React.memo<PropsWithChildren<IAccessControlProps>>(
       return <>{children}</>
     }
 
-    return null
+    return renderPageNotFound ? <PageNotFound /> : null
   }
 )

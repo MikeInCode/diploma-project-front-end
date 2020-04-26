@@ -1,6 +1,6 @@
 import { GetTeachers_teachers } from '../../graphQLTypes'
 
 export interface ITeachersState {
-  isLoaded: boolean
+  isLoading: boolean
   teachers: GetTeachers_teachers[]
 }

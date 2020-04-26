@@ -10,16 +10,16 @@ import {
   Toolbar,
   Typography
 } from '@material-ui/core'
+import { ExitToApp, Notifications } from '@material-ui/icons'
 import { Skeleton } from '@material-ui/lab'
 import { useHeaderStyles, useToolbarClasses } from './styles'
-import { ExitToApp, Notifications } from '@material-ui/icons'
 import { push } from 'connected-react-router'
 import { ROUTES } from 'router/constants'
 import { Avatar } from 'common/avatar'
 import { useTranslation } from 'react-i18next'
 import { StudentGroupsMenu } from './components/studentGroupsMenu'
 import { AccessControl } from 'components/accessControl'
-import { RolesEnum } from '../../graphQLTypes'
+import { RolesEnum } from 'graphQLTypes'
 
 const mapState = ({ auth: { isAuthenticated, user } }: IRootReducer) => ({
   isAuthenticated,
@@ -44,6 +44,11 @@ const HeaderComponent = React.memo(() => {
 
   const handleTimetableClick = React.useCallback(
     () => dispatch(push(ROUTES.HOME)),
+    [dispatch]
+  )
+
+  const handleSubjectsClick = React.useCallback(
+    () => dispatch(push(ROUTES.SUBJECTS)),
     [dispatch]
   )
 
@@ -75,7 +80,7 @@ const HeaderComponent = React.memo(() => {
           <Button onClick={handleTimetableClick} color="inherit">
             {t('timetableLabel')}
           </Button>
-          <Button color="inherit">{t('studyingLabel')}</Button>
+          <Button onClick={handleSubjectsClick} color="inherit">{t('subjectsLabel')}</Button>
           <AccessControl permissions={[RolesEnum.ADMIN, RolesEnum.TEACHER]}>
             <StudentGroupsMenu />
           </AccessControl>
