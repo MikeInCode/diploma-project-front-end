@@ -10,14 +10,19 @@ import {
   Toolbar,
   Typography
 } from '@material-ui/core'
-import { ExitToApp, Notifications } from '@material-ui/icons'
+import { ExitToApp } from '@material-ui/icons'
 import { Skeleton } from '@material-ui/lab'
 import { useHeaderStyles, useToolbarClasses } from './styles'
 import { push } from 'connected-react-router'
 import { ROUTES } from 'router/constants'
 import { Avatar } from 'common/avatar'
 import { useTranslation } from 'react-i18next'
-import { LanguageMenu, StudentGroupsMenu, ThemeButton } from './components'
+import {
+  LanguageMenu,
+  NotificationsButton,
+  StudentGroupsMenu,
+  ThemeButton
+} from './components'
 import { AccessControl } from 'components/accessControl'
 import { RolesEnum } from 'graphQLTypes'
 
@@ -84,9 +89,11 @@ const HeaderComponent = React.memo(() => {
           <Button onClick={handleTimetableClick} color="inherit">
             {t('timetableLabel')}
           </Button>
-          <Button onClick={handleSubjectsClick} color="inherit">
-            {t('subjectsLabel')}
-          </Button>
+          <AccessControl permissions={[RolesEnum.STUDENT]}>
+            <Button onClick={handleSubjectsClick} color="inherit">
+              {t('subjectsLabel')}
+            </Button>
+          </AccessControl>
           <AccessControl permissions={[RolesEnum.ADMIN, RolesEnum.TEACHER]}>
             <StudentGroupsMenu />
           </AccessControl>
@@ -94,15 +101,13 @@ const HeaderComponent = React.memo(() => {
             {t('teachersLabel')}
           </Button>
           <Button onClick={handleChatClick} color="inherit">
-            {t('messagesLabel')}
+            {t('chatLabel')}
           </Button>
         </div>
         <div className={styles.profileContainer}>
           <LanguageMenu />
           <ThemeButton />
-          <IconButton color="inherit">
-            <Notifications />
-          </IconButton>
+          <NotificationsButton />
           <div className={styles.credentialsWrapper}>
             {showSkeleton ? (
               <Skeleton variant="text" width={150} />

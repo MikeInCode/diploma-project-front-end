@@ -1,5 +1,5 @@
 import { makeStyles } from '@material-ui/core'
-import { Color } from '../../theme'
+import { grey } from '@material-ui/core/colors'
 
 export const useLoginPageStyles = makeStyles(
   {
@@ -23,7 +23,7 @@ export const useLoginPageStyles = makeStyles(
       position: 'absolute',
       width: '100%',
       height: '100%',
-      background: Color.Black,
+      background: grey['900'],
       opacity: 0.5
     },
     background: {

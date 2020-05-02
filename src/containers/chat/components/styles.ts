@@ -90,6 +90,7 @@ export const useMessageStyles = makeStyles<Theme, { isIncoming: boolean }>(
       display: 'flex'
     },
     message: {
+      wordBreak: 'break-all',
       marginLeft: 16,
       padding: 10,
       borderRadius: 15,

@@ -31,9 +31,19 @@ export const AppRouter = React.memo<{ history }>(({ history }) => (
         render={Profile}
         permissions={[RolesEnum.ADMIN]}
       />
-      <PrivateRoute exact={true} path={ROUTES.STUDENTS} render={Students} />
+      <PrivateRoute
+        exact={true}
+        path={ROUTES.STUDENTS}
+        render={Students}
+        permissions={[RolesEnum.ADMIN, RolesEnum.TEACHER]}
+      />
       <PrivateRoute exact={true} path={ROUTES.TEACHERS} render={Teachers} />
-      <PrivateRoute exact={true} path={ROUTES.SUBJECTS} render={Subjects} />
+      <PrivateRoute
+        exact={true}
+        path={ROUTES.SUBJECTS}
+        render={Subjects}
+        permissions={[RolesEnum.STUDENT]}
+      />
       <PrivateRoute exact={true} path={ROUTES.CHAT} render={Chat} />
       <Route exact={true} path={ROUTES.NOT_FOUND} render={PageNotFound} />
     </Switch>

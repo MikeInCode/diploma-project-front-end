@@ -9,5 +9,5 @@ i18n
   .init({
     resources: I18NEXT_RESOURCES,
     fallbackLng: LANGUAGES.UK,
-    debug: true
+    debug: true,
   })
