@@ -1,0 +1,3 @@
+mutation StartChat($interlocutorId: ID!) {
+  startChat(interlocutorId: $interlocutorId)
+}
