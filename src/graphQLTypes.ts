@@ -34,6 +34,7 @@ export interface Login_login_user_group {
 
 export interface Login_login_user {
   __typename: "User";
+  id: string;
   image: string | null;
   lastName: string;
   firstName: string;
@@ -61,6 +62,128 @@ export interface Login {
 
 export interface LoginVariables {
   input: LoginInput;
+}
+
+/* tslint:disable */
+/* eslint-disable */
+// @generated
+// This file was automatically generated and should not be edited.
+
+// ====================================================
+// GraphQL query operation: GetChats
+// ====================================================
+
+export interface GetChats_chats_interlocutor {
+  __typename: "ChatInterlocutor";
+  id: string;
+  image: string | null;
+  lastName: string;
+  firstName: string;
+}
+
+export interface GetChats_chats_lastMessage {
+  __typename: "Message";
+  id: string;
+  text: string;
+  date: string;
+  isRead: boolean;
+}
+
+export interface GetChats_chats {
+  __typename: "Chat";
+  id: string;
+  interlocutor: GetChats_chats_interlocutor;
+  lastMessage: GetChats_chats_lastMessage | null;
+  unreadCount: number;
+}
+
+export interface GetChats {
+  chats: GetChats_chats[];
+}
+
+/* tslint:disable */
+/* eslint-disable */
+// @generated
+// This file was automatically generated and should not be edited.
+
+// ====================================================
+// GraphQL query operation: GetMessages
+// ====================================================
+
+export interface GetMessages_messages_sender {
+  __typename: "ChatInterlocutor";
+  id: string;
+  image: string | null;
+  firstName: string;
+  lastName: string;
+}
+
+export interface GetMessages_messages {
+  __typename: "Message";
+  id: string;
+  text: string;
+  date: string;
+  isRead: boolean;
+  sender: GetMessages_messages_sender;
+}
+
+export interface GetMessages {
+  messages: GetMessages_messages[];
+}
+
+export interface GetMessagesVariables {
+  chatId: string;
+}
+
+/* tslint:disable */
+/* eslint-disable */
+// @generated
+// This file was automatically generated and should not be edited.
+
+// ====================================================
+// GraphQL mutation operation: SendMessage
+// ====================================================
+
+export interface SendMessage_sendMessage_sender {
+  __typename: "ChatInterlocutor";
+  id: string;
+  image: string | null;
+  firstName: string;
+  lastName: string;
+}
+
+export interface SendMessage_sendMessage {
+  __typename: "Message";
+  id: string;
+  text: string;
+  date: string;
+  isRead: boolean;
+  sender: SendMessage_sendMessage_sender;
+}
+
+export interface SendMessage {
+  sendMessage: SendMessage_sendMessage;
+}
+
+export interface SendMessageVariables {
+  input: MessageInput;
+}
+
+/* tslint:disable */
+/* eslint-disable */
+// @generated
+// This file was automatically generated and should not be edited.
+
+// ====================================================
+// GraphQL mutation operation: StartChat
+// ====================================================
+
+export interface StartChat {
+  startChat: string;
+}
+
+export interface StartChatVariables {
+  interlocutorId: string;
 }
 
 /* tslint:disable */
@@ -99,6 +222,7 @@ export interface GetProfile_profile_group {
 
 export interface GetProfile_profile {
   __typename: "User";
+  id: string;
   image: string | null;
   lastName: string;
   firstName: string;
@@ -158,6 +282,7 @@ export interface UpdateProfile_updateProfile_group {
 
 export interface UpdateProfile_updateProfile {
   __typename: "User";
+  id: string;
   image: string | null;
   lastName: string;
   firstName: string;
@@ -217,6 +342,7 @@ export interface UpdateUser_updateUser_group {
 
 export interface UpdateUser_updateUser {
   __typename: "User";
+  id: string;
   image: string | null;
   lastName: string;
   firstName: string;
@@ -712,6 +838,11 @@ export interface EvaluationUpdateInput {
 export interface LoginInput {
   username: string;
   password: string;
+}
+
+export interface MessageInput {
+  chatId: string;
+  text: string;
 }
 
 export interface UpdateProfileInput {

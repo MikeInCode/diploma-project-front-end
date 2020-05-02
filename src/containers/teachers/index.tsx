@@ -3,6 +3,7 @@ import { PageWrapper } from 'common/pageWrapper'
 import { IRootReducer } from 'modules/types'
 import { getTeachersAction } from 'modules/teachers'
 import { openDrawerAction } from 'modules/drawer'
+import { onStartChatAction } from 'modules/chat'
 import { shallowEqual, useDispatch, useSelector } from 'react-redux'
 import { DrawerEnum } from 'enums'
 import { useTranslation } from 'react-i18next'
@@ -25,6 +26,13 @@ const Teachers = React.memo(() => {
   useMount(() => {
     dispatch(getTeachersAction.started())
   })
+
+  const handleClickChat = React.useCallback(
+    (event, profile) => {
+      dispatch(onStartChatAction.started({ interlocutorId: profile.id }))
+    },
+    [dispatch]
+  )
 
   const handleClickProfile = React.useCallback(
     (event, profile) => {
@@ -67,7 +75,7 @@ const Teachers = React.memo(() => {
         actions={[
           {
             icon: 'message',
-            onClick: console.log
+            onClick: handleClickChat
           },
           {
             icon: 'account_circle',

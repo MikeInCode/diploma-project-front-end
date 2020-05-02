@@ -34,6 +34,10 @@ export const Subjects = props => (
   <LazyLoader lazy={lazy(() => import('../containers/subjects'))} {...props} />
 )
 
+export const Chat = props => (
+  <LazyLoader lazy={lazy(() => import('../containers/chat'))} {...props} />
+)
+
 export const PageNotFound = props => (
   <LazyLoader
     lazy={lazy(() => import('../containers/pageNotFound'))}

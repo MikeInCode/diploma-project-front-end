@@ -2,6 +2,7 @@ import React from 'react'
 import { ConnectedRouter } from 'connected-react-router'
 import { Route, Switch } from 'react-router-dom'
 import {
+  Chat,
   Home,
   Login,
   PageNotFound,
@@ -33,6 +34,7 @@ export const AppRouter = React.memo<{ history }>(({ history }) => (
       <PrivateRoute exact={true} path={ROUTES.STUDENTS} render={Students} />
       <PrivateRoute exact={true} path={ROUTES.TEACHERS} render={Teachers} />
       <PrivateRoute exact={true} path={ROUTES.SUBJECTS} render={Subjects} />
+      <PrivateRoute exact={true} path={ROUTES.CHAT} render={Chat} />
       <Route exact={true} path={ROUTES.NOT_FOUND} render={PageNotFound} />
     </Switch>
   </ConnectedRouter>

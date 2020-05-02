@@ -2,13 +2,13 @@ import React from 'react'
 import { Button, MenuItem, MenuList } from '@material-ui/core'
 import { useStudentGroupsMenuStyles } from './styles'
 import { useTranslation } from 'react-i18next'
-import { IRootReducer } from '../../../modules/types'
+import { IRootReducer } from 'modules/types'
+import { getGroupsAction } from 'modules/university'
 import { shallowEqual, useDispatch, useSelector } from 'react-redux'
 import { useMount } from 'react-use'
-import { getGroupsAction } from '../../../modules/university'
-import { HoveredMenu } from '../../hoveredMenu'
+import { HoveredMenu } from 'components/hoveredMenu'
 import { push } from 'connected-react-router'
-import { ROUTES } from '../../../router/constants'
+import { ROUTES } from 'router/constants'
 
 const mapState = ({ university: { groups } }: IRootReducer) => ({
   groups

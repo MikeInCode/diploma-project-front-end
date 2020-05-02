@@ -1,4 +1,5 @@
-import { CourseEnum, MarkValueEnum, SubjectTypeEnum } from './graphQLTypes'
+import { CourseEnum, MarkValueEnum, SubjectTypeEnum } from 'graphQLTypes'
+import { LANGUAGES } from 'appConstants'
 
 export const courseDictionary = {
   [CourseEnum.ONE]: '1',
@@ -23,4 +24,10 @@ export const markDictionary = {
   [MarkValueEnum.FOUR]: '4',
   [MarkValueEnum.FOUR_AND_A_HALF]: '4.5',
   [MarkValueEnum.FIVE]: '5'
+}
+
+export const languageDictionary = {
+  [LANGUAGES.UK]: 'Українська',
+  [LANGUAGES.RU]: 'Русский',
+  [LANGUAGES.EN]: 'English'
 }

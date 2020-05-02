@@ -17,7 +17,7 @@ import { push } from 'connected-react-router'
 import { ROUTES } from 'router/constants'
 import { Avatar } from 'common/avatar'
 import { useTranslation } from 'react-i18next'
-import { StudentGroupsMenu } from './components/studentGroupsMenu'
+import { LanguageMenu, StudentGroupsMenu, ThemeButton } from './components'
 import { AccessControl } from 'components/accessControl'
 import { RolesEnum } from 'graphQLTypes'
 
@@ -57,6 +57,10 @@ const HeaderComponent = React.memo(() => {
     [dispatch]
   )
 
+  const handleChatClick = React.useCallback(() => dispatch(push(ROUTES.CHAT)), [
+    dispatch
+  ])
+
   const handleAvatarClick = React.useCallback(
     () => dispatch(push(ROUTES.PROFILE)),
     [dispatch]
@@ -80,16 +84,22 @@ const HeaderComponent = React.memo(() => {
           <Button onClick={handleTimetableClick} color="inherit">
             {t('timetableLabel')}
           </Button>
-          <Button onClick={handleSubjectsClick} color="inherit">{t('subjectsLabel')}</Button>
+          <Button onClick={handleSubjectsClick} color="inherit">
+            {t('subjectsLabel')}
+          </Button>
           <AccessControl permissions={[RolesEnum.ADMIN, RolesEnum.TEACHER]}>
             <StudentGroupsMenu />
           </AccessControl>
           <Button onClick={handleTeachersClick} color="inherit">
             {t('teachersLabel')}
           </Button>
-          <Button color="inherit">{t('messagesLabel')}</Button>
+          <Button onClick={handleChatClick} color="inherit">
+            {t('messagesLabel')}
+          </Button>
         </div>
         <div className={styles.profileContainer}>
+          <LanguageMenu />
+          <ThemeButton />
           <IconButton color="inherit">
             <Notifications />
           </IconButton>

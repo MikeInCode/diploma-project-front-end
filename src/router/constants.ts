@@ -8,5 +8,6 @@ export const ROUTES = {
   STUDENTS_LINK: (groupId: string) => `/students/${groupId}`,
   TEACHERS: '/teachers',
   SUBJECTS: '/subjects',
+  CHAT: '/chat',
   NOT_FOUND: '/*'
 }

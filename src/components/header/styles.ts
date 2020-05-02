@@ -22,7 +22,8 @@ export const useHeaderStyles = makeStyles(
       display: 'flex',
       flexDirection: 'column',
       alignItems: 'flex-end',
-      marginRight: 15
+      marginRight: 15,
+      marginLeft: 10
     }
   },
   { name: 'HeaderStyles' }

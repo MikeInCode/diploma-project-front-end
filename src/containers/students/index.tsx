@@ -2,6 +2,7 @@ import React from 'react'
 import { IRootReducer } from 'modules/types'
 import { getStudentsAction } from 'modules/students'
 import { openDrawerAction } from 'modules/drawer'
+import { onStartChatAction } from 'modules/chat'
 import { PageWrapper } from 'common/pageWrapper'
 import { Avatar } from 'common/avatar'
 import { shallowEqual, useDispatch, useSelector } from 'react-redux'
@@ -47,6 +48,13 @@ const Students = React.memo(() => {
   useMount(() => {
     dispatch(getStudentsAction.started({ groupId }))
   })
+
+  const handleClickChat = React.useCallback(
+    (event, profile) => {
+      dispatch(onStartChatAction.started({ interlocutorId: profile.id }))
+    },
+    [dispatch]
+  )
 
   const handleClickProfile = React.useCallback(
     (event, profile) => {
@@ -135,7 +143,7 @@ const Students = React.memo(() => {
           },
           {
             icon: 'message',
-            onClick: console.log
+            onClick: handleClickChat
           },
           {
             icon: 'account_circle',
