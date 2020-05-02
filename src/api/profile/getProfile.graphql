@@ -1,5 +1,6 @@
 query GetProfile($id: ID) {
   profile(id: $id) {
+    id
     image
     lastName
     firstName

@@ -19,7 +19,7 @@ import {
   WeekView
 } from '@devexpress/dx-react-scheduler-material-ui'
 import { Resource, ViewState } from '@devexpress/dx-react-scheduler'
-import { AppointmentContent, AppointmentTooltipContent } from './components'
+import { AppointmentTooltipContent } from './components'
 import { SubjectTypeEnum } from 'graphQLTypes'
 import { useTranslation } from 'react-i18next'
 import { purple, teal } from '@material-ui/core/colors'
@@ -81,7 +81,7 @@ const Schedule = React.memo(() => {
             }}
           />
           <ViewSwitcher />
-          <Appointments appointmentContentComponent={AppointmentContent} />
+          <Appointments />
           <AppointmentTooltip contentComponent={AppointmentTooltipContent} />
           <Resources data={resources} />
           <CurrentTimeIndicator

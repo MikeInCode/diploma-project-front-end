@@ -1,5 +1,6 @@
 mutation UpdateProfile($input: UpdateProfileInput!) {
   updateProfile(input: $input) {
+    id
     image
     lastName
     firstName

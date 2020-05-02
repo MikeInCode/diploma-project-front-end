@@ -1,5 +1,6 @@
 mutation UpdateUser($id: ID!, $input: UpdateUserInput!) {
   updateUser(id: $id, input: $input) {
+    id
     image
     lastName
     firstName

@@ -7,6 +7,8 @@ import { IDrawerState } from './drawer'
 import { IUniversityState } from './university'
 import { IScheduleState } from './schedule'
 import { ISubjectsState } from './subjects'
+import { IThemeState } from './theme'
+import { IChatState } from './chat'
 
 export interface IRootReducer {
   router: RouterState
@@ -18,4 +20,6 @@ export interface IRootReducer {
   university: IUniversityState
   schedule: IScheduleState
   subjects: ISubjectsState
+  chat: IChatState
+  theme: IThemeState
 }

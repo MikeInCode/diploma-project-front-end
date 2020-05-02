@@ -1,5 +1,11 @@
 import React from 'react'
-import { createMuiTheme, CssBaseline, withStyles } from '@material-ui/core'
+import {
+  createMuiTheme,
+  CssBaseline,
+  PaletteType,
+  withStyles
+} from '@material-ui/core'
+import { green } from '@material-ui/core/colors'
 
 export const Color = {
   Grey: '#aab7bd', // input border
@@ -40,12 +46,19 @@ export const GlobalCss = withStyles({
   }
 })(() => <CssBaseline />)
 
-export const theme = createMuiTheme({
-  overrides: {
-    MuiTypography: {
-      root: {
-        lineHeight: 'normal !important'
+export const getMuiTheme = (type: PaletteType) =>
+  createMuiTheme({
+    palette: {
+      primary: {
+        main: green['600']
+      },
+      type: type === 'dark' ? 'dark' : 'light'
+    },
+    overrides: {
+      MuiTypography: {
+        root: {
+          lineHeight: 'normal !important'
+        }
       }
     }
-  }
-})
+  })

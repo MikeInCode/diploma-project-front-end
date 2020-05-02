@@ -29,6 +29,8 @@ function* getGroupsSaga() {
 }
 
 export function* saga() {
-  yield all([takeLatest(getAcademicUnitsAction.started, getAcademicUnitsSaga)])
-  yield all([takeLatest(getGroupsAction.started, getGroupsSaga)])
+  yield all([
+    takeLatest(getAcademicUnitsAction.started, getAcademicUnitsSaga),
+    takeLatest(getGroupsAction.started, getGroupsSaga)
+  ])
 }

@@ -6,6 +6,7 @@ import { saga as teachers } from './teachers'
 import { saga as university } from './university'
 import { saga as schedule } from './schedule'
 import { saga as subjects } from './subjects'
+import { saga as chat } from './chat'
 
 export default function* rootSaga() {
   yield all([
@@ -15,6 +16,7 @@ export default function* rootSaga() {
     teachers(),
     university(),
     schedule(),
-    subjects()
+    subjects(),
+    chat()
   ])
 }

@@ -30,6 +30,20 @@ type AuthenticatedUser {
     user: User!
 }
 
+type Chat {
+    id: ID!
+    interlocutor: ChatInterlocutor!
+    lastMessage: Message
+    unreadCount: Int!
+}
+
+type ChatInterlocutor {
+    firstName: String!
+    id: ID!
+    image: String
+    lastName: String!
+}
+
 type Department {
     id: ID!
     institute: UserAcademicBaseUnit!
@@ -96,8 +110,18 @@ type LessonTeacher {
     patronymicName: String!
 }
 
+type Message {
+    date: String!
+    id: ID!
+    isRead: Boolean!
+    sender: ChatInterlocutor!
+    text: String!
+}
+
 type Mutation {
     login(input: LoginInput!): AuthenticatedUser!
+    sendMessage(input: MessageInput!): Message!
+    startChat(interlocutorId: ID!): String!
     updateCreateMark(markData: MarkUpdateInput!, markId: ID): EvaluationMark!
     updateEvaluation(evaluationId: ID, input: [EvaluationUpdateInput]!): Evaluation!
     updateProfile(input: UpdateProfileInput!): User!
@@ -106,7 +130,9 @@ type Mutation {
 
 type Query {
     academicUnits: AcademicUnits!
+    chats: [Chat!]!
     groups: [Group!]!
+    messages(chatId: ID!): [Message!]!
     profile(id: ID): User!
     schedule: [Lesson!]!
     studentMarks(studentId: ID, subjectId: ID): [Evaluation!]!
@@ -258,6 +284,11 @@ input MarkUpdateInput {
     lessonId: ID
     notes: String
     value: MarkValueEnum!
+}
+
+input MessageInput {
+    chatId: ID!
+    text: String!
 }
 
 input UpdateProfileInput {
