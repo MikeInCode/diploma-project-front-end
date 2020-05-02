@@ -21,7 +21,7 @@ export const I18NEXT_RESOURCES = {
       studentsLabel: 'Студенти',
       subjectsLabel: 'Предмети',
       teachersLabel: 'Вчителі',
-      messagesLabel: 'Чат',
+      chatLabel: 'Чат',
       firstNameLabel: "Ім'я",
       lastNameLabel: 'Прізвище',
       patronymicNameLabel: 'По батькові',
@@ -46,7 +46,12 @@ export const I18NEXT_RESOURCES = {
       todayLabel: 'Сьогодні',
       studentLabel: 'Студент',
       subjectLabel: 'Предмет',
-      subjectTypeLabel: 'Тип предмета'
+      subjectTypeLabel: 'Тип предмета',
+      unreadMessages_0: 'У Вас {{count}} непрочитане повідомлення від {{user}}',
+      unreadMessages_1:
+        'У Вас {{count}} непрочитаних повідомлення від {{user}}',
+      unreadMessages_2: 'У Вас {{count}} непрочитаних повідомлень від {{user}}',
+      noUnreadMessages: 'Непрочитані повідомлення відстутні'
     }
   },
   [LANGUAGES.RU]: {
@@ -59,7 +64,7 @@ export const I18NEXT_RESOURCES = {
       studentsLabel: 'Студенты',
       subjectsLabel: 'Предметы',
       teachersLabel: 'Преподаватели',
-      messagesLabel: 'Чат',
+      chatLabel: 'Чат',
       firstNameLabel: 'Имя',
       lastNameLabel: 'Фамилия',
       patronymicNameLabel: 'Отчество',
@@ -84,7 +89,11 @@ export const I18NEXT_RESOURCES = {
       todayLabel: 'Сегодня',
       studentLabel: 'Студент',
       subjectLabel: 'Предмет',
-      subjectTypeLabel: 'Тип предмета'
+      subjectTypeLabel: 'Тип предмета',
+      unreadMessages_0: 'У Вас {{count}} непрочитанное сообщение от {{user}}',
+      unreadMessages_1: 'У Вас {{count}} непрочитанных сообщения от {{user}}',
+      unreadMessages_2: 'У Вас {{count}} непрочитанных сообщений от {{user}}',
+      noUnreadMessages: 'Непрочитанные сообщения отсутствуют'
     }
   },
   [LANGUAGES.EN]: {
@@ -97,7 +106,7 @@ export const I18NEXT_RESOURCES = {
       studentsLabel: 'Students',
       subjectsLabel: 'Subjects',
       teachersLabel: 'Teachers',
-      messagesLabel: 'Chat',
+      chatLabel: 'Chat',
       firstNameLabel: 'First name',
       lastNameLabel: 'Last name',
       patronymicNameLabel: 'Patronymic name',
@@ -122,7 +131,10 @@ export const I18NEXT_RESOURCES = {
       todayLabel: 'Today',
       studentLabel: 'Student',
       subjectLabel: 'Subject',
-      subjectTypeLabel: 'Subject type'
+      subjectTypeLabel: 'Subject type',
+      unreadMessages: 'You have {{count}} unread message from {{user}}',
+      unreadMessages_plural: 'You have {{count}} messages from {{user}}',
+      noUnreadMessages: 'Unread messages not found'
     }
   }
 }
