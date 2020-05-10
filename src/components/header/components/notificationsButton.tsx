@@ -93,7 +93,7 @@ export const NotificationsButton = React.memo(() => {
             </MenuItem>
           ))
         ) : (
-          <Box padding="15px 25px">{t('noUnreadMessages')}</Box>
+          <Box padding="15px 25px">{t('noUnreadMessagesLabel')}</Box>
         )}
       </Menu>
     </>

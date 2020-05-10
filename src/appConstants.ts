@@ -51,7 +51,10 @@ export const I18NEXT_RESOURCES = {
       unreadMessages_1:
         'У Вас {{count}} непрочитаних повідомлення від {{user}}',
       unreadMessages_2: 'У Вас {{count}} непрочитаних повідомлень від {{user}}',
-      noUnreadMessages: 'Непрочитані повідомлення відстутні'
+      noUnreadMessagesLabel: 'Непрочитані повідомлення відстутні',
+      invalidCredentialsLabel: 'Некоректні дані',
+      requiredFieldLabel: "Обов'язкове поле",
+      invalidEmailLabel: 'Некоректна електронна пошта'
     }
   },
   [LANGUAGES.RU]: {
@@ -93,7 +96,10 @@ export const I18NEXT_RESOURCES = {
       unreadMessages_0: 'У Вас {{count}} непрочитанное сообщение от {{user}}',
       unreadMessages_1: 'У Вас {{count}} непрочитанных сообщения от {{user}}',
       unreadMessages_2: 'У Вас {{count}} непрочитанных сообщений от {{user}}',
-      noUnreadMessages: 'Непрочитанные сообщения отсутствуют'
+      noUnreadMessagesLabel: 'Непрочитанные сообщения отсутствуют',
+      invalidCredentialsLabel: 'Некорректные данные',
+      requiredFieldLabel: 'Обязательное поле',
+      invalidEmailLabel: 'Некорректная электронная почта'
     }
   },
   [LANGUAGES.EN]: {
@@ -134,7 +140,10 @@ export const I18NEXT_RESOURCES = {
       subjectTypeLabel: 'Subject type',
       unreadMessages: 'You have {{count}} unread message from {{user}}',
       unreadMessages_plural: 'You have {{count}} messages from {{user}}',
-      noUnreadMessages: 'Unread messages not found'
+      noUnreadMessagesLabel: 'Unread messages not found',
+      invalidCredentialsLabel: 'Invalid credentials',
+      requiredFieldLabel: 'Required field',
+      invalidEmailLabel: 'Invalid email'
     }
   }
 }

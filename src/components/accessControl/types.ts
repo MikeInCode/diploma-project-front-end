@@ -1,6 +1,6 @@
 import { RolesEnum } from '../../graphQLTypes'
 
 export interface IAccessControlProps {
-  permissions?: RolesEnum[]
+  permissions: RolesEnum[]
   renderPageNotFound?: boolean
 }

@@ -8,6 +8,5 @@ i18n
   .use(initReactI18next)
   .init({
     resources: I18NEXT_RESOURCES,
-    fallbackLng: LANGUAGES.UK,
-    debug: true,
+    fallbackLng: LANGUAGES.UK
   })

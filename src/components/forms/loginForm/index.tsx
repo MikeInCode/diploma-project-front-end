@@ -17,13 +17,13 @@ export const LoginForm = React.memo<ILoginFormProps>(
     const methods = useForm<ILoginFormValues>({
       mode: 'onChange',
       defaultValues,
-      validationSchema
+      validationSchema: validationSchema(t)
     })
 
     useUpdateEffect(() => {
       if (isInvalidCredentials) {
         Object.keys(methods.getValues()).map(key =>
-          methods.setError(key, 'credentials', 'Invalid credentials')
+          methods.setError(key, 'credentials', t('invalidCredentialsLabel'))
         )
       }
     }, [isInvalidCredentials])

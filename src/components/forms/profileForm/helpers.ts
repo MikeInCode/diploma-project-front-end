@@ -2,6 +2,7 @@ import * as Yup from 'yup'
 import { IProfileFormValues } from './types'
 import { GetProfile_profile, RolesEnum } from '../../../graphQLTypes'
 import { courseDictionary } from '../../../dictionary'
+import { TFunction } from 'i18next'
 
 export const adaptValuesToForm: (
   user: GetProfile_profile
@@ -21,23 +22,23 @@ export const adaptValuesToForm: (
   course: courseDictionary[user?.course]
 })
 
-export const validationSchema = (userRole: RolesEnum) =>
+export const validationSchema = (userRole: RolesEnum, t: TFunction) =>
   Yup.object<Partial<IProfileFormValues>>({
-    lastName: Yup.string().required('Required field'),
-    firstName: Yup.string().required('Required field'),
-    patronymicName: Yup.string().required('Required field'),
-    email: Yup.string().email('Invalid email'),
-    institute: Yup.string().required('Required field'),
+    lastName: Yup.string().required(t('requiredFieldLabel')),
+    firstName: Yup.string().required(t('requiredFieldLabel')),
+    patronymicName: Yup.string().required(t('requiredFieldLabel')),
+    email: Yup.string().email(t('invalidEmailLabel')),
+    institute: Yup.string().required(t('requiredFieldLabel')),
     department:
       userRole === RolesEnum.TEACHER
-        ? Yup.string().required('Required field')
+        ? Yup.string().required(t('requiredFieldLabel'))
         : Yup.string().notRequired(),
     speciality:
       userRole === RolesEnum.STUDENT
-        ? Yup.string().required('Required field')
+        ? Yup.string().required(t('requiredFieldLabel'))
         : Yup.string().notRequired(),
     group:
       userRole === RolesEnum.STUDENT
-        ? Yup.string().required('Required field')
+        ? Yup.string().required(t('requiredFieldLabel'))
         : Yup.string().notRequired()
   })

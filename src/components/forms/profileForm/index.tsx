@@ -37,7 +37,7 @@ export const ProfileForm = React.memo<IProfileFormProps>(
     const methods = useForm<IProfileFormValues>({
       mode: 'onChange',
       defaultValues: adaptValuesToForm(user),
-      validationSchema: validationSchema(user.role)
+      validationSchema: validationSchema(user.role, t)
     })
 
     useUpdateEffect(() => {
@@ -115,6 +115,7 @@ export const ProfileForm = React.memo<IProfileFormProps>(
                 <FormTextField
                   name="lastName"
                   label={t('lastNameLabel')}
+                  required={true}
                   fullWidth={true}
                   disabled={isFieldDisabled}
                 />
@@ -131,6 +132,7 @@ export const ProfileForm = React.memo<IProfileFormProps>(
                 <FormTextField
                   name="firstName"
                   label={t('firstNameLabel')}
+                  required={true}
                   fullWidth={true}
                   disabled={isFieldDisabled}
                 />
@@ -146,6 +148,7 @@ export const ProfileForm = React.memo<IProfileFormProps>(
                 <FormTextField
                   name="patronymicName"
                   label={t('patronymicNameLabel')}
+                  required={true}
                   fullWidth={true}
                   disabled={isFieldDisabled}
                 />
@@ -161,6 +164,7 @@ export const ProfileForm = React.memo<IProfileFormProps>(
                 <FormSelect
                   name="institute"
                   label={t('instituteLabel')}
+                  required={true}
                   fullWidth={true}
                   disabled={isFieldDisabled}
                 >
@@ -172,11 +176,11 @@ export const ProfileForm = React.memo<IProfileFormProps>(
                 </FormSelect>
               </Grid>
               <Grid item={true} xs={6}>
-                <FormTextField
-                  name="telegram"
-                  label={t('telegramLabel')}
-                  fullWidth={true}
-                />
+                {/*<FormTextField*/}
+                {/*  name="telegram"*/}
+                {/*  label={t('telegramLabel')}*/}
+                {/*  fullWidth={true}*/}
+                {/*/>*/}
               </Grid>
               {user.role === RolesEnum.TEACHER && (
                 <>
@@ -184,6 +188,7 @@ export const ProfileForm = React.memo<IProfileFormProps>(
                     <FormSelect
                       name="department"
                       label={t('departmentLabel')}
+                      required={true}
                       fullWidth={true}
                       disabled={isFieldDisabled}
                     >
@@ -203,6 +208,7 @@ export const ProfileForm = React.memo<IProfileFormProps>(
                     <FormSelect
                       name="speciality"
                       label={t('specialityLabel')}
+                      required={true}
                       fullWidth={true}
                       disabled={isFieldDisabled}
                     >
@@ -222,6 +228,7 @@ export const ProfileForm = React.memo<IProfileFormProps>(
                     <FormSelect
                       name="group"
                       label={t('groupLabel')}
+                      required={true}
                       fullWidth={true}
                       disabled={isFieldDisabled}
                     >

@@ -23,8 +23,18 @@ export const AppRouter = React.memo<{ history }>(({ history }) => (
     <Header />
     <Switch>
       <Route exact={true} path={ROUTES.LOGIN} render={Login} />
-      <PrivateRoute exact={true} path={ROUTES.HOME} render={Home} />
-      <PrivateRoute exact={true} path={ROUTES.PROFILE} render={Profile} />
+      <PrivateRoute
+        exact={true}
+        path={ROUTES.HOME}
+        render={Home}
+        permissions={[RolesEnum.ADMIN, RolesEnum.TEACHER, RolesEnum.STUDENT]}
+      />
+      <PrivateRoute
+        exact={true}
+        path={ROUTES.PROFILE}
+        render={Profile}
+        permissions={[RolesEnum.ADMIN, RolesEnum.TEACHER, RolesEnum.STUDENT]}
+      />
       <PrivateRoute
         exact={true}
         path={ROUTES.PROFILE_EDIT}
@@ -37,14 +47,24 @@ export const AppRouter = React.memo<{ history }>(({ history }) => (
         render={Students}
         permissions={[RolesEnum.ADMIN, RolesEnum.TEACHER]}
       />
-      <PrivateRoute exact={true} path={ROUTES.TEACHERS} render={Teachers} />
+      <PrivateRoute
+        exact={true}
+        path={ROUTES.TEACHERS}
+        render={Teachers}
+        permissions={[RolesEnum.ADMIN, RolesEnum.TEACHER, RolesEnum.STUDENT]}
+      />
       <PrivateRoute
         exact={true}
         path={ROUTES.SUBJECTS}
         render={Subjects}
         permissions={[RolesEnum.STUDENT]}
       />
-      <PrivateRoute exact={true} path={ROUTES.CHAT} render={Chat} />
+      <PrivateRoute
+        exact={true}
+        path={ROUTES.CHAT}
+        render={Chat}
+        permissions={[RolesEnum.ADMIN, RolesEnum.TEACHER, RolesEnum.STUDENT]}
+      />
       <Route exact={true} path={ROUTES.NOT_FOUND} render={PageNotFound} />
     </Switch>
   </ConnectedRouter>

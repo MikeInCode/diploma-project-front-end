@@ -11,7 +11,7 @@ const mapState = ({ auth: { isAuthenticated } }: IRootReducer) => ({
 })
 
 export const PrivateRoute = React.memo<
-  RouteProps & { permissions?: RolesEnum[] }
+  RouteProps & { permissions: RolesEnum[] }
 >(({ permissions, ...props }) => {
   const { isAuthenticated } = useSelector(mapState, shallowEqual)
 
