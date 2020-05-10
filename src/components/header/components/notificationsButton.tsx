@@ -3,11 +3,12 @@ import { Badge, Box, IconButton, Menu, MenuItem } from '@material-ui/core'
 import { Notifications } from '@material-ui/icons'
 import { useTranslation } from 'react-i18next'
 import { IRootReducer } from 'modules/types'
-import { getChatsAction, onChangeSelectedChatAction } from 'modules/chat'
+import { getChatsAction, onSelectChatAction } from 'modules/chat'
 import { batch, shallowEqual, useDispatch, useSelector } from 'react-redux'
 import { useMount } from 'react-use'
 import { push } from 'connected-react-router'
 import { ROUTES } from 'router/constants'
+import { useRouteMatch } from 'react-router-dom'
 
 const mapState = ({ chat: { chats } }: IRootReducer) => ({
   chats
@@ -17,6 +18,8 @@ export const NotificationsButton = React.memo(() => {
   const { t } = useTranslation()
 
   const { chats } = useSelector(mapState, shallowEqual)
+
+  const isChatRoute = useRouteMatch(ROUTES.CHAT)
 
   const chatsWithUnreadMessages = React.useMemo(
     () => chats.filter(chat => chat.unreadCount > 0),
@@ -40,23 +43,29 @@ export const NotificationsButton = React.memo(() => {
   })
 
   const handleChatOpen = React.useCallback(
-    (id: string) => () => {
+    (interlocutorId: string) => () => {
       batch(() => {
-        dispatch(onChangeSelectedChatAction({ id }))
-        dispatch(push(ROUTES.CHAT))
+        !isChatRoute && dispatch(push(ROUTES.CHAT))
+        dispatch(onSelectChatAction({ interlocutorId }))
       })
       handleClose()
     },
-    [dispatch]
+    [dispatch, isChatRoute]
+  )
+
+  const badgeCount = React.useMemo(
+    () =>
+      chatsWithUnreadMessages.reduce((acc, val) => acc + val.unreadCount, 0),
+    [chatsWithUnreadMessages]
   )
 
   return (
     <>
-      <Badge badgeContent={chatsWithUnreadMessages.length}>
-        <IconButton color="inherit" onClick={handleOpen}>
+      <IconButton color="inherit" onClick={handleOpen}>
+        <Badge color="secondary" badgeContent={badgeCount}>
           <Notifications />
-        </IconButton>
-      </Badge>
+        </Badge>
+      </IconButton>
       <Menu
         anchorEl={anchorEl}
         open={Boolean(anchorEl)}
@@ -71,9 +80,12 @@ export const NotificationsButton = React.memo(() => {
           horizontal: 'right'
         }}
       >
-        {chatsWithUnreadMessages.length ? (
+        {chatsWithUnreadMessages.length > 0 ? (
           chatsWithUnreadMessages.map(chat => (
-            <MenuItem key={chat.id} onClick={handleChatOpen(chat.id)}>
+            <MenuItem
+              key={chat.id}
+              onClick={handleChatOpen(chat.interlocutor.id)}
+            >
               {t('unreadMessages', {
                 count: chat.unreadCount,
                 user: `${chat.interlocutor.lastName} ${chat.interlocutor.firstName}`

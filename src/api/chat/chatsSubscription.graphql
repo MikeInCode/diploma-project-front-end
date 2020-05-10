@@ -1,0 +1,19 @@
+subscription ChatsSubscription {
+  chats {
+    id
+    interlocutor {
+      id
+      image
+      lastName
+      firstName
+    }
+    lastMessage {
+      id
+      text
+      date
+      isRead
+      text
+    }
+    unreadCount
+  }
+}

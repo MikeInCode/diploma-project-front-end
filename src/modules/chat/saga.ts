@@ -1,25 +1,41 @@
-import { all, call, put, takeLatest } from 'redux-saga/effects'
+import {
+  all,
+  call,
+  put,
+  select,
+  takeEvery,
+  takeLatest
+} from 'redux-saga/effects'
+import { eventChannel } from 'redux-saga'
 import {
   getChatsAction,
   getMessagesAction,
-  onChangeSelectedChatAction,
-  onStartChatAction,
-  sendMessageAction
+  onClearChatAction,
+  onNextChatsAction,
+  onNextMessageAction,
+  onSelectChatAction,
+  readAllMessages,
+  sendMessageAction,
+  subscribeOnChatsAction
 } from './actions'
 import { ChatService } from 'api/chat'
 import { ApolloQueryResult } from 'apollo-client'
 import {
+  ChatsSubscription,
   GetChats,
   GetMessages,
   GetMessagesVariables,
+  MessageSubscription,
+  MessageSubscriptionVariables,
+  ReadAllMessages,
+  ReadAllMessagesVariables,
   SendMessage,
-  SendMessageVariables,
-  StartChat,
-  StartChatVariables
+  SendMessageVariables
 } from 'graphQLTypes'
 import { Action } from 'typescript-fsa'
-import { push } from 'connected-react-router'
-import { ROUTES } from 'router/constants'
+import { FetchResult } from 'apollo-link'
+import { onLogoutAction } from '../auth'
+import { IRootReducer } from '../types'
 
 function* getChatsSaga() {
   try {
@@ -42,24 +58,16 @@ function* getMessagesSaga(action: Action<GetMessagesVariables>) {
     )
     const result = response.data
     yield put(getMessagesAction.done({ params, result }))
+    if (
+      result.messages.some(
+        message =>
+          message.sender.id === params.interlocutorId && !message.isRead
+      )
+    ) {
+      yield put(readAllMessages.started(params))
+    }
   } catch (error) {
     yield put(getMessagesAction.failed({ params, error }))
-  }
-}
-
-function* onStartChatActionSaga(action: Action<StartChatVariables>) {
-  const params = action.payload
-  try {
-    const response: ApolloQueryResult<StartChat> = yield call(
-      ChatService.startChat,
-      params
-    )
-    const result = response.data
-    yield put(onStartChatAction.done({ params, result }))
-    yield put(onChangeSelectedChatAction({ id: result.startChat }))
-    yield put(push(ROUTES.CHAT))
-  } catch (error) {
-    yield put(onStartChatAction.failed({ params, error }))
   }
 }
 
@@ -77,11 +85,87 @@ function* sendMessageSaga(action: Action<SendMessageVariables>) {
   }
 }
 
+function* readAllMessagesSaga(action: Action<ReadAllMessagesVariables>) {
+  const params = action.payload
+  try {
+    const response: ApolloQueryResult<ReadAllMessages> = yield call(
+      ChatService.readAllMessages,
+      params
+    )
+    const result = response.data
+    yield put(readAllMessages.done({ params, result }))
+  } catch (error) {
+    yield put(readAllMessages.failed({ params, error }))
+  }
+}
+
+const messageChannel = (interlocutorId: string) =>
+  eventChannel(emitter => {
+    const observable = ChatService.messageSubscription({ interlocutorId })
+    const subscription = observable.subscribe({
+      next(value: FetchResult<MessageSubscription>): void {
+        emitter(value.data)
+      }
+    })
+    return () => subscription.unsubscribe()
+  })
+
+function* onNextMessageSaga(payload: MessageSubscription) {
+  yield put(onNextMessageAction(payload))
+  const interlocutorId = yield select(
+    ({ chat: { interlocutorId } }: IRootReducer) => interlocutorId
+  )
+  if (payload.message.sender.id === interlocutorId && !payload.message.isRead) {
+    yield put(
+      readAllMessages.started({ interlocutorId: payload.message.sender.id })
+    )
+  }
+}
+
+function* configureMessageChannel(
+  action: Action<MessageSubscriptionVariables>
+) {
+  try {
+    const channel = yield call(messageChannel, action.payload.interlocutorId)
+    yield takeEvery(channel, onNextMessageSaga)
+    yield takeEvery([onClearChatAction, onLogoutAction], () => channel.close())
+  } catch (error) {
+    console.warn(error)
+  }
+}
+
+const chatsChannel = () =>
+  eventChannel(emitter => {
+    const observable = ChatService.chatsSubscription()
+    const subscription = observable.subscribe({
+      next(value: FetchResult<ChatsSubscription>): void {
+        emitter(value.data)
+      }
+    })
+    return () => subscription.unsubscribe()
+  })
+
+function* onNextChatsSaga(payload: ChatsSubscription) {
+  yield put(onNextChatsAction(payload))
+}
+
+function* configureChatsChannel() {
+  try {
+    const channel = yield call(chatsChannel)
+    yield takeEvery(channel, onNextChatsSaga)
+    yield takeEvery(onLogoutAction, () => channel.close())
+  } catch (error) {
+    console.warn(error)
+  }
+}
+
 export function* saga() {
   yield all([
     takeLatest(getChatsAction.started, getChatsSaga),
     takeLatest(getMessagesAction.started, getMessagesSaga),
-    takeLatest(onStartChatAction.started, onStartChatActionSaga),
-    takeLatest(sendMessageAction.started, sendMessageSaga)
+    takeLatest(sendMessageAction.started, sendMessageSaga),
+    takeLatest(readAllMessages.started, readAllMessagesSaga),
+    takeLatest(onSelectChatAction, configureMessageChannel),
+    takeLatest(subscribeOnChatsAction, configureChatsChannel)
   ])
 }

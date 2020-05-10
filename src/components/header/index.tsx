@@ -3,6 +3,7 @@ import { IRootReducer } from 'modules/types'
 import { shallowEqual, useDispatch, useSelector } from 'react-redux'
 import { onLogoutAction } from 'modules/auth'
 import { getProfileAction } from 'modules/profile'
+import { subscribeOnChatsAction } from 'modules/chat'
 import {
   AppBar,
   Button,
@@ -44,6 +45,7 @@ const HeaderComponent = React.memo(() => {
   React.useEffect(() => {
     if (isAuthenticated && !user) {
       dispatch(getProfileAction.started({}))
+      dispatch(subscribeOnChatsAction())
     }
   }, [isAuthenticated]) // eslint-disable-line
 

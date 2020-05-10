@@ -4,14 +4,22 @@ import { IChatState } from './types'
 import {
   getChatsAction,
   getMessagesAction,
-  onChangeSelectedChatAction,
+  onClearChatAction,
+  onNextChatsAction,
+  onNextMessageAction,
+  onSelectChatAction,
   sendMessageAction
 } from './actions'
 
 export const reducer = reducerWithInitialState<IChatState>(initialState)
-  .case(onChangeSelectedChatAction, (state, payload) => ({
+  .case(onSelectChatAction, (state, payload) => ({
     ...state,
-    selectedChatId: payload.id
+    interlocutorId: payload.interlocutorId
+  }))
+  .case(onClearChatAction, state => ({
+    ...state,
+    interlocutorId: initialState.interlocutorId,
+    messages: initialState.messages
   }))
   .case(getChatsAction.started, state => ({
     ...state,
@@ -43,12 +51,31 @@ export const reducer = reducerWithInitialState<IChatState>(initialState)
     ...state,
     isMessageSending: true
   }))
-  .case(sendMessageAction.done, (state, payload) => ({
+  .case(sendMessageAction.done, state => ({
     ...state,
-    isMessageSending: false,
-    messages: [...state.messages, payload.result.sendMessage]
+    isMessageSending: false
   }))
   .case(sendMessageAction.failed, state => ({
     ...state,
     isMessageSending: false
+  }))
+  .case(onNextMessageAction, (state, payload) => ({
+    ...state,
+    messages: state.messages.some(message => message.id === payload.message.id)
+      ? state.messages.map(message =>
+          message.id === payload.message.id
+            ? payload.message
+            : payload.message.isRead
+            ? { ...message, isRead: true }
+            : message
+        )
+      : [...state.messages, payload.message]
+  }))
+  .case(onNextChatsAction, (state, payload) => ({
+    ...state,
+    chats: payload.chats.map(chat =>
+      chat.interlocutor.id === state.interlocutorId
+        ? { ...chat, unreadCount: 0 }
+        : chat
+    )
   }))

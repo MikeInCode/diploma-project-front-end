@@ -16,4 +16,5 @@ export interface IMessageProps {
   text: string
   time: string
   isIncoming: boolean
+  isRead: boolean
 }

@@ -1,0 +1,3 @@
+mutation ReadAllMessages($interlocutorId: ID!) {
+  readAllMessages(interlocutorId: $interlocutorId)
+}

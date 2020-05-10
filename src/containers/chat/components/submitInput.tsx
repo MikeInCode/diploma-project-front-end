@@ -7,13 +7,13 @@ import { sendMessageAction } from 'modules/chat'
 import { IRootReducer } from 'modules/types'
 
 const mapState = ({
-  chat: { selectedChatId, isMessageSending }
-}: IRootReducer) => ({ selectedChatId, isMessageSending })
+  chat: { interlocutorId, isMessageSending }
+}: IRootReducer) => ({ interlocutorId, isMessageSending })
 
 export const SubmitInput = React.memo(() => {
   const styles = useSubmitInputStyles({})
 
-  const { selectedChatId, isMessageSending } = useSelector(
+  const { interlocutorId, isMessageSending } = useSelector(
     mapState,
     shallowEqual
   )
@@ -29,11 +29,11 @@ export const SubmitInput = React.memo(() => {
   const handleSendClick = React.useCallback(() => {
     dispatch(
       sendMessageAction.started({
-        input: { chatId: selectedChatId, text: text.trim() }
+        input: { interlocutorId, text: text.trim() }
       })
     )
     setText('')
-  }, [dispatch, selectedChatId, text])
+  }, [dispatch, interlocutorId, text])
 
   return (
     <div className={styles.root}>
@@ -45,13 +45,14 @@ export const SubmitInput = React.memo(() => {
           multiline={true}
           fullWidth={true}
           rows={5}
+          disabled={!interlocutorId}
         />
       </div>
       <div>
         <IconButton
           color="primary"
           onClick={handleSendClick}
-          disabled={!text.trim() || isMessageSending}
+          disabled={!interlocutorId || !text.trim() || isMessageSending}
         >
           <Send />
         </IconButton>

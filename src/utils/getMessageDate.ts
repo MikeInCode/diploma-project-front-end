@@ -1,4 +1,4 @@
-import { format, isSameDay, isSameWeek, isSameYear } from 'date-fns'
+import { format, isSameDay, isSameISOWeek, isSameYear } from 'date-fns'
 import { enUS, ru, uk } from 'date-fns/locale'
 import { LANGUAGES } from 'appConstants'
 
@@ -14,7 +14,7 @@ export const getChatMessageDate = (messageDate: Date, locale: string) => {
     messageDate,
     isSameDay(currentDate, messageDate)
       ? 'HH:mm'
-      : isSameWeek(currentDate, messageDate)
+      : isSameISOWeek(currentDate, messageDate)
       ? 'EEE'
       : 'dd.MM.yy',
     {

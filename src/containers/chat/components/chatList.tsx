@@ -1,30 +1,30 @@
 import React from 'react'
 import { ChatListItem } from './chatListItem'
 import { Divider } from '@material-ui/core'
-import { onChangeSelectedChatAction } from 'modules/chat'
+import { onSelectChatAction } from 'modules/chat'
 import { IRootReducer } from 'modules/types'
 import { shallowEqual, useDispatch, useSelector } from 'react-redux'
 import { useChatListStyles } from './styles'
 import { getChatMessageDate } from 'utils/getMessageDate'
 import { useTranslation } from 'react-i18next'
 
-const mapState = ({ chat: { selectedChatId, chats } }: IRootReducer) => ({
-  selectedChatId,
+const mapState = ({ chat: { interlocutorId, chats } }: IRootReducer) => ({
+  interlocutorId,
   chats
 })
 
-export const ChatList = React.memo(() => {
+const ChatListComponent = () => {
   const { i18n } = useTranslation()
 
   const styles = useChatListStyles({})
 
-  const { selectedChatId, chats } = useSelector(mapState, shallowEqual)
+  const { interlocutorId, chats } = useSelector(mapState, shallowEqual)
 
   const dispatch = useDispatch()
 
   const handleChatClick = React.useCallback(
-    (id: string) => () => {
-      dispatch(onChangeSelectedChatAction({ id }))
+    (interlocutorId: string) => () => {
+      dispatch(onSelectChatAction({ interlocutorId }))
     },
     [dispatch]
   )
@@ -47,12 +47,14 @@ export const ChatList = React.memo(() => {
                 : null
             }
             unreadCount={chat.unreadCount}
-            selected={chat.id === selectedChatId}
-            onClick={handleChatClick(chat.id)}
+            selected={chat.interlocutor.id === interlocutorId}
+            onClick={handleChatClick(chat.interlocutor.id)}
           />
           <Divider />
         </div>
       ))}
     </div>
   )
-})
+}
+
+export const ChatList = React.memo(ChatListComponent)

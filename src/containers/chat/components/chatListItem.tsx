@@ -26,7 +26,7 @@ export const ChatListItem = React.memo<IChatListItemProps>(
         className={styles.root}
         button={true}
         selected={selected}
-        onClick={onClick}
+        onClick={selected ? null : onClick}
       >
         <ListItemAvatar>
           <Avatar src={image} firstName={firstName} lastName={lastName} />

@@ -3,6 +3,7 @@
 schema {
     query: Query
     mutation: Mutation
+    subscription: Subscription
 }
 
 type AcademicBaseUnit {
@@ -120,8 +121,8 @@ type Message {
 
 type Mutation {
     login(input: LoginInput!): AuthenticatedUser!
+    readAllMessages(interlocutorId: ID!): Int!
     sendMessage(input: MessageInput!): Message!
-    startChat(interlocutorId: ID!): String!
     updateCreateMark(markData: MarkUpdateInput!, markId: ID): EvaluationMark!
     updateEvaluation(evaluationId: ID, input: [EvaluationUpdateInput]!): Evaluation!
     updateProfile(input: UpdateProfileInput!): User!
@@ -132,7 +133,7 @@ type Query {
     academicUnits: AcademicUnits!
     chats: [Chat!]!
     groups: [Group!]!
-    messages(chatId: ID!): [Message!]!
+    messages(interlocutorId: ID!): [Message!]!
     profile(id: ID): User!
     schedule: [Lesson!]!
     studentMarks(studentId: ID, subjectId: ID): [Evaluation!]!
@@ -172,6 +173,11 @@ type Subject {
     name: String!
     subjectCode: String!
     subjectType: SubjectTypeEnum!
+}
+
+type Subscription {
+    chats: [Chat!]!
+    message(interlocutorId: ID!): Message!
 }
 
 type Teacher {
@@ -287,7 +293,7 @@ input MarkUpdateInput {
 }
 
 input MessageInput {
-    chatId: ID!
+    interlocutorId: ID!
     text: String!
 }
 
@@ -307,6 +313,3 @@ input UpdateUserInput {
     patronymicName: String!
     phone: String!
 }
-
-
-scalar DateTime

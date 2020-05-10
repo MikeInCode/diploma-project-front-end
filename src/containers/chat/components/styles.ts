@@ -90,12 +90,17 @@ export const useMessageStyles = makeStyles<Theme, { isIncoming: boolean }>(
       display: 'flex'
     },
     message: {
-      wordBreak: 'break-all',
+      wordBreak: 'break-word',
       marginLeft: 16,
       padding: 10,
       borderRadius: 15,
       background: ({ isIncoming }) =>
         isIncoming ? theme.palette.divider : theme.palette.primary.light
+    },
+    time: {
+      display: 'flex',
+      justifyContent: 'space-between',
+      alignItems: 'center'
     }
   }),
   { name: 'MessageStyles' }

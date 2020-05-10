@@ -1,5 +1,5 @@
-query GetMessages($interlocutorId: ID!) {
-  messages(interlocutorId: $interlocutorId) {
+subscription MessageSubscription($interlocutorId: ID!) {
+  message(interlocutorId: $interlocutorId) {
     id
     text
     date

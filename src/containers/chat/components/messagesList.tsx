@@ -12,20 +12,20 @@ import { useTranslation } from 'react-i18next'
 
 const mapState = ({
   auth: { user },
-  chat: { selectedChatId, isMessagesLoading, messages }
+  chat: { interlocutorId, isMessagesLoading, messages }
 }: IRootReducer) => ({
   user,
-  selectedChatId,
+  interlocutorId,
   isMessagesLoading,
   messages
 })
 
-export const MessagesList = React.memo(() => {
+export const MessagesListComponent = () => {
   const { i18n } = useTranslation()
 
   const styles = useMessagesListStyles({})
 
-  const { user, selectedChatId, isMessagesLoading, messages } = useSelector(
+  const { user, interlocutorId, isMessagesLoading, messages } = useSelector(
     mapState,
     shallowEqual
   )
@@ -33,10 +33,10 @@ export const MessagesList = React.memo(() => {
   const dispatch = useDispatch()
 
   React.useEffect(() => {
-    if (selectedChatId) {
-      dispatch(getMessagesAction.started({ chatId: selectedChatId }))
+    if (interlocutorId) {
+      dispatch(getMessagesAction.started({ interlocutorId }))
     }
-  }, [dispatch, selectedChatId])
+  }, [dispatch, interlocutorId])
 
   const lastMessageRef = React.useRef<HTMLDivElement>()
 
@@ -51,18 +51,17 @@ export const MessagesList = React.memo(() => {
   ) : (
     <div className={styles.messagesList}>
       {messages.map((message, index, array) => (
-        <>
+        <React.Fragment key={message.id}>
           {(index === 0 ||
             !isSameDay(
               new Date(message.date),
               new Date(array[index - 1].date)
             )) && (
-            <div key={message.date} className={styles.messagesDateLabel}>
+            <div className={styles.messagesDateLabel}>
               {getMessageDate(new Date(message.date), i18n.language)}
             </div>
           )}
           <div
-            key={message.id}
             {...(index === array.length - 1 ? { ref: lastMessageRef } : {})}
             className={styles.messageContainer}
           >
@@ -73,10 +72,13 @@ export const MessagesList = React.memo(() => {
               text={message.text}
               time={getMessageSendTime(new Date(message.date))}
               isIncoming={message.sender.id !== user?.id}
+              isRead={message.isRead}
             />
           </div>
-        </>
+        </React.Fragment>
       ))}
     </div>
   )
-})
+}
+
+export const MessagesList = React.memo(MessagesListComponent)

@@ -3,13 +3,15 @@ import { PageWrapper } from 'common/pageWrapper'
 import { IRootReducer } from 'modules/types'
 import { getTeachersAction } from 'modules/teachers'
 import { openDrawerAction } from 'modules/drawer'
-import { onStartChatAction } from 'modules/chat'
-import { shallowEqual, useDispatch, useSelector } from 'react-redux'
+import { onSelectChatAction } from 'modules/chat'
+import { batch, shallowEqual, useDispatch, useSelector } from 'react-redux'
 import { DrawerEnum } from 'enums'
 import { useTranslation } from 'react-i18next'
 import { useMount } from 'react-use'
 import MaterialTable from 'material-table'
 import { TABLE_HEIGHT } from 'appConstants'
+import { push } from 'connected-react-router'
+import { ROUTES } from '../../router/constants'
 
 const mapState = ({ teachers: { isLoading, teachers } }: IRootReducer) => ({
   isLoading,
@@ -29,7 +31,10 @@ const Teachers = React.memo(() => {
 
   const handleClickChat = React.useCallback(
     (event, profile) => {
-      dispatch(onStartChatAction.started({ interlocutorId: profile.id }))
+      batch(() => {
+        dispatch(onSelectChatAction({ interlocutorId: profile.id }))
+        dispatch(push(ROUTES.CHAT))
+      })
     },
     [dispatch]
   )

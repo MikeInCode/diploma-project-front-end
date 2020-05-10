@@ -1,20 +1,24 @@
 import actionCreatorFactory from 'typescript-fsa'
-import { IOnChangeSelectedChatType } from './types'
 import {
+  ChatsSubscription,
   GetChats,
   GetMessages,
   GetMessagesVariables,
+  MessageSubscription,
+  MessageSubscriptionVariables,
+  ReadAllMessages,
+  ReadAllMessagesVariables,
   SendMessage,
-  SendMessageVariables,
-  StartChat,
-  StartChatVariables
+  SendMessageVariables
 } from 'graphQLTypes'
 
 const actionCreator = actionCreatorFactory('chat')
 
-export const onChangeSelectedChatAction = actionCreator<
-  IOnChangeSelectedChatType
->('ON_CHANGE_SELECTED_CHAT')
+export const onSelectChatAction = actionCreator<MessageSubscriptionVariables>(
+  'ON_SELECT_CHAT'
+)
+
+export const onClearChatAction = actionCreator('ON_CLEAR_CHAT')
 
 export const getChatsAction = actionCreator.async<void, GetChats, Error>(
   'GET_CHATS'
@@ -26,14 +30,24 @@ export const getMessagesAction = actionCreator.async<
   Error
 >('GET_MESSAGES')
 
-export const onStartChatAction = actionCreator.async<
-  StartChatVariables,
-  StartChat,
-  Error
->('ON_START_CHAT')
-
 export const sendMessageAction = actionCreator.async<
   SendMessageVariables,
   SendMessage,
   Error
 >('SEND_MESSAGE')
+
+export const readAllMessages = actionCreator.async<
+  ReadAllMessagesVariables,
+  ReadAllMessages,
+  Error
+>('READ_ALL_MESSAGE')
+
+export const onNextMessageAction = actionCreator<MessageSubscription>(
+  'ON_NEXT_MESSAGE'
+)
+
+export const subscribeOnChatsAction = actionCreator('SUBSCRIBE_ON_CHATS')
+
+export const onNextChatsAction = actionCreator<ChatsSubscription>(
+  'ON_NEXT_CHATS'
+)

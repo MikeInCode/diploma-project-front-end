@@ -70,6 +70,43 @@ export interface LoginVariables {
 // This file was automatically generated and should not be edited.
 
 // ====================================================
+// GraphQL subscription operation: ChatsSubscription
+// ====================================================
+
+export interface ChatsSubscription_chats_interlocutor {
+  __typename: "ChatInterlocutor";
+  id: string;
+  image: string | null;
+  lastName: string;
+  firstName: string;
+}
+
+export interface ChatsSubscription_chats_lastMessage {
+  __typename: "Message";
+  id: string;
+  text: string;
+  date: string;
+  isRead: boolean;
+}
+
+export interface ChatsSubscription_chats {
+  __typename: "Chat";
+  id: string;
+  interlocutor: ChatsSubscription_chats_interlocutor;
+  lastMessage: ChatsSubscription_chats_lastMessage | null;
+  unreadCount: number;
+}
+
+export interface ChatsSubscription {
+  chats: ChatsSubscription_chats[];
+}
+
+/* tslint:disable */
+/* eslint-disable */
+// @generated
+// This file was automatically generated and should not be edited.
+
+// ====================================================
 // GraphQL query operation: GetChats
 // ====================================================
 
@@ -132,7 +169,58 @@ export interface GetMessages {
 }
 
 export interface GetMessagesVariables {
-  chatId: string;
+  interlocutorId: string;
+}
+
+/* tslint:disable */
+/* eslint-disable */
+// @generated
+// This file was automatically generated and should not be edited.
+
+// ====================================================
+// GraphQL subscription operation: MessageSubscription
+// ====================================================
+
+export interface MessageSubscription_message_sender {
+  __typename: "ChatInterlocutor";
+  id: string;
+  image: string | null;
+  firstName: string;
+  lastName: string;
+}
+
+export interface MessageSubscription_message {
+  __typename: "Message";
+  id: string;
+  text: string;
+  date: string;
+  isRead: boolean;
+  sender: MessageSubscription_message_sender;
+}
+
+export interface MessageSubscription {
+  message: MessageSubscription_message;
+}
+
+export interface MessageSubscriptionVariables {
+  interlocutorId: string;
+}
+
+/* tslint:disable */
+/* eslint-disable */
+// @generated
+// This file was automatically generated and should not be edited.
+
+// ====================================================
+// GraphQL mutation operation: ReadAllMessages
+// ====================================================
+
+export interface ReadAllMessages {
+  readAllMessages: number;
+}
+
+export interface ReadAllMessagesVariables {
+  interlocutorId: string;
 }
 
 /* tslint:disable */
@@ -167,23 +255,6 @@ export interface SendMessage {
 
 export interface SendMessageVariables {
   input: MessageInput;
-}
-
-/* tslint:disable */
-/* eslint-disable */
-// @generated
-// This file was automatically generated and should not be edited.
-
-// ====================================================
-// GraphQL mutation operation: StartChat
-// ====================================================
-
-export interface StartChat {
-  startChat: string;
-}
-
-export interface StartChatVariables {
-  interlocutorId: string;
 }
 
 /* tslint:disable */
@@ -841,7 +912,7 @@ export interface LoginInput {
 }
 
 export interface MessageInput {
-  chatId: string;
+  interlocutorId: string;
   text: string;
 }
 
