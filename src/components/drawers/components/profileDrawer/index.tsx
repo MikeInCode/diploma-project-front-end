@@ -133,15 +133,6 @@ export const ProfileDrawer = React.memo<IProfileDrawerProps>(
             />
           </ListItem>
         )}
-        {/*{true && (*/}
-        {/*  <ListItem>*/}
-        {/*    <ListItemText*/}
-        {/*      className={styles.listItemText}*/}
-        {/*      primary={''}*/}
-        {/*      secondary={t('telegramLabel')}*/}
-        {/*    />*/}
-        {/*  </ListItem>*/}
-        {/*)}*/}
         <AccessControl permissions={[RolesEnum.ADMIN]}>
           <ListItem>
             <Button
