@@ -9,6 +9,7 @@ query GetProfile($id: ID) {
     role
     email
     phone
+    telegram
     institute {
       id
       name

@@ -302,6 +302,7 @@ export interface GetProfile_profile {
   role: RolesEnum;
   email: string | null;
   phone: string | null;
+  telegram: string | null;
   institute: GetProfile_profile_institute;
   department: GetProfile_profile_department | null;
   speciality: GetProfile_profile_speciality | null;
@@ -362,6 +363,7 @@ export interface UpdateProfile_updateProfile {
   role: RolesEnum;
   email: string | null;
   phone: string | null;
+  telegram: string | null;
   institute: UpdateProfile_updateProfile_institute;
   department: UpdateProfile_updateProfile_department | null;
   speciality: UpdateProfile_updateProfile_speciality | null;
@@ -422,6 +424,7 @@ export interface UpdateUser_updateUser {
   role: RolesEnum;
   email: string | null;
   phone: string | null;
+  telegram: string | null;
   institute: UpdateUser_updateUser_institute;
   department: UpdateUser_updateUser_department | null;
   speciality: UpdateUser_updateUser_speciality | null;
@@ -931,6 +934,7 @@ export interface UpdateUserInput {
   phone: string;
   department?: string | null;
   group?: string | null;
+  telegram?: string | null;
 }
 
 //==============================================================

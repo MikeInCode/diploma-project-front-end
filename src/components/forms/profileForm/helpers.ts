@@ -14,7 +14,7 @@ export const adaptValuesToForm: (
   username: user?.username || '',
   email: user?.email || '',
   phone: user?.phone || '',
-  telegram: 'todo',
+  telegram: user?.telegram || '',
   institute: user?.institute?.id || '',
   department: user?.department?.id || '',
   speciality: user?.speciality?.id || '',

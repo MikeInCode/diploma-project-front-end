@@ -1,14 +1,14 @@
 import React from 'react'
 import { IProfileFormProps, IProfileFormValues } from './types'
 import { FormContext, useForm } from 'react-hook-form'
-import { Button, Grid, MenuItem } from '@material-ui/core'
+import { Button, Grid, Link, MenuItem } from '@material-ui/core'
 import { Avatar } from 'common/avatar'
 import { useProfileFormStyles } from './styles'
 import { FormSelect, FormTextField } from '../common'
 import { adaptValuesToForm, validationSchema } from './helpers'
 import { useTranslation } from 'react-i18next'
 import { useUpdateEffect } from 'react-use'
-import { RolesEnum } from '../../../graphQLTypes'
+import { RolesEnum } from 'graphQLTypes'
 import { useParams } from 'react-router-dom'
 
 export const ProfileForm = React.memo<IProfileFormProps>(
@@ -175,12 +175,23 @@ export const ProfileForm = React.memo<IProfileFormProps>(
                   ))}
                 </FormSelect>
               </Grid>
-              <Grid item={true} xs={6}>
-                {/*<FormTextField*/}
-                {/*  name="telegram"*/}
-                {/*  label={t('telegramLabel')}*/}
-                {/*  fullWidth={true}*/}
-                {/*/>*/}
+              <Grid item={true} xs={6} style={{ position: 'relative' }}>
+                {!id && (
+                  <>
+                    <FormTextField
+                      name="telegram"
+                      label={t('telegramLabel')}
+                      fullWidth={true}
+                    />
+                    <Link
+                      href="https://t.me/eStudying_Platform_bot"
+                      target="_blank"
+                      style={{ position: 'absolute', left: 12, top: 64 }}
+                    >
+                      t.me/eStudying_Platform_bot
+                    </Link>
+                  </>
+                )}
               </Grid>
               {user.role === RolesEnum.TEACHER && (
                 <>

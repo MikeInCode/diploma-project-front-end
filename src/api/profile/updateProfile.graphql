@@ -9,6 +9,7 @@ mutation UpdateProfile($input: UpdateProfileInput!) {
     role
     email
     phone
+    telegram
     institute {
       id
       name

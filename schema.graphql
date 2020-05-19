@@ -223,6 +223,7 @@ type User {
     phone: String
     role: RolesEnum!
     speciality: UserAcademicExtendedUnit
+    telegram: String
     username: String!
 }
 
@@ -312,4 +313,5 @@ input UpdateUserInput {
     lastName: String!
     patronymicName: String!
     phone: String!
+    telegram: String
 }
