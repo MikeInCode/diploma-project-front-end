@@ -932,9 +932,9 @@ export interface UpdateUserInput {
   patronymicName: string;
   email: string;
   phone: string;
+  telegram?: string | null;
   department?: string | null;
   group?: string | null;
-  telegram?: string | null;
 }
 
 //==============================================================
