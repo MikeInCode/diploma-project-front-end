@@ -302,6 +302,7 @@ input UpdateProfileInput {
     email: String!
     image: String!
     phone: String!
+    telegram: String
 }
 
 input UpdateUserInput {
@@ -313,5 +314,4 @@ input UpdateUserInput {
     lastName: String!
     patronymicName: String!
     phone: String!
-    telegram: String
 }

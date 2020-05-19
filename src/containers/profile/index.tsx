@@ -46,7 +46,14 @@ const Profile = React.memo(() => {
 
   const handleSubmit = React.useCallback(
     (values: IProfileFormValues) => {
-      const { institute, speciality, username, course, ...input } = values
+      const {
+        institute,
+        speciality,
+        username,
+        course,
+        telegram,
+        ...input
+      } = values
       return id
         ? dispatch(
             updateUserAction.started({
@@ -57,6 +64,7 @@ const Profile = React.memo(() => {
         : dispatch(
             updateProfileAction.started({
               input: {
+                telegram,
                 image: input.image,
                 email: input.email,
                 phone: input.phone

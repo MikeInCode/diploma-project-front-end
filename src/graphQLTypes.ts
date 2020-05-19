@@ -923,6 +923,7 @@ export interface UpdateProfileInput {
   image: string;
   email: string;
   phone: string;
+  telegram?: string | null;
 }
 
 export interface UpdateUserInput {
@@ -932,7 +933,6 @@ export interface UpdateUserInput {
   patronymicName: string;
   email: string;
   phone: string;
-  telegram?: string | null;
   department?: string | null;
   group?: string | null;
 }
