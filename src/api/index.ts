@@ -30,11 +30,11 @@ const errorLink = onError(({ graphQLErrors }) => {
 })
 
 const httpLink = createHttpLink({
-  uri: process.env.REACT_APP_HTTP_URL
+  uri: 'http://localhost:3001/graphql'
 })
 
 const wsLink = new WebSocketLink({
-  uri: process.env.REACT_APP_WS_URL,
+  uri: 'ws://localhost:3001/graphql',
   options: {
     reconnect: true,
     connectionParams: () => {
