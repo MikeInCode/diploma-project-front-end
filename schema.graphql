@@ -90,6 +90,7 @@ type Group {
 
 type Lesson {
     endTime: String!
+    groups: [UserAcademicBaseUnit!]!
     id: ID!
     room: String!
     scheduledSubject: LessonScheduledSubject!
@@ -97,7 +98,6 @@ type Lesson {
 }
 
 type LessonScheduledSubject {
-    groups: [UserAcademicBaseUnit!]!
     id: ID!
     subject: Subject!
     teacher: LessonTeacher!
@@ -223,6 +223,7 @@ type User {
     phone: String
     role: RolesEnum!
     speciality: UserAcademicExtendedUnit
+    telegram: String
     username: String!
 }
 
@@ -301,6 +302,7 @@ input UpdateProfileInput {
     email: String!
     image: String!
     phone: String!
+    telegram: String
 }
 
 input UpdateUserInput {
