@@ -450,6 +450,11 @@ export interface UpdateUserVariables {
 // GraphQL query operation: GetSchedule
 // ====================================================
 
+export interface GetSchedule_schedule_groups {
+  __typename: "UserAcademicBaseUnit";
+  name: string;
+}
+
 export interface GetSchedule_schedule_scheduledSubject_subject {
   __typename: "Subject";
   id: string;
@@ -467,17 +472,11 @@ export interface GetSchedule_schedule_scheduledSubject_teacher {
   patronymicName: string;
 }
 
-export interface GetSchedule_schedule_scheduledSubject_groups {
-  __typename: "UserAcademicBaseUnit";
-  name: string;
-}
-
 export interface GetSchedule_schedule_scheduledSubject {
   __typename: "LessonScheduledSubject";
   id: string;
   subject: GetSchedule_schedule_scheduledSubject_subject;
   teacher: GetSchedule_schedule_scheduledSubject_teacher;
-  groups: GetSchedule_schedule_scheduledSubject_groups[];
 }
 
 export interface GetSchedule_schedule {
@@ -486,6 +485,7 @@ export interface GetSchedule_schedule {
   startTime: string;
   endTime: string;
   room: string;
+  groups: GetSchedule_schedule_groups[];
   scheduledSubject: GetSchedule_schedule_scheduledSubject;
 }
 

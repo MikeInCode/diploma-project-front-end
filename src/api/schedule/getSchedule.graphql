@@ -4,6 +4,9 @@ query GetSchedule {
     startTime
     endTime
     room
+    groups {
+      name
+    }
     scheduledSubject {
       id
       subject {
@@ -18,9 +21,6 @@ query GetSchedule {
         lastName
         firstName
         patronymicName
-      }
-      groups {
-        name
       }
     }
   }

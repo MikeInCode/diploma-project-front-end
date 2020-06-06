@@ -90,6 +90,7 @@ type Group {
 
 type Lesson {
     endTime: String!
+    groups: [UserAcademicBaseUnit!]!
     id: ID!
     room: String!
     scheduledSubject: LessonScheduledSubject!
@@ -97,7 +98,6 @@ type Lesson {
 }
 
 type LessonScheduledSubject {
-    groups: [UserAcademicBaseUnit!]!
     id: ID!
     subject: Subject!
     teacher: LessonTeacher!
