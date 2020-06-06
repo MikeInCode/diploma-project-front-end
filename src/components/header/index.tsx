@@ -45,6 +45,8 @@ const HeaderComponent = React.memo(() => {
   React.useEffect(() => {
     if (isAuthenticated && !user) {
       dispatch(getProfileAction.started({}))
+    }
+    if (isAuthenticated) {
       dispatch(subscribeOnChatsAction())
     }
   }, [isAuthenticated]) // eslint-disable-line
