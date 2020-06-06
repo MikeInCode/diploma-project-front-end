@@ -464,11 +464,17 @@ export interface GetSchedule_schedule_scheduledSubject_teacher {
   patronymicName: string;
 }
 
+export interface GetSchedule_schedule_scheduledSubject_groups {
+  __typename: "UserAcademicBaseUnit";
+  name: string;
+}
+
 export interface GetSchedule_schedule_scheduledSubject {
   __typename: "LessonScheduledSubject";
   id: string;
   subject: GetSchedule_schedule_scheduledSubject_subject;
   teacher: GetSchedule_schedule_scheduledSubject_teacher;
+  groups: GetSchedule_schedule_scheduledSubject_groups[];
 }
 
 export interface GetSchedule_schedule {
@@ -920,6 +926,7 @@ export interface UpdateProfileInput {
   image: string;
   email: string;
   phone: string;
+  telegram?: string | null;
 }
 
 export interface UpdateUserInput {

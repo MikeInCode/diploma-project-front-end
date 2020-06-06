@@ -15,5 +15,8 @@ export const adaptSchedule = (
       firstName: item.scheduledSubject.teacher.firstName,
       patronymicName: item.scheduledSubject.teacher.patronymicName
     },
-    room: item.room
+    room: item.room,
+    groups: item.scheduledSubject.groups
+      .map(({ name }) => name)
+      .sort((a, b) => a.localeCompare(b))
   }))

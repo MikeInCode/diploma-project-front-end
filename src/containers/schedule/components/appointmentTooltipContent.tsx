@@ -2,7 +2,7 @@ import React from 'react'
 import { AppointmentTooltip } from '@devexpress/dx-react-scheduler-material-ui'
 import { IScheduleItem } from 'modules/schedule'
 import { Grid } from '@material-ui/core'
-import { Person, Room } from '@material-ui/icons'
+import { People, Person, Room } from '@material-ui/icons'
 import { useAppointmentTooltipContentStyles } from './styles'
 
 export const AppointmentTooltipContent = React.memo<
@@ -20,6 +20,14 @@ export const AppointmentTooltipContent = React.memo<
         </Grid>
         <Grid item={true} xs={10}>
           <span>{data.room}</span>
+        </Grid>
+      </Grid>
+      <Grid container={true} className={styles.item}>
+        <Grid item={true} xs={2} className={styles.iconContainer}>
+          <People color="action" />
+        </Grid>
+        <Grid item={true} xs={10}>
+          <span>{data.groups.join(', ')}</span>
         </Grid>
       </Grid>
       <Grid container={true} className={styles.item}>
