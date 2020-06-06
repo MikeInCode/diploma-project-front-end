@@ -17,4 +17,5 @@ export interface IScheduleItem {
     patronymicName: string
   }
   room: string
+  groups: string[]
 }

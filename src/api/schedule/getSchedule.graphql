@@ -19,6 +19,9 @@ query GetSchedule {
         firstName
         patronymicName
       }
+      groups {
+        name
+      }
     }
   }
 }
